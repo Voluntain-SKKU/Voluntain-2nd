@@ -1,0 +1,9 @@
+/* add */
+.nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #f5f5dc;
+  }
+  
