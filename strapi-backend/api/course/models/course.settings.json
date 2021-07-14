@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "name": "Course",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "about": {
+      "type": "richtext"
+    },
+    "lectures": {
+      "collection": "lecture",
+      "via": "course"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "easy",
+        "normal",
+        "hard"
+      ]
+    }
+  }
+}
