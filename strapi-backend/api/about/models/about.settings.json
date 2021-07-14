@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "name": "About",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Introduction": {
+      "type": "richtext"
+    },
+    "Vision": {
+      "type": "richtext"
+    },
+    "History": {
+      "type": "richtext"
+    },
+    "Contact": {
+      "type": "richtext"
+    }
+  }
+}
