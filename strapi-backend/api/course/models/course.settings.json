@@ -19,8 +19,8 @@
       "type": "richtext"
     },
     "lectures": {
-      "collection": "lecture",
-      "via": "course"
+      "via": "course",
+      "collection": "lecture"
     },
     "level": {
       "type": "enumeration",
