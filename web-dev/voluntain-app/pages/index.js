@@ -3,7 +3,9 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
+import { MainCard } from '../components/MainCard'
 import { Card, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Home() {
   return (
@@ -18,29 +20,12 @@ export default function Home() {
       <NavigationBar />
 
       <MainBanner />
+      {/* Component 분리 ?? */}
       {/* <div className={styles.card}> */}
-        <Card>
-          <Card.Header>Featured</Card.Header>
-          <Card.Body>
-            <Card.Title>Special title treatment</Card.Title>
-            <Card.Text>
-              With supporting text below as a natural lead-in to additional content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Header>Featured</Card.Header>
-          <Card.Body>
-            <Card.Title>Special title treatment</Card.Title>
-            <Card.Text>
-              With supporting text below as a natural lead-in to additional content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
       {/* </div> */}
+      <MainCard/>
 
+      {/* Footer component 분리 */}
       <footer className={styles.footer}>
         <span className={styles.h1}>
           Powered by Voluntain
