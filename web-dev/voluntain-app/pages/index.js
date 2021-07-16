@@ -5,7 +5,6 @@ import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
 import { Card, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Home() {
   return (
