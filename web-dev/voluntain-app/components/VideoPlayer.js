@@ -12,12 +12,6 @@ export const VideoPlayer = (props) => {
 }
 
 class YoutubePlayer extends React.Component {
-    videoOnReady(event) {
-      event.target.pauseVideo();
-      // access to player in all event handlers via event.target
-      // console.log(event.target);
-    }
-  
     render() {
       const opts = {
         height: '480',
@@ -31,6 +25,6 @@ class YoutubePlayer extends React.Component {
   
       const { videoId } = this.props
   
-      return <Youtube videoId={videoId} opts={opts} onReady={this.videoOnReady} />;
+      return <Youtube videoId={videoId} opts={opts} />;
     }
   }
