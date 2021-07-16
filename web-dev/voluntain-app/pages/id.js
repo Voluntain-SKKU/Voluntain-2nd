@@ -1,16 +1,22 @@
-import Disqus from 'disqus-react'
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 
 import { VideoPlayer } from '../components/VideoPlayer'
-import { Navbar } from '../components/Navbar'
+import { NavigationBar } from '../components/NavigationBar'
 import { Comment } from '../components/Comment'
+import { LectureText } from '../components/LectureText'
+import { SideBar } from '../components/SideBar'
 
 export default function Page() {
   return (
     <div>
+      {/* Sidebar */}
+      {/* <div>
+        <SideBar />
+      </div> */}
+
       <div className="NavigationBar">
-        <Navbar />
+        <NavigationBar />
       </div>
 
       <div className="PrevButton" style={{ float: 'left' }}>
@@ -27,6 +33,17 @@ export default function Page() {
 
       <div className="Player" style={{ clear: 'both' }}>
         <VideoPlayer videoId='_9RvpFdUQr0' />
+      </div>
+
+      <div>
+        <LectureText 
+          title="This course is ..." 
+          content="for beginners. Try it!"
+        />
+        <LectureText 
+          title="Exercise " 
+          content="Do this exercise!"
+        />
       </div>
 
       <div className="Comment">
