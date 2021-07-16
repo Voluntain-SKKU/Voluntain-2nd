@@ -10,44 +10,47 @@ import { SideBar } from '../components/SideBar'
 export default function Page() {
   return (
     <div>
-      {/* Sidebar */}
-      {/* <div>
-        <SideBar />
-      </div> */}
-
-      <div className="NavigationBar">
+      <div className="Head">
         <NavigationBar />
       </div>
 
-      <div className="PrevButton" style={{ float: 'left' }}>
-        <Button variant="light">Prev</Button>
-      </div>
+      <div className="Body">
+        <div className="Left" style={{ float: 'left' }}>
+          <SideBar height={1000} width={200}/>
+        </div>
 
-      <div className="Title" style={{ float: 'left' }}>
-        <h1>Scratch - Lecture 1</h1>
-      </div>
+        <div className="Right" style={{ float: 'left' }}>
+          <div className="PrevButton" style={{ float: 'left' }}>
+            <Button variant="light">Prev</Button>
+          </div>
 
-      <div className="NextButton" style={{ float: 'left' }}>
-        <Button variant="dark">Next</Button>
-      </div>
+          <div className="Title" style={{ float: 'left' }}>
+            <h1>Scratch - Lecture 1</h1>
+          </div>
 
-      <div className="Player" style={{ clear: 'both' }}>
-        <VideoPlayer videoId='_9RvpFdUQr0' />
-      </div>
+          <div className="NextButton" style={{ float: 'left' }}>
+            <Button variant="dark">Next</Button>
+          </div>
 
-      <div>
-        <LectureText 
-          title="This course is ..." 
-          content="for beginners. Try it!"
-        />
-        <LectureText 
-          title="Exercise " 
-          content="Do this exercise!"
-        />
-      </div>
+          <div className="Player" style={{ clear: 'both' }}>
+            <VideoPlayer videoId='_9RvpFdUQr0' />
+          </div>
 
-      <div className="Comment">
-        <Comment />
+          <div>
+            <LectureText
+              title="This course is ..."
+              content="for beginners. Try it!"
+            />
+            <LectureText
+              title="Exercise "
+              content="Do this exercise!"
+            />
+          </div>
+
+          <div className="Comment">
+            <Comment />
+          </div>
+        </div>
       </div>
     </div>
   )
