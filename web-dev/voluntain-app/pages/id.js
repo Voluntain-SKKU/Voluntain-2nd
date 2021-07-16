@@ -1,4 +1,3 @@
-import Disqus from 'disqus-react'
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 
@@ -6,10 +5,16 @@ import { VideoPlayer } from '../components/VideoPlayer'
 import { NavigationBar } from '../components/NavigationBar'
 import { Comment } from '../components/Comment'
 import { LectureText } from '../components/LectureText'
+import { SideBar } from '../components/SideBar'
 
 export default function Page() {
   return (
     <div>
+      {/* Sidebar */}
+      {/* <div>
+        <SideBar />
+      </div> */}
+
       <div className="NavigationBar">
         <NavigationBar />
       </div>
