@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.css'
 // export default - const difference
 export const Navbar = () => {
   return (
-    <>
       <nav className={styles.nav}>
         <Link href='/lecture'>
           <Image 
@@ -18,6 +17,5 @@ export const Navbar = () => {
           <p>Nav Bar Here</p>
         </div>
       </nav>
-    </>
   );
 };
