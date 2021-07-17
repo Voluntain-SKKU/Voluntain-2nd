@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
+import Divider from '@material-ui/core/Divider'
 
 import { VideoPlayer } from '../components/VideoPlayer'
 import { NavigationBar } from '../components/NavigationBar'
@@ -15,22 +16,20 @@ export default function Page() {
       </div>
 
       <div className="Body">
-        <div className="Left" style={{ float: 'left' }}>
-          <SideBar height={1000} width={200}/>
+        <div className="LeftSide" style={{ float: 'left' }}>
+          <SideBar height={1000} width={200} />
         </div>
 
-        <div className="Right" style={{ float: 'left' }}>
-          <div className="PrevButton" style={{ float: 'left' }}>
-            <Button variant="light">Prev</Button>
+        <div className="RightSide" style={{ float: 'left', margin: 10}}>
+          <div className="LectureTitle" style={{ margin:10 }}>
+            <h1>Lecture 1</h1>
           </div>
 
-          <div className="Title" style={{ float: 'left' }}>
-            <h1>Scratch - Lecture 1</h1>
-          </div>
+            <div className="Buttons" style={{ marginBottom: 70 }}>
+              <div style={{float:'left'}}><Button variant="light">{'< Prev'}</Button></div>
 
-          <div className="NextButton" style={{ float: 'left' }}>
-            <Button variant="dark">Next</Button>
-          </div>
+              <div style={{float:'right'}}><Button variant="dark">{'Next >'}</Button></div>
+            </div>
 
           <div className="Player" style={{ clear: 'both' }}>
             <VideoPlayer videoId='_9RvpFdUQr0' />
@@ -41,6 +40,7 @@ export default function Page() {
               title="This course is ..."
               content="for beginners. Try it!"
             />
+            <Divider style={{ background: 'black' }} variant='middle' />
             <LectureText
               title="Exercise "
               content="Do this exercise!"
