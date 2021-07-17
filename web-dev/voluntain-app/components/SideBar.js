@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList } from 'react-window';
+import Hidden from '@material-ui/core/Hidden';
 
 /**
  * Style the background of sidebar.
@@ -25,6 +26,7 @@ const useStyles = makeStyles((prop) => ({
 
 /**
  * Make the rows of the list.
+ * If you want to change the contents of the sidebar, modify this.
  */
 function renderRow(props) {
     const { index, style } = props;
@@ -50,15 +52,21 @@ renderRow.propTypes = {
  * 
  * @Usage
  * \<SideBar height={0} width={0} \/\>
+ * 
+ * @Note
+ * SideBar is automatically hidden when page size is below 'sm'.
+ * See also https://material-ui.com/customization/breakpoints/#withwidth.
  */
 export const SideBar = (prop) => {
     const classes = useStyles(prop);
 
     return (
-        <div className={classes.root}>
-            <FixedSizeList height={prop.height} width={prop.width} itemSize={50} itemCount={30}>
-                {renderRow}
-            </FixedSizeList>
-        </div>
+        <Hidden smDown>
+            <div className={classes.root}>
+                <FixedSizeList height={prop.height} width={prop.width} itemSize={50} itemCount={30}>
+                    {renderRow}
+                </FixedSizeList>
+            </div>
+        </Hidden>
     );
 }
