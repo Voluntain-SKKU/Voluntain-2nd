@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Divider from '@material-ui/core/Divider'
+import Hidden from '@material-ui/core/Hidden';
 
 import { VideoPlayer } from '../components/VideoPlayer'
 import { NavigationBar } from '../components/NavigationBar'
@@ -17,19 +18,21 @@ export default function Page() {
 
       <div className="Body">
         <div className="LeftSide" style={{ float: 'left' }}>
-          <SideBar height={1000} width={200} />
+          <Hidden smDown>
+            <SideBar height={1000} width={200} />
+          </Hidden>
         </div>
 
-        <div className="RightSide" style={{ float: 'left', margin: 10}}>
-          <div className="LectureTitle" style={{ margin:10 }}>
+        <div className="RightSide" style={{ float: 'left', margin: 10 }}>
+          <div className="LectureTitle" style={{ margin: 10 }}>
             <h1>Lecture 1</h1>
           </div>
 
-            <div className="Buttons" style={{ marginBottom: 70 }}>
-              <div style={{float:'left'}}><Button variant="light">{'< Prev'}</Button></div>
+          <div className="Buttons" style={{ marginBottom: 70 }}>
+            <div style={{ float: 'left' }}><Button variant="light">{'< Prev'}</Button></div>
 
-              <div style={{float:'right'}}><Button variant="dark">{'Next >'}</Button></div>
-            </div>
+            <div style={{ float: 'right' }}><Button variant="dark">{'Next >'}</Button></div>
+          </div>
 
           <div className="Player" style={{ clear: 'both' }}>
             <VideoPlayer videoId='_9RvpFdUQr0' />

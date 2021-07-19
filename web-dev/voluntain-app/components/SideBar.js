@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FixedSizeList } from 'react-window';
-import Hidden from '@material-ui/core/Hidden';
 
 /**
  * Style the background of sidebar.
@@ -61,12 +60,10 @@ export const SideBar = (prop) => {
     const classes = useStyles(prop);
 
     return (
-        <Hidden smDown>
-            <div className={classes.root}>
-                <FixedSizeList height={prop.height} width={prop.width} itemSize={50} itemCount={30}>
-                    {renderRow}
-                </FixedSizeList>
-            </div>
-        </Hidden>
+        <div className={classes.root}>
+            <FixedSizeList height={prop.height} width={prop.width} itemSize={50} itemCount={30}>
+                {renderRow}
+            </FixedSizeList>
+        </div>
     );
 }
