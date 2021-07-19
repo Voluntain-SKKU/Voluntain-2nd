@@ -19,7 +19,8 @@ class YoutubePlayer extends React.Component {
         playerVars: {
           // To check other variables, check:
           // https://developers.google.com/youtube/player_parameters
-          autoplay: 1,
+          cc_load_policy: 1,
+          modestbranding: 1,
         }
       }
   
