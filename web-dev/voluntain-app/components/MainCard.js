@@ -10,7 +10,7 @@ export const MainCard = ()=> {
             <Card.Img variant="top" src="/scratch.png" className={styles.cardimg}/>
             <Card.Body>
             <Card.Title class="fw-bold fs-2">SCRATCH</Card.Title>
-            <Card.Text>
+            <Card.Text class="py-1 mb-2">
                 With supporting text below as a natural lead-in to additional content.
             </Card.Text>
             <Link href="/id" >
@@ -22,7 +22,7 @@ export const MainCard = ()=> {
             <Card.Img variant="top" src="/python.jpg" className={styles.cardimg}/>
             <Card.Body>
             <Card.Title class="fw-bold fs-2">PYTHON</Card.Title>
-            <Card.Text>
+            <Card.Text class="py-1 mb-2">
                 With supporting text below as a natural lead-in to additional content.
             </Card.Text>
             <Link href="/id" >
