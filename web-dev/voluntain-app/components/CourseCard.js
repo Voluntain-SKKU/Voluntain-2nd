@@ -8,29 +8,33 @@ import Link from 'next/link'
  * 
  * @param {*} props 
  * @Properties
- * - title
- * - img
- * - content
- * - link
- * - btntext
+ * - title: 강좌 제목
+ * - img: 강좌 아이콘 파일 경로
+ * - content: 강좌 소개
+ * - link: 강좌 페이지 링크 
+ * - difficulty: 난이도 (1 ~ 5)
  * 
  * @returns 
  */
 export const CourseCard = (props)=> {
+    const stars= [ " ", "★", "★ ★", "★ ★ ★", "★ ★ ★ ★", "★ ★ ★ ★ ★"]
+    
     return(
         <div className={styles.main}>
-        <Card className={styles.card}>
-            <Card.Img variant="top" src={props.img} className={styles.cardimg}/>
-            <Card.Body>
-            <Card.Title className="fw-bold fs-2">{props.title}</Card.Title>
-            <Card.Text className="py-2 mb-2">
-                {props.content}
-            </Card.Text>
             <Link href={props.link} >
-                <Button variant="primary">{props.btntext}</Button>
+            <Card className={styles.card}>
+                <Card.Img variant="top" src={props.img} className={styles.cardimg}/>
+                <Card.Body>
+                <Card.Title className="fw-bold fs-2">{props.title}</Card.Title>
+                <Card.Text className="py-2 mb-2">
+                    {props.content}
+                </Card.Text>
+                <Card.Footer className="py-2 px-0 bg-transparent border-secondary">
+                    Difficulty : { stars[props.dif] } 
+                </Card.Footer>
+                </Card.Body>
+            </Card>
             </Link>
-            </Card.Body>
-        </Card>
       </div>
     );
 };
