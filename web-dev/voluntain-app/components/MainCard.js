@@ -13,11 +13,13 @@ export const MainCard = ()=> {
             <Card.Text>
                 With supporting text below as a natural lead-in to additional content.
             </Card.Text>
-            <Button variant="primary">Click to learn</Button>
+            <Link href="/id" >
+                <Button variant="primary">Click to learn</Button>
+            </Link>
             </Card.Body>
         </Card>
         <Card className={styles.card}>
-            <Card.Img variant="top" src="/python.png" className={styles.cardimg}/>
+            <Card.Img variant="top" src="/python.jpg" className={styles.cardimg}/>
             <Card.Body>
             <Card.Title class="fw-bold fs-2">PYTHON</Card.Title>
             <Card.Text>
