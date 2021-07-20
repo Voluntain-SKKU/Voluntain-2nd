@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export const NavigationBar = () => {
   return (
     <div>
-      <Navbar bg="light" expand="lg" sticky="top">
+      <Navbar bg="light" expand="md" fixed="top">
         <Container>
           <Navbar.Brand href="/">
           <img
@@ -21,7 +21,7 @@ export const NavigationBar = () => {
            VOLUNTAIN</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="ms-auto">
               <Nav.Link href="#home">HOME</Nav.Link>
               <Nav.Link href="#link">ABOUT</Nav.Link>
               <NavDropdown title="COURSES" id="basic-nav-dropdown">
