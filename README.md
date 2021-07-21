@@ -2,7 +2,8 @@
 
 ## 실행 방법
 ```
-$ cd web-dev
+$ cd web-dev/voluntain-web
+$ npm install 
 $ npm run dev
 ```
 
