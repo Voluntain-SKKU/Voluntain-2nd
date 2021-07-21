@@ -25,7 +25,8 @@ export const NavigationBar = () => {
               <Nav.Link href="#home">HOME</Nav.Link>
               <Nav.Link href="#link">ABOUT</Nav.Link>
               <NavDropdown title="COURSES" id="basic-nav-dropdown">
-                {/* href=" 수정 필요 " */}
+                {/* href=" 수정 필요 " 
+                  loop로 코스 제목/url 수정 */}
                 <NavDropdown.Item href="/id">Scratch</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Python</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">C/C++</NavDropdown.Item>
