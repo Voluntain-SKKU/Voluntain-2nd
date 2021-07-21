@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { Navbar } from '../components/Navbar'
+import {url} from '../config/next.config' //url 가져오기
 
-export default function Home() {
+export default function Home( {courses} ) {
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +21,20 @@ export default function Home() {
         <h1 className={styles.title}>
           VOLUNTAIN
         </h1>
-
+        {/* data test */}
+        <h3>LIST</h3>
+        <ul>
+          {courses.map((course) => (
+            <li key={course.id}>
+              
+                <a>{course.title}</a>
+                <a>{course.about}</a>
+                <a>{course.level}</a>
+                
+              
+            </li>
+          ))}
+        </ul>
         {/*Grid Card Menu */}
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -61,3 +75,14 @@ export default function Home() {
     </div>
   )
 }
+
+// {url}/courses 에 GET Request 보내 course list 받아오기 (id, title, about, level)
+export const getStaticProps = async () => {
+  const data = await fetch(`${url}/courses`);
+  const courses = await data.json();
+
+  return {
+    props: { courses },
+    revalidate: 1,//몇 초로 할지?
+  };
+};
