@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
-import Divider from '@material-ui/core/Divider'
-import Hidden from '@material-ui/core/Hidden';
+import { Divider, Hidden } from '@material-ui/core'
 
 import { VideoPlayer } from '../components/VideoPlayer'
 import { NavigationBar } from '../components/NavigationBar'
