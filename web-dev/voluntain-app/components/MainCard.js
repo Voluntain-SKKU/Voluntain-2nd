@@ -5,6 +5,7 @@ import CardColumns from 'react-bootstrap/CardColumns'
 export const MainCard = ()=> {
     return(
         <CardColumns>
+            {/* get course inform from backend */}
             <CourseCard
             title="SCRATCH" 
             img="/scratch.png"
@@ -21,4 +22,4 @@ export const MainCard = ()=> {
             />  
         </CardColumns>
     );
-};
+}
