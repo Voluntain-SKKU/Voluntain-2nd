@@ -11,6 +11,10 @@ export const VideoPlayer = (props) => {
     );
 }
 
+/**
+ * @see
+ * https://developers.google.com/youtube/iframe_api_reference
+ */
 class YoutubePlayer extends React.Component {
     render() {
       const opts = {
