@@ -1,59 +1,97 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
-import { Divider, Hidden } from '@material-ui/core'
+import { Button, Card, CardContent, Divider, Hidden, Link, Typography } from '@material-ui/core'
+import styles from '../../styles/Home.module.css'
 
-import { VideoPlayer } from '../components/VideoPlayer'
-import { NavigationBar } from '../components/NavigationBar'
-import { Comment } from '../components/Comment'
-import { LectureText } from '../components/LectureText'
-import { SideBar } from '../components/SideBar'
+import { VideoPlayer } from '../../components/VideoPlayer'
+import { NavigationBar } from '../../components/NavigationBar'
+import { Comment } from '../../components/Comment'
+import { LectureText } from '../../components/LectureText'
+import { SideBar } from '../../components/SideBar'
 
-export default function Page() {
+export default function LecturePage() {
+  /**
+   * This composes the content of the sidebar.
+   */
+  const lectureList = [
+    'About Scratch',
+    'Easy',
+    'Hard',
+  ];
+
+  /**
+   * These check whether the current lecture is the first or last one.
+   * If it is, disable Prev or Next button.
+   */
+  const firstLecture = true;
+  const lastLecture = false;
+
   return (
-    <div>
-      <div className="Head">
-        <NavigationBar />
-      </div>
+    <div className={styles.container}>
+      <NavigationBar />
 
-      <div className="Body">
-        <div className="LeftSide" style={{ float: 'left' }}>
-          <Hidden smDown>
-            <SideBar height={1000} width={200} />
-          </Hidden>
+      <main className={styles.main}>
+        <div>
+          <h1>About Scratch</h1>
         </div>
 
-        <div className="RightSide" style={{ float: 'left', margin: 10 }}>
-          <div className="LectureTitle" style={{ margin: 10 }}>
-            <h1>Lecture 1</h1>
-          </div>
-
-          <div className="Buttons" style={{ marginBottom: 70 }}>
-            <div style={{ float: 'left' }}><Button variant="light">{'< Prev'}</Button></div>
-
-            <div style={{ float: 'right' }}><Button variant="dark">{'Next >'}</Button></div>
-          </div>
-
-          <div className="Player" style={{ clear: 'both' }}>
-            <VideoPlayer videoId='_9RvpFdUQr0' />
-          </div>
-
-          <div>
-            <LectureText
-              title="This course is ..."
-              content="for beginners. Try it!"
-            />
-            <Divider style={{ background: 'black' }} variant='middle' />
-            <LectureText
-              title="Exercise "
-              content="Do this exercise!"
-            />
-          </div>
-
-          <div className="Comment">
-            <Comment />
-          </div>
+        <div>
+          <Button variant="contained" color="primary" disabled={firstLecture}>{'< Prev'}</Button>
+          {' '}
+          <Button variant="contained" color="primary" disabled={lastLecture}>{'Next >'}</Button>
         </div>
-      </div>
+
+        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+
+        <div style={{ border: 'solid', borderWidth: 'thin' }}>
+          <VideoPlayer videoId='_9RvpFdUQr0' />
+        </div>
+
+        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+          <Card style={{ margin: 10 }}>
+            <CardContent>
+              <Typography variant="h5" color="textPrimary" gutterBottom>Lecture Info</Typography>
+              <Typography variant="h6" color="textSecondary">Created On July 22.</Typography>
+            </CardContent>
+          </Card>
+
+          <Card style={{ margin: 10 }}>
+            <CardContent>
+              <Typography variant="h5" color="textPrimary" gutterBottom>Source Code</Typography>
+              <Typography variant="h6" color="textSecondary">
+                Click {' '}
+                <Link href="../../">here.</Link>
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card style={{ margin: 10 }}>
+            <CardContent>
+              <Typography variant="h5" color="textPrimary" gutterBottom>Another</Typography>
+              <Typography variant="h6" color="textSecondary">
+                This is very looooooooooooooooooooooooooooooooong.
+              </Typography>
+            </CardContent>
+          </Card>
+
+
+          <Card style={{ margin: 10 }}>
+            <CardContent>
+              <Typography variant="h5" color="textPrimary" gutterBottom>Content</Typography>
+              <Typography variant="h6" color="textSecondary">
+                - About Scractch (0:00) <br />
+                - Exercises (2:00)
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div style={{ outline: 'thin solid black' }}>
+          <Comment />
+        </div>
+      </main>
+
     </div>
   )
 }
