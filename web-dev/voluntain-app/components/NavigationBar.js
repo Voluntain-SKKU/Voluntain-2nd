@@ -5,7 +5,7 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // export default - const difference
-export const NavigationBar = () => {
+export const NavigationBar = (props) => {
   return (
     <div>
       <Navbar bg="light" expand="md" fixed="top">
@@ -25,15 +25,9 @@ export const NavigationBar = () => {
               <Nav.Link href="#home">HOME</Nav.Link>
               <Nav.Link href="#link">ABOUT</Nav.Link>
               <NavDropdown title="COURSES" id="basic-nav-dropdown">
-                {/* href=" 수정 필요 " 
-                  loop로 코스 제목/url 수정 */}
-                {/* { Object.entries(courses).map((value, index) => {
-                  <NavDropdown.Item href={"/" + value[1]}>{value[0]}</NavDropdown.Item>
-                })
-                } */}
-                <NavDropdown.Item href="/id">Scratch</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Python</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">C/C++</NavDropdown.Item>
+                {props.titles.map((item) => (
+                  <NavDropdown.Item href={"/" + item.id}>{item.title}</NavDropdown.Item>
+                ))}
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Other</NavDropdown.Item>
               </NavDropdown>
@@ -44,3 +38,13 @@ export const NavigationBar = () => {
     </div>
   );
 };
+
+// export const getStaticProps = async () => {
+//   const data = await fetch(`${url}/courses/title`);
+//   const titles = await data.json();
+
+//   return {
+//     props: { titles },
+//     revalidate: 1,//몇 초로 할지?
+//   };
+// };

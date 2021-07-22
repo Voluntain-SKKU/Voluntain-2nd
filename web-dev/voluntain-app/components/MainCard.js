@@ -2,24 +2,20 @@ import styles from '../styles/Home.module.css'
 import { CourseCard } from './CourseCard';
 import CardColumns from 'react-bootstrap/CardColumns'
 
-export const MainCard = ()=> {
+export const MainCard = (props)=> {
+
     return(
         <CardColumns>
             {/* get course inform from backend */}
+        {props.courses.map((course) => (
             <CourseCard
-            title="SCRATCH" 
-            img="/scratch.png"
-            content="Let's learn Scratch basic"
-            link="/id"
-            dif={2}
+            title={course.title} 
+            img={"/"+course.title+".png"}
+            content={course.about}
+            link={"/" + course.id}
+            level={course.level}
             />  
-            <CourseCard 
-            title="PYTHON" 
-            img="/python.jpg"
-            content="Let's learn Python basic"
-            link="/id"
-            dif={4}
-            />  
+          ))}
         </CardColumns>
     );
 }

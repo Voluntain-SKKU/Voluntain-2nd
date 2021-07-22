@@ -17,7 +17,7 @@ import Link from 'next/link'
  * @returns 
  */
 export const CourseCard = (props)=> {
-    const stars= [ " ", "★", "★ ★", "★ ★ ★", "★ ★ ★ ★", "★ ★ ★ ★ ★"]
+    // const stars= [ " ", "★", "★ ★", "★ ★ ★", "★ ★ ★ ★", "★ ★ ★ ★ ★"]
     
     return(
         <div className={styles.main}>
@@ -30,7 +30,7 @@ export const CourseCard = (props)=> {
                     {props.content}
                 </Card.Text>
                 <Card.Footer className="py-2 px-0 bg-transparent border-secondary">
-                    Difficulty : { stars[props.dif] } 
+                    Difficulty : { props.level } 
                 </Card.Footer>
                 </Card.Body>
             </Card>

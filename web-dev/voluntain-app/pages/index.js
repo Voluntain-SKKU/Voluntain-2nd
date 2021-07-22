@@ -11,7 +11,8 @@ import { MainCard } from '../components/MainCard'
 import { Card, Button } from 'react-bootstrap';
 
 
-export default function Home( {courses} ) {
+export default function Home( {courses, titles} ) {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,67 +22,13 @@ export default function Home( {courses} ) {
       </Head>
 
       {/* Nav Bar Component */}
-      <NavigationBar />
-
-
-      <main className={styles.main}>
-      
-        <h1 className={styles.title}>
-          VOLUNTAIN
-        </h1>
-        {/* data test */}
-        <h3>LIST</h3>
-        <ul>
-          {courses.map((course) => (
-            <li key={course.id}>
-              
-                <a>{course.title}</a>
-                <a>{course.about}</a>
-                <a>{course.level}</a>
-                
-              
-            </li>
-          ))}
-        </ul>
-        {/*Grid Card Menu */}
-        {/* <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
-      </main>
+      <NavigationBar titles={titles}/>
 
       <MainBanner />
-      {/* Component 분리 ?? */}
-      {/* <div className={styles.card}> */}
-      {/* </div> */}
-      <MainCard/>
 
-      {/* Footer component 분리 */}
+      <MainCard courses={courses}/>
+
+      {/* Footer component 분리해야함 */}
       <footer className={styles.footer}>
         <span className={styles.h1}>
           Powered by Voluntain
@@ -96,8 +43,13 @@ export const getStaticProps = async () => {
   const data = await fetch(`${url}/courses`);
   const courses = await data.json();
 
+  // 이거 courses에서 뽑아오고 싶은데??
+  const data0 = await fetch(`${url}/courses/title`);
+  const titles = await data0.json();
+
   return {
-    props: { courses },
+    props: { courses, titles },
     revalidate: 1,//몇 초로 할지?
   };
 };
+ 
