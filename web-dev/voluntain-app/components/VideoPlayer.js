@@ -14,8 +14,8 @@ export const VideoPlayer = (props) => {
     const size = useWindowSize();
 
     const opts = {
-      height: size.height > 480? '480' : size.height,
-      width: size.width > 720 ? '720' : size.width,
+      height: size.height > 530? '480' : size.height - 50,
+      width: size.width > 770 ? '720' : size.width - 50,
       playerVars: {
         // To check other variables, check:
         // https://developers.google.com/youtube/player_parameters
