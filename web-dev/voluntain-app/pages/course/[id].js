@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardContent, Divider, Fab, Hidden, Link, TextField, Typography } from '@material-ui/core'
+import { Button, Divider, Fab, Hidden, TextField } from '@material-ui/core'
 import ListIcon from '@material-ui/icons/List';
 import { useCookies } from 'react-cookie'
 
@@ -56,16 +56,31 @@ export default function LecturePage() {
   /**
    * Temporary cookie example
    */
-  const [cookies, setCookie] = useCookies(['name-cookie']);
-  const [name, setName] = React.useState("");
-  const handleChange = (event) => {
-    setName(event.target.value);
+  const [cookies, setCookie] = useCookies(['username', 'video']);
+  const [username, setUsername] = React.useState("");
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
     /**
      * Set a cookie named 'name-cookie' with the value 'name',
      * that is accessible on all pages,
      * and its max age is 10 sec.
      */
-    setCookie('name-cookie', name, { path: '/', maxAge: 10 });
+    setCookie('username', event.target.value, { path: '/', maxAge: 30 });
+    
+  }
+
+  /**
+   * Video state example
+   */
+  const [videoEnd, setVideoEnd] = React.useState("Not yet watched");
+  const handleVideoEnd = () => {
+    /**
+     * NOTE: An error occurs when directly passing a string as a prop
+     * instead of using 'str'
+     */
+    let str = "watched"
+    setVideoEnd(str);
+    setCookie('username', str, { path: '/', maxAge: 30 });
   }
 
   return (
@@ -73,8 +88,9 @@ export default function LecturePage() {
       <NavigationBar />
 
       <main className={styles.main}>
-        <TextField value={name} onChange={handleChange} />
-        <h3>Hello, {cookies.name}!</h3>
+        <TextField value={username} onChange={handleUsernameChange} />
+        <h3>Hello, {username}! {videoEnd}</h3>
+        <h3>Welcome Back, {cookies.username}! {cookies.video}</h3>
 
         <div>
           <h1>About Scratch</h1>
@@ -89,7 +105,7 @@ export default function LecturePage() {
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
         <div style={{ border: 'solid', borderWidth: 'thin' }}>
-          <VideoPlayer videoId='_9RvpFdUQr0' />
+          <VideoPlayer videoId='_9RvpFdUQr0' endChecker={handleVideoEnd} />
         </div>
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
