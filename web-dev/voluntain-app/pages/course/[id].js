@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Card, CardContent, Divider, Fab, Hidden, Link, Typography } from '@material-ui/core'
+import { Button, Card, CardContent, Divider, Fab, Hidden, Link, TextField, Typography } from '@material-ui/core'
 import ListIcon from '@material-ui/icons/List';
+import { useCookies } from 'react-cookie'
 
 import { VideoPlayer } from '../../components/VideoPlayer'
 import { NavigationBar } from '../../components/NavigationBar'
@@ -52,11 +53,29 @@ export default function LecturePage() {
   const isFirstLecture = true;
   const isLastLecture = false;
 
+  /**
+   * Temporary cookie example
+   */
+  const [cookies, setCookie] = useCookies(['name-cookie']);
+  const [name, setName] = React.useState("");
+  const handleChange = (event) => {
+    setName(event.target.value);
+    /**
+     * Set a cookie named 'name-cookie' with the value 'name',
+     * that is accessible on all pages,
+     * and its max age is 10 sec.
+     */
+    setCookie('name-cookie', name, { path: '/', maxAge: 10 });
+  }
+
   return (
     <div className={styles.container}>
       <NavigationBar />
 
       <main className={styles.main}>
+        <TextField value={name} onChange={handleChange} />
+        <h3>Hello, {cookies.name}!</h3>
+
         <div>
           <h1>About Scratch</h1>
         </div>
