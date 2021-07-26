@@ -1,19 +1,61 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
-import { Divider, Hidden } from '@material-ui/core'
+import { Button, Card, CardContent, Divider, Fab, Hidden, Link, Typography } from '@material-ui/core'
+import ListIcon from '@material-ui/icons/List';
 
-import { VideoPlayer } from '../components/VideoPlayer'
-import { NavigationBar } from '../components/NavigationBar'
-import { Comment } from '../components/Comment'
-import { LectureText } from '../components/LectureText'
-import { SideBar } from '../components/SideBar'
 
-export default function Page() {
+import { VideoPlayer } from '../../components/VideoPlayer'
+import { NavigationBar } from '../../components/NavigationBar'
+import { Comment } from '../../components/Comment'
+import { SideBar } from '../../components/SideBar'
+import { LectureCards } from '../../components/LectureCards'
+import styles from '../../styles/Home.module.css'
+
+/**
+ * This function is executed when the floating-button that appears when page
+ * width is small is clicked.
+ * This does nothing now, but might be replaced with another function.
+ */
+function nop() { }
+
+/**
+ * @requires (from backend)
+ * 1. lectureList
+ * 2. isFirstLecture
+ * 3. isLastLecture
+ * 4. Lecture Title
+ * 5. videoId
+ * 6. the upper LectureCard title / contents
+ * 7. the lower LectureCard title / contents
+ * 
+ * @variation
+ * 1. Add or remove Dividers
+ * 2. Modify style around Cards
+ */
+export default function LecturePage() {
+  /**
+   * This composes the content of the sidebar.
+   */
+  const lectureList = [
+    'About Scratch',
+    'Easy',
+    'Hard',
+  ];
+
+  const lowerCardContent = [
+    { 'title': 'Contents', 'content': "- About Scratch (0:00) \n- Exercises (2:00)" },
+    { 'title': 'See Also', 'content': "https://google.com \nhttps://bing.com" },
+  ]
+
+  /**
+   * These check whether the current lecture is the first or last one.
+   * If it is, disable Prev or Next button.
+   */
+  const isFirstLecture = true;
+  const isLastLecture = false;
+
   return (
-    <div>
-      <div className="Head">
-        <NavigationBar />
-      </div>
+    <div className={styles.container}>
+      <NavigationBar />
 
       <div className="Body">
         <div className="LeftSide" style={{ float: 'left' }}>
@@ -21,39 +63,8 @@ export default function Page() {
             <SideBar height={1000} width={200} />
           </Hidden>
         </div>
-
-        <div className="RightSide" style={{ float: 'left', margin: 10 }}>
-          <div className="LectureTitle" style={{ margin: 10 }}>
-            <h1>Lecture 1</h1>
-          </div>
-
-          <div className="Buttons" style={{ marginBottom: 70 }}>
-            <div style={{ float: 'left' }}><Button variant="light">{'< Prev'}</Button></div>
-
-            <div style={{ float: 'right' }}><Button variant="dark">{'Next >'}</Button></div>
-          </div>
-
-          <div className="Player" style={{ clear: 'both' }}>
-            <VideoPlayer videoId='_9RvpFdUQr0' />
-          </div>
-
-          <div>
-            <LectureText
-              title="This course is ..."
-              content="for beginners. Try it!"
-            />
-            <Divider style={{ background: 'black' }} variant='middle' />
-            <LectureText
-              title="Exercise "
-              content="Do this exercise!"
-            />
-          </div>
-
-          <div className="Comment">
-            <Comment />
-          </div>
-        </div>
       </div>
+
     </div>
   )
 }
