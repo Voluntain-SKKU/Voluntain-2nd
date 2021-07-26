@@ -11,7 +11,7 @@ import { NavigationBar } from '../components/NavigationBar'
 import { Comment } from '../components/Comment'
 import { LectureText } from '../components/LectureText'
 import { SideBar } from '../components/SideBar'
-
+import { LectureCards } from '../components/LectureCards'
 
 export default function Page() {
 
@@ -53,8 +53,22 @@ export default function Page() {
         <div style={{ border: 'solid', borderWidth: 'thin' }}>
           <VideoPlayer videoId='_9RvpFdUQr0' />
         </div>
+
+        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+
+        <LectureCards title="Lecture Info" content="Created on July 22." />
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 900, alignItems: 'center', justifyContent: 'center' }}>
+          {lowerCardContent.map((element) => {
+            return <LectureCards title={element.title} content={element.content}/>
+          })}
+        </div>
+
+        <div style={{ outline: 'thin solid black' }}>
+          <Comment />
+        </div>
     </main>
-    </div>
+  </div>
 
     
   )

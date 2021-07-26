@@ -14,6 +14,7 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 /**import { List } from 'react-bootstrap/lib/Media';*/
+import grey from '@material-ui/core/colors/grey';
 
 import List from '@material-ui/core/List';
 
@@ -31,7 +32,8 @@ const useStyles = makeStyles((prop) => ({
         width: '100%',
         height: prop.height,
         maxWidth: prop.width,
-        backgroundColor: '#ECE6CC',
+        backgroundColor: '#003458',
+        color: 'white'
     },
     nested:{
         paddingLeft: prop.spacing(4),
@@ -90,11 +92,11 @@ export const SideBar = (prop) => {
         
         <List 
             component="nav"
-            subheader={
+            /*subheader={
                 <ListSubheader component="div" id="nested-list-subheader">
                     Scratch
                 </ListSubheader>
-            }
+            }*/
             className={classes.root}
         >
             
@@ -116,28 +118,40 @@ export const SideBar = (prop) => {
                 <ListItemIcon>
                     <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary="Lectures" />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     <ListItem button className={classes.nested}>
                         <ListItemIcon>
-                            <StarBorder />
+                            <StarBorder style={{color:grey[50]}}/>
                         </ListItemIcon>
                         <ListItemText primary="Lecture1"/>
                     </ListItem>
                     <ListItem button className={classes.nested}>
                         <ListItemIcon>
-                            <StarBorder />
+                            <StarBorder style={{color:grey[50]}}/>
                         </ListItemIcon>
                         <ListItemText primary="Lecture2"/>
                     </ListItem>
                     <ListItem button className={classes.nested}>
                         <ListItemIcon>
-                            <StarBorder />
+                            <StarBorder style={{color:grey[50]}}/>
                         </ListItemIcon>
                         <ListItemText primary="Lecture3"/>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                            <StarBorder style={{color:grey[50]}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="Lecture4"/>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                            <StarBorder style={{color:grey[50]}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="Lecture5"/>
                     </ListItem>
                 </List>
             </Collapse>
