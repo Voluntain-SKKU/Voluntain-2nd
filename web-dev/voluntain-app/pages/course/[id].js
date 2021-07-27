@@ -32,7 +32,7 @@ function nop() { }
  * 1. Add or remove Dividers
  * 2. Modify style around Cards
  */
-export default function LecturePage() {
+export default function LecturePage({ course }) {
   /**
    * This composes the content of the sidebar.
    */
@@ -43,8 +43,8 @@ export default function LecturePage() {
   ];
 
   const lowerCardContent = [
-    { 'title': 'Contents', 'content': "- About Scratch (0:00) \n- Exercises (2:00)" },
-    { 'title': 'See Also', 'content': "https://google.com \nhttps://bing.com" },
+    { 'title': 'Contents', 'content':  course.lectures[0].title},
+    { 'title': 'See Also', 'content':  course.lectures[0].video_link},
   ]
 
   /**
@@ -60,7 +60,7 @@ export default function LecturePage() {
 
       <main className={styles.main}>
         <div>
-          <h1>About Scratch</h1>
+          <h1>{course.lectures[0].title}</h1>
         </div>
 
         <div>
@@ -72,7 +72,7 @@ export default function LecturePage() {
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
         <div style={{ border: 'solid', borderWidth: 'thin' }}>
-          <VideoPlayer videoId='_9RvpFdUQr0' />
+          <VideoPlayer videoId={course.lectures[0].video_link} />
         </div>
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
