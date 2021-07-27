@@ -1,7 +1,8 @@
+import { url } from "../../config/next.config";
+
 import React from 'react'
 import { Button, Card, CardContent, Divider, Fab, Hidden, Link, Typography } from '@material-ui/core'
 import ListIcon from '@material-ui/icons/List';
-
 
 import { VideoPlayer } from '../../components/VideoPlayer'
 import { NavigationBar } from '../../components/NavigationBar'
@@ -31,7 +32,7 @@ function nop() { }
  * 1. Add or remove Dividers
  * 2. Modify style around Cards
  */
-export default function LecturePage() {
+export default function LecturePage({ course }) {
   /**
    * This composes the content of the sidebar.
    */
@@ -42,8 +43,8 @@ export default function LecturePage() {
   ];
 
   const lowerCardContent = [
-    { 'title': 'Contents', 'content': "- About Scratch (0:00) \n- Exercises (2:00)" },
-    { 'title': 'See Also', 'content': "https://google.com \nhttps://bing.com" },
+    { 'title': 'Contents', 'content':  course.lectures[0].title},
+    { 'title': 'See Also', 'content':  course.lectures[0].video_link},
   ]
 
   /**
@@ -57,14 +58,66 @@ export default function LecturePage() {
     <div className={styles.container}>
       <NavigationBar />
 
-      <div className="Body">
-        <div className="LeftSide" style={{ float: 'left' }}>
-          <Hidden smDown>
-            <SideBar height={1000} width={200} />
-          </Hidden>
+      <main className={styles.main}>
+        <div>
+          <h1>{course.lectures[0].title}</h1>
         </div>
-      </div>
+
+        <div>
+          <Button variant="contained" color="primary" disabled={isFirstLecture}>{'< Prev'}</Button>
+          {' '}
+          <Button variant="contained" color="primary" disabled={isLastLecture}>{'Next >'}</Button>
+        </div>
+
+        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+
+        <div style={{ border: 'solid', borderWidth: 'thin' }}>
+          <VideoPlayer videoId={course.lectures[0].video_link} />
+        </div>
+
+        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+
+        <LectureCards title="Lecture Info" content="Created on July 22." />
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 900, alignItems: 'center', justifyContent: 'center' }}>
+          {lowerCardContent.map((element) => {
+            return <LectureCards title={element.title} content={element.content}/>
+          })}
+        </div>
+
+        <div style={{ outline: 'thin solid black' }}>
+          <Comment />
+        </div>
+      </main>
+
+      <Hidden smUp>
+        <Fab color="primary" style={{ position: 'sticky', bottom: 10, left: 10 }}>
+          <ListIcon onClick={nop} />
+        </Fab>
+      </Hidden>
 
     </div>
   )
 }
+
+// {url}/courses/id 에 GET Request 보내 courses 정보 받아오기
+export const getStaticProps = async (context) => {
+  const data = await fetch(`${url}/courses/${context.params.id}`);
+  const course = await data.json();
+
+  return {
+      props: { course },
+      revalidate: 1,
+  };
+};
+
+export async function getStaticPaths() {
+  const res = await fetch(`${url}/courses`);
+  const courses = await res.json();
+
+  const paths = courses.map((item)=> ({
+      params: { id: item.id.toString() },
+  }));
+
+  return { paths, fallback: false };
+};
