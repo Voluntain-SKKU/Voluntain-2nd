@@ -5,22 +5,6 @@
  * to customize this controller
  */
 
-//  strapi.query('products').model.fetchAll({
-//     columns:['id','title','body'], //populate id, title, body fields for products
-//     //Please note that its mandatory to get `id` in 'Products' columns, otherwise you won't be able to get Orders relation. 
-//     withRelated: [
-//       {
-//         'orders': qb => { //populate 'Orders' relation
-//           qb.columns([
-//             'orders.amount' //populate only the 'amount' field of the 'Orders'
-//           ]);
-//         },
-//       },
-//     ],
-//   });
-// qb =>  {
-//     qb.columns(['id', 'url']);
-// }
 
 module.exports = {
 
@@ -28,12 +12,6 @@ module.exports = {
         const result = await strapi.query('course').model.fetchAll({
             columns: ['id', 'title', 'about', 'level'],
             withRelated : [ 'logo_img' ]
-            //     {
-            //         'logo_img' :  qb =>  {
-            //                  qb.columns(['id', 'url']);
-            //              }
-            //     }
-            // ]
         });
 
         ctx.send(result);
