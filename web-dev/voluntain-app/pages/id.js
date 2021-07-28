@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Divider from '@material-ui/core/Divider'
 import Hidden from '@material-ui/core/Hidden';
+import { useCookies } from 'react-cookie'
 
 import { VideoPlayer } from '../components/VideoPlayer'
 import { NavigationBar } from '../components/NavigationBar'
@@ -10,6 +11,14 @@ import { LectureText } from '../components/LectureText'
 import { SideBar } from '../components/SideBar'
 
 export default function Page() {
+  /**
+   * Video state example
+   */
+   const [videoEnd, setVideoEnd] = React.useState("Not yet watched");
+   const handleVideoEnd = () => {
+     setCookie('video', "watched", { path: '/', maxAge: 30 });
+   }
+
   return (
     <div>
       <div className="Head">
@@ -17,11 +26,7 @@ export default function Page() {
       </div>
 
       <div className="Body">
-        <div className="LeftSide" style={{ float: 'left' }}>
-          <Hidden smDown>
-            <SideBar height={1000} width={200} />
-          </Hidden>
-        </div>
+        <h3>Welcome Back! {cookies.video}</h3>
 
         <div className="RightSide" style={{ float: 'left', margin: 10 }}>
           <div className="LectureTitle" style={{ margin: 10 }}>
@@ -35,7 +40,7 @@ export default function Page() {
           </div>
 
           <div className="Player" style={{ clear: 'both' }}>
-            <VideoPlayer videoId='_9RvpFdUQr0' />
+            <VideoPlayer videoId='_9RvpFdUQr0' endChecker={handleVideoEnd} />
           </div>
 
           <div>
