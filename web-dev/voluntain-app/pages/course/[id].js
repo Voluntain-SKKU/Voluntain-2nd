@@ -74,13 +74,7 @@ export default function LecturePage() {
    */
   const [videoEnd, setVideoEnd] = React.useState("Not yet watched");
   const handleVideoEnd = () => {
-    /**
-     * NOTE: An error occurs when directly passing a string as a prop
-     * instead of using 'str'
-     */
-    let str = "watched"
-    setVideoEnd(str);
-    setCookie('username', str, { path: '/', maxAge: 30 });
+    setCookie('video', "watched", { path: '/', maxAge: 30 });
   }
 
   return (
