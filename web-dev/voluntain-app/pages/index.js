@@ -12,7 +12,7 @@ import { Card, Button } from 'react-bootstrap';
 
 import { useCookies } from 'react-cookie'
 import React from 'react'
-import { Checkbox } from '@material-ui/core'
+import { Alert } from 'react-bootstrap'
 
 
 export default function Home({ courses, titles }) {
@@ -20,7 +20,7 @@ export default function Home({ courses, titles }) {
   /**
    * Cookie examples
    */
-  const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie']);
+  const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie', 'cookieAlert']);
 
   // 1. videoState
   function Greeting() {
@@ -31,35 +31,27 @@ export default function Home({ courses, titles }) {
     }
   }
 
-  // 2. noCookie
-  function getInitialNoCookie() {
-    if (cookies.noCookie === undefined) {
+  // 3. cookieAlert
+  /**
+   * Show alert only if user has not accepted, and noCookie is not set.
+   */
+  function getInitialCookieAlert() {
+    if (cookies.cookieAlert === undefined && (cookies.noCookie === false || cookies.noCookie === undefined)) {
+      return true;
+    } else {
       return false;
-    } else {
-      return cookies.noCookie;
     }
   }
 
-  const [noCookieStat, setNoCookieUseStat] = React.useState(getInitialNoCookie());
+  const [cookieAlertShow, setCookieAlertShow] = React.useState(getInitialCookieAlert());
 
-  const handleNoCookieChange = () => {
-    if (noCookieStat === false) {
-      // make noCookie true, and delete all other cookies.
-      setNoCookieUseStat(true);
-      removeCookie('videoState');
-      setCookie('noCookie', true, {path: '/', maxAge: 120});
-    } else {
-      // make noCookie false
-      setNoCookieUseStat(false);
-      removeCookie('noCookie');
-    }
-  }
-
-  const CurrentStat = () => {
-    if (noCookieStat === false)
-      return <h2>noCookie is not set.</h2>
-    else
-      return <h2>noCookie is set.</h2>
+  /**
+   * NOTE: delete the maxAge value for release builds.
+   */
+  const handleCookieAlertOff = () => {
+    // If user press the accept button, do not show the alarm again.
+    setCookieAlertShow(false);
+    setCookie('cookieAlert', false, { maxAge: 30 });
   }
 
   return (
@@ -78,8 +70,16 @@ export default function Home({ courses, titles }) {
       <MainCard courses={courses} />
 
       <Greeting />
-      <CurrentStat />
-      <Button onClick={handleNoCookieChange}>change</Button>
+
+      <Alert className={styles.cookieAlert} variant='dark' show={Boolean(cookieAlertShow)}>
+        <Alert.Heading>This website uses cookies.</Alert.Heading>
+        <p>
+          We use cookies in order to provide you better experiences.
+          If you want more information, please visit our {' '}
+          <Alert.Link href="/setting">cookie policy page.</Alert.Link>
+        </p>
+        <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
+      </Alert>
 
       {/* Footer component 분리해야함 */}
       <footer className={styles.footer}>

@@ -13,6 +13,7 @@ import { SideBar } from '../components/SideBar'
 export default function Page() {
   /**
    * Video state example
+   * NOTE: maxAge values should be larger for release builds.
    */
   const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie']);
   const handleVideoEnd = () => {

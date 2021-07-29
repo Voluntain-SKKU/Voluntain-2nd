@@ -150,6 +150,12 @@
   margin-left: 0.5rem;
 }
 
+.cookieAlert {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
 
 @media (max-width: 600px) {
   .grid {
