@@ -5,10 +5,11 @@ import styles from '../styles/Home.module.css'
 import { Navbar } from '../components/Navbar'
 import { url } from '../config/next.config' //url 가져오기
 
+import { VideoPlayer } from '../components/VideoPlayer'
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 import { useCookies } from 'react-cookie'
 import React from 'react'
@@ -24,12 +25,31 @@ export default function Home({ courses, titles }) {
 
   // 1. videoState
   function Greeting() {
-    if (cookies.videoState === undefined) {
-      return <h1>Welcome!</h1>
-    } else {
-      return <h1>Welcome back! {cookies.videoState}</h1>
-    }
-  }
+    // if (cookies.videoState === undefined) {
+    //   return <h1>Welcome!</h1>
+    // } else {
+      return (
+        <Card className={styles.colcard}>
+          <Card.Header className="h2 p-4" bg="Dark"> To continue learning <span className="fw-bold h3 text-success">SCRATCH</span> </Card.Header>
+          {/* <Card.Img variant="top" src="/vercel.svg" /> */}
+          <div className="d-xl-inline-flex flex-row p-3 my-2"> 
+            <Card.Body >
+              <ListGroup className={styles.cardlist}>
+                <ListGroupItem className="text-center h4 fw-bold">LECTURE Info</ListGroupItem>
+                <ListGroupItem>[SCRATCH] Lec.1 Introduction </ListGroupItem>
+              </ListGroup>
+              <ListGroup className={styles.cardlist}>
+                <ListGroupItem className="text-center h4 fw-bold">{cookies.videoState}</ListGroupItem>
+                <ListGroupItem><Button variant="success"> Go to lecture page </Button></ListGroupItem>
+              </ListGroup>
+              
+            </Card.Body>
+            <div> <VideoPlayer videoId='_9RvpFdUQr0'/> </div>
+          </div>
+        </Card>
+      )
+    // }
+  } 
 
   // 3. cookieAlert
   /**
@@ -67,10 +87,12 @@ export default function Home({ courses, titles }) {
 
       <MainBanner />
 
-      <MainCard courses={courses} />
-
+      {/* cookie 사용 - 강의 영상 추천 */}
       <Greeting />
 
+      <MainCard courses={courses} />
+
+      {/* cookie 수집 동의 */}
       <Alert className={styles.cookieAlert} variant='dark' show={Boolean(cookieAlertShow)}>
         <Alert.Heading>This website uses cookies.</Alert.Heading>
         <p>

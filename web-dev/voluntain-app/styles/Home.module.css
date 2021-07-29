@@ -107,6 +107,22 @@
   margin-top: 3rem;
 }
 
+.colcard {
+  display: flex;
+  max-height: fit-content;
+  margin: 2rem 18rem;
+}
+
+.cardvideo {
+  width: 50%;
+}
+
+.cardlist{
+  max-width: 450px;
+  margin-top: 2rem;
+ 
+}
+
 /* custom */
 .card {
   flex-direction: row;
