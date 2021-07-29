@@ -1,6 +1,6 @@
 import { url } from "../../config/next.config";
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card, CardContent, Divider, Fab, Hidden, Link, Typography } from '@material-ui/core'
 import ListIcon from '@material-ui/icons/List';
 
@@ -53,8 +53,10 @@ function nop() { }
  * 2. Modify style around Cards
  */
 export default function LecturePage({ course }) {
-
-  let lecture_id = 1;
+  // lectureId start from 0
+  const [lectureId, setLectureId] = useState(0);
+  const [isFirstLecture, setFirstLecture] = useState(1); // True
+  const [isLastLecture, setLastLecture] = useState(0); // False
   /**
    * This composes the content of the sidebar.
    */
@@ -65,16 +67,14 @@ export default function LecturePage({ course }) {
   ];
 
   const lowerCardContent = [
-    { 'title': 'Contents', 'content':  course.lectures[lecture_id-1].title},
-    { 'title': 'See Also', 'content':  course.lectures[lecture_id-1].video_link},
+    { 'title': 'Contents', 'content':  course.lectures[lectureId].title},
+    { 'title': 'See Also', 'content':  course.lectures[lectureId].video_link},
   ]
 
   /**
    * These check whether the current lecture is the first or last one.
    * If it is, disable Prev or Next button.
    */
-  const isFirstLecture = true;
-  const isLastLecture = false;
 
   const useStyles = makeStyles((prop) => ({
     root: {
@@ -88,7 +88,6 @@ export default function LecturePage({ course }) {
         paddingLeft: prop.spacing(4),
     }
 }));
-
 
 function renderRow(props) {
     const { index, style } = props;
@@ -106,63 +105,75 @@ renderRow.propTypes = {
 };
 
 const [open, setOpen] = React.useState(true);
-
-const handleClick = (id) => {
-  lecture_id = id
+const responsivesidebar = () => {
+  setOpen(!open)
 };
 
+const handleClick = (lecture_number) => {
+  setLectureId(lectureId => lecture_number);
+}
+
 const nextLecture = () => {
-  lecture_id += 1
+  setLectureId(lectureId => lectureId+1);
 }
 
 const prevLecture = () => {
-  lecture_id -= 1
+  setLectureId(lectureId => lectureId-1);
 }
-
 
   return (
     <div className={styles.container}>
       <NavigationBar />
+      
+        <div className="Left" style={{float : 'left'}}>
+          <ListItem onClick={responsivesidebar} style={{background : '#003458', height: 48, color:grey[50]}}>
+            <StarBorder style={{color:grey[50]}}/>
+            <ListItemText primary={course.title}/>
+            {open? <ExpandLess/> : <ExpandMore/>}
+          </ListItem>
 
-      <div className="LeftSide" style={{ float: 'left' }}>
-          {course.lectures.map((element) => {
-            return (
-              <List>
-                <List>
-                  <ListItem button onClick={handleClick(element.id)} style={{background : 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', height: 48, color:grey[50]}}>
-                    <ListItemText primary={element.title} />
-                  </ListItem>
-                </List>
-              </List>
-            )
-          })}
-        </div>
-
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <div className="LeftSide" style={{ float: 'left' }}>
+              {course.lectures.map((element) => {
+                return (
+                  <List disablePadding>
+                    <ListItem button onClick={(e) => handleClick(element.lecture_number, e)} style={{background : '#003458', height: 48, color:grey[50]}}>
+                      <ListItemIcon>
+                        <StarBorder style={{color:grey[50]}}/>
+                      </ListItemIcon>
+                      <ListItemText primary={element.title} />
+                    </ListItem>
+                  </List>
+                )
+              })}
+            </div>
+          </Collapse>
+      </div>
+    
       <main className={styles.main}>
         <div>
-          <h1>{course.lectures[lecture_id-1].title}</h1>
+          <h1>{course.lectures[lectureId].title}</h1>
         </div>
 
         <div>
-          <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={nextLecture}>{'< Prev'}</Button>
+          <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
           {' '}
-          <Button variant="contained" color="primary" disabled={isLastLecture} onClick={prevLecture}>{'Next >'}</Button>
+          <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
         </div>
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
         <div style={{ border: 'solid', borderWidth: 'thin' }}>
-          <VideoPlayer videoId={course.lectures[0].video_link} />
+          <VideoPlayer videoId={course.lectures[lectureId].video_link} />
         </div>
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
-        <LectureCards title="Lecture Info" content="Created on July 22." />
+        <LectureCards title="Lecture Info" content={course.lectures[lectureId].title} />
 
         <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 900, alignItems: 'center', justifyContent: 'center' }}>
-          {lowerCardContent.map((element) => {
-            return <LectureCards title={element.title} content={element.content}/>
-          })}
+          <LectureCards title="Exercise" content={course.lectures[lectureId].title} />
+          <LectureCards title="Answer" content={course.lectures[lectureId].title} />
         </div>
 
         <div style={{ outline: 'thin solid black' }}>
