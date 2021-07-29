@@ -10,8 +10,14 @@ import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
 import { Card, Button } from 'react-bootstrap';
 
+// Title Context
+import { TitleProvider, TitleContext } from '../lib/context';
 
-export default function Home( {courses, titles} ) {
+import React from "react";
+
+export default function Home( { courses } ) {
+
+  // const [ context, setContext] = React.useState(data)
 
   return (
     <div className={styles.container}>
@@ -22,7 +28,9 @@ export default function Home( {courses, titles} ) {
       </Head>
 
       {/* Nav Bar Component */}
-      <NavigationBar titles={titles}/>
+      <TitleProvider>
+        <NavigationBar />
+      </TitleProvider>
 
       <MainBanner />
 
@@ -44,11 +52,12 @@ export const getStaticProps = async () => {
   const courses = await data.json();
 
   // 이거 courses에서 뽑아오고 싶은데??
-  const data0 = await fetch(`${url}/courses/title`);
-  const titles = await data0.json();
+  // const data0 = await fetch(`${url}/courses/title`);
+  // const titles = await data0.json();
+
 
   return {
-    props: { courses, titles },
+    props: { courses },
     revalidate: 1,//몇 초로 할지?
   };
 };
