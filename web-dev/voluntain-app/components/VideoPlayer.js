@@ -8,10 +8,11 @@ import { useWindowSize } from './useWindowSize';
  * https://developers.google.com/youtube/player_parameters
  * 
  * @usage
- *     \<VideoPlayer videoId='_9RvpFdUQr0' endChecker={} \/\>
+ *     \<VideoPlayer videoId='_9RvpFdUQr0' startChecker={} endChecker={} \/\>
  * 
  * @note
- * When a video is ended, the method given to endChecker is called.
+ * When a video starts, the method given to startChecker is called.
+ * When a video ends, the method given to endChecker is called.
  */
 export const VideoPlayer = (props) => {
   const size = useWindowSize();
@@ -30,6 +31,6 @@ export const VideoPlayer = (props) => {
   const { videoId } = props;
 
   return (
-      <Youtube videoId={videoId} opts={opts} onEnd={props.endChecker} />
+      <Youtube videoId={videoId} opts={opts} onPlay={props.startChecker} onEnd={props.endChecker} />
   );
 }

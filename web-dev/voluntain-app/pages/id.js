@@ -14,19 +14,20 @@ export default function Page() {
   /**
    * Video state example
    */
-   const [videoEnd, setVideoEnd] = React.useState("Not yet watched");
-   const handleVideoEnd = () => {
-     setCookie('video', "watched", { path: '/', maxAge: 30 });
-   }
+  const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie']);
+  const handleVideoEnd = () => {
+    if (cookies.noCookie === undefined)
+      setCookie('videoState', "Finished the video #1.", { path: '/', maxAge: 30 });
+  }
+  const handleVideoStart = () => {
+    if (cookies.noCookie == undefined)
+      setCookie('videoState', "You are watching the video #1.", { path: '/', maxAge: 30 });
+  }
 
   return (
     <div>
-      <div className="Head">
-        <NavigationBar />
-      </div>
-
       <div className="Body">
-        <h3>Welcome Back! {cookies.video}</h3>
+        <h3>Current State: {cookies.videoState}</h3>
 
         <div className="RightSide" style={{ float: 'left', margin: 10 }}>
           <div className="LectureTitle" style={{ margin: 10 }}>
@@ -40,7 +41,7 @@ export default function Page() {
           </div>
 
           <div className="Player" style={{ clear: 'both' }}>
-            <VideoPlayer videoId='_9RvpFdUQr0' endChecker={handleVideoEnd} />
+            <VideoPlayer videoId='_9RvpFdUQr0' startChecker={handleVideoStart} endChecker={handleVideoEnd} />
           </div>
 
           <div>
