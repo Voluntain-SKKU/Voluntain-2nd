@@ -14,6 +14,8 @@ import { useCookies } from 'react-cookie'
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 
+import { VideoStateChecker } from '../components/VideoStateChecker'
+
 
 export default function Home({ courses, titles }) {
 
@@ -21,15 +23,6 @@ export default function Home({ courses, titles }) {
    * Cookie examples
    */
   const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie', 'cookieAlert']);
-
-  // 1. videoState
-  function Greeting() {
-    if (cookies.videoState === undefined) {
-      return <h1>Welcome!</h1>
-    } else {
-      return <h1>Welcome back! {cookies.videoState}</h1>
-    }
-  }
 
   // 3. cookieAlert
   /**
@@ -45,13 +38,10 @@ export default function Home({ courses, titles }) {
 
   const [cookieAlertShow, setCookieAlertShow] = React.useState(getInitialCookieAlert());
 
-  /**
-   * NOTE: delete the maxAge value for release builds.
-   */
   const handleCookieAlertOff = () => {
     // If user press the accept button, do not show the alarm again.
     setCookieAlertShow(false);
-    setCookie('cookieAlert', false, { maxAge: 30 });
+    setCookie('cookieAlert', false);
   }
 
   return (
@@ -69,7 +59,14 @@ export default function Home({ courses, titles }) {
 
       <MainCard courses={courses} />
 
-      <Greeting />
+      <VideoStateChecker />
+
+      <h2>Some</h2>
+      <h3>Contents</h3>
+      <h1>here</h1>
+      <h1>Other</h1>
+      <h1>Contents</h1>
+      <h1>there</h1>
 
       <Alert className={styles.cookieAlert} variant='dark' show={Boolean(cookieAlertShow)}>
         <Alert.Heading>This website uses cookies.</Alert.Heading>

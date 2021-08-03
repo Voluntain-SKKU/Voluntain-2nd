@@ -156,6 +156,12 @@
   width: 100%;
 }
 
+.videoStateChecker {
+  position: relative;
+  width: 60%;
+  margin: 10px auto;
+}
+
 
 @media (max-width: 600px) {
   .grid {
