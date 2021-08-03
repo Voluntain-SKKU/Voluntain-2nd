@@ -15,6 +15,7 @@ import React from 'react'
 import { Alert } from 'react-bootstrap'
 
 import { VideoStateChecker } from '../components/VideoStateChecker'
+import { Footer } from '../components/Footer'
 
 
 export default function Home({ courses, titles }) {
@@ -78,12 +79,7 @@ export default function Home({ courses, titles }) {
         <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
       </Alert>
 
-      {/* Footer component 분리해야함 */}
-      <footer className={styles.footer}>
-        <span className={styles.h1}>
-          Powered by Voluntain
-        </span>
-      </footer>
+      <Footer />
     </div>
   )
 }
