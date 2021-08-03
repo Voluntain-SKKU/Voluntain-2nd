@@ -30,7 +30,8 @@ import grey from '@material-ui/core/colors/grey';
 
 import List from '@material-ui/core/List';
 
-
+import {DiscussionEmbed} from "disqus-react"
+// import { CommentEmbed } from 'disqus-react';
 /**
  * This function is executed when the floating-button that appears when page
  * width is small is clicked.
@@ -111,15 +112,47 @@ const responsivesidebar = () => {
 
 const handleClick = (lecture_number) => {
   setLectureId(lectureId => lecture_number);
+
+  console.log(lectureId);
 }
 
 const nextLecture = () => {
   setLectureId(lectureId => lectureId+1);
+  if(lectureId == course.lectures.length-2) {
+    setLastLecture(isLastLecture => 1);
+    setFirstLecture(isFirstLecture => 0)
+    //console.log('1');
+  }
+  else{
+    setLastLecture(isLastLecture => 0);
+    setFirstLecture(isFirstLecture => 0);
+    //console.log('-1');
+  }
+  console.log(lectureId);
 }
 
 const prevLecture = () => {
   setLectureId(lectureId => lectureId-1);
+  if(lectureId == course.lectures.length-2) {
+    setLastLecture(isLastLecture => 1);
+    setFirstLecture(isFirstLecture => 0);
+    //console.log('1');
+  }
+  else if(lectureId == 1) {
+    setFirstLecture(isFirstLecture => 1);
+    setLastLecture(isLastLecture => 0);
+    //console.log('1');
+  }
+
+  console.log(lectureId);
 }
+
+  const disqusShortname = "voluntain-skku"
+  const disqusConfig = {
+    url: "https://localhost:3000/course",
+    identifier: course.lectures[lectureId].id, // Single post id
+    title: course.lectures[lectureId].title // Single post title
+  }
 
   return (
     <div className={styles.container}>
@@ -176,20 +209,30 @@ const prevLecture = () => {
           <LectureCards title="Answer" content={course.lectures[lectureId].title} />
         </div>
 
-        <div style={{ outline: 'thin solid black' }}>
+        {/* <div style={{ outline: 'thin solid black' }}>
           <Comment />
+        </div> */}
+
+        <div style={{width : 900, height : 90, alignItems: 'center'}}>
+          <DiscussionEmbed
+            shortname={disqusShortname}
+            config={disqusConfig}
+          />
         </div>
       </main>
+      
 
       <Hidden smUp>
         <Fab color="primary" style={{ position: 'sticky', bottom: 10, left: 10 }}>
           <ListIcon onClick={nop} />
         </Fab>
       </Hidden>
-
     </div>
   )
 }
+
+// {url}/courses/id
+// {url}/courses?lecture_id=3
 
 // {url}/courses/id 에 GET Request 보내 courses 정보 받아오기
 export const getStaticProps = async (context) => {
