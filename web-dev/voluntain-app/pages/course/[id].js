@@ -1,6 +1,7 @@
 import { url } from "../../config/next.config";
+import { useRouter } from 'next/router';
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, CardContent, Divider, Fab, Hidden, Link, Typography } from '@material-ui/core'
 import ListIcon from '@material-ui/icons/List';
 
@@ -53,7 +54,13 @@ function nop() { }
  * 1. Add or remove Dividers
  * 2. Modify style around Cards
  */
+
+
+
 export default function LecturePage({ course }) {
+  const router = useRouter()
+  const { pid } = router.query
+
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1); // True
@@ -112,18 +119,20 @@ const responsivesidebar = () => {
 
 const handleClick = (lecture_number) => {
   setLectureId(lectureId => lecture_number);
-
-  console.log(lectureId);
+  // useEffect(()=>{
+  //   lectureId = lecture_number;
+  //   console.log(lectureId);
+  // })
 }
 
 const nextLecture = () => {
   setLectureId(lectureId => lectureId+1);
-  if(lectureId == course.lectures.length-2) {
+  
+  if(lectureId+1 == course.lectures.length-1) {
     setLastLecture(isLastLecture => 1);
-    setFirstLecture(isFirstLecture => 0)
     //console.log('1');
   }
-  else{
+  else {
     setLastLecture(isLastLecture => 0);
     setFirstLecture(isFirstLecture => 0);
     //console.log('-1');
@@ -133,17 +142,15 @@ const nextLecture = () => {
 
 const prevLecture = () => {
   setLectureId(lectureId => lectureId-1);
-  if(lectureId == course.lectures.length-2) {
-    setLastLecture(isLastLecture => 1);
-    setFirstLecture(isFirstLecture => 0);
+  if(lectureId-1 == 0) {
+    setFirstLecture(isFirstLecture => 1);
     //console.log('1');
   }
-  else if(lectureId == 1) {
-    setFirstLecture(isFirstLecture => 1);
+  else {
+    setFirstLecture(isFirstLecture => 0);
     setLastLecture(isLastLecture => 0);
     //console.log('1');
   }
-
   console.log(lectureId);
 }
 
@@ -188,11 +195,11 @@ const prevLecture = () => {
           <h1>{course.lectures[lectureId].title}</h1>
         </div>
 
-        <div>
+        {/*<div>
           <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
           {' '}
           <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
-        </div>
+        </div>*/}
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
@@ -231,13 +238,11 @@ const prevLecture = () => {
   )
 }
 
-// {url}/courses/id
-// {url}/courses?lecture_id=3
-
 // {url}/courses/id 에 GET Request 보내 courses 정보 받아오기
 export const getStaticProps = async (context) => {
   const data = await fetch(`${url}/courses/${context.params.id}`);
   const course = await data.json();
+  
 
   return {
       props: { course },
@@ -255,3 +260,17 @@ export async function getStaticPaths() {
 
   return { paths, fallback: false };
 };
+
+// LecturePage.getInitialProps = async (context) => {
+//   const lectureId = context.query.lectureId;
+//   console.log(lectureId);
+//   console.log(context.query.id);
+//   // const data = await fetch(`${url}/courses/${context.params.id}`);
+//   const data = await fetch(`${url}/courses/${context.query.id}`);
+//   const course = await data.json();
+
+//   return {
+//       props: { course, lectureId },
+//       revalidate: 1,
+//   };
+// };
