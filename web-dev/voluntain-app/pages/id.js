@@ -11,24 +11,22 @@ import { LectureText } from '../components/LectureText'
 import { SideBar } from '../components/SideBar'
 
 export default function Page() {
-  /**
-   * Video state example
-   * NOTE: maxAge values should be larger for release builds.
-   */
-  const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie']);
+  const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie']);
   const handleVideoEnd = () => {
     if (cookies.noCookie === undefined)
-      setCookie('videoState', "Finished the video #1.", { path: '/', maxAge: 30 });
+      setCookie('videoEnd', 1, { path: '/', maxAge: 31536000 });
   }
   const handleVideoStart = () => {
-    if (cookies.noCookie == undefined)
-      setCookie('videoState', "You are watching the video #1.", { path: '/', maxAge: 30 });
+    if (cookies.noCookie == undefined) {
+      setCookie('lastLectureId', 1, { path: '/', maxAge: 31536000 });
+      setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
+    }
   }
 
   return (
     <div>
       <div className="Body">
-        <h3>Current State: {cookies.videoState}</h3>
+        <h3>last lecture ID: {cookies.lastLectureId} // videoEnd: {cookies.videoEnd}</h3>
 
         <div className="RightSide" style={{ float: 'left', margin: 10 }}>
           <div className="LectureTitle" style={{ margin: 10 }}>

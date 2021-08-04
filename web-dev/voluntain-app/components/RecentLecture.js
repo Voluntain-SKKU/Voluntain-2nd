@@ -44,7 +44,7 @@ export const RecentLecture = () => {
                 >
                 <Typography className={classes.heading}>Accordion 1</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails>  
                 <Typography>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
                     sit amet blandit leo lobortis eget.

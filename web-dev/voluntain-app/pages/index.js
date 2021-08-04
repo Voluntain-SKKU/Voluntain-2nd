@@ -12,7 +12,7 @@ import { useCookies } from 'react-cookie'
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 
-import { Button } from 'react-bootstrap';
+import { VideoStateChecker } from '../components/VideoStateChecker'
 
 
 export default function Home({ courses, titles }) {
@@ -21,34 +21,6 @@ export default function Home({ courses, titles }) {
    * Cookie examples
    */
   const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie', 'cookieAlert']);
-
-  // 1. videoState
-  // function Greeting() {
-  //   // if (cookies.videoState === undefined) {
-  //   //   return <h1>Welcome!</h1>
-  //   // } else {
-  //     return (
-  //       <Card className={styles.colcard}>
-  //         <Card.Header className="h2 p-4" bg="Dark"> To continue learning <span className="fw-bold h3 text-success">SCRATCH</span> </Card.Header>
-  //         {/* <Card.Img variant="top" src="/vercel.svg" /> */}
-  //         <div className="d-xl-inline-flex flex-row p-3 my-2"> 
-  //           <Card.Body >
-  //             <ListGroup className={styles.cardlist}>
-  //               <ListGroupItem className="text-center h4 fw-bold">LECTURE Info</ListGroupItem>
-  //               <ListGroupItem>[SCRATCH] Lec.1 Introduction </ListGroupItem>
-  //             </ListGroup>
-  //             <ListGroup className={styles.cardlist}>
-  //               <ListGroupItem className="text-center h4 fw-bold">{cookies.videoState}</ListGroupItem>
-  //               <ListGroupItem><Button variant="success"> Go to lecture page </Button></ListGroupItem>
-  //             </ListGroup>
-              
-  //           </Card.Body>
-
-  //         </div>
-  //       </Card>
-  //     )
-    // }
-  // } 
 
   // 3. cookieAlert
   /**
@@ -64,13 +36,10 @@ export default function Home({ courses, titles }) {
 
   const [cookieAlertShow, setCookieAlertShow] = React.useState(getInitialCookieAlert());
 
-  /**
-   * NOTE: delete the maxAge value for release builds.
-   */
   const handleCookieAlertOff = () => {
     // If user press the accept button, do not show the alarm again.
     setCookieAlertShow(false);
-    setCookie('cookieAlert', false, { maxAge: 30 });
+    setCookie('cookieAlert', false);
   }
 
   return (
@@ -81,17 +50,26 @@ export default function Home({ courses, titles }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Nav Bar Component */}
       <NavigationBar titles={titles} />
       <MainBanner />
 
       <div className={styles.main}>
-      {/* cookie 사용 - 강의 영상 추천 */}
-        <RecentLecture />
 
-        <MainCard courses={courses} />
+      {/* cookie 사용 - 강의 영상 추천 */}
+      <RecentLecture />
+      <VideoStateChecker />
+
+      <h2>Some</h2>
+      <h3>Contents</h3>
+      <h1>here</h1>
+      <h1>Other</h1>
+      <h1>Contents</h1>
+      <h1>there</h1>
 
       </div>
+
+      <MainCard courses={courses} />
+
       {/* cookie 수집 동의 */}
       <Alert className={styles.cookieAlert} variant='dark' show={Boolean(cookieAlertShow)}>
         <Alert.Heading>This website uses cookies.</Alert.Heading>

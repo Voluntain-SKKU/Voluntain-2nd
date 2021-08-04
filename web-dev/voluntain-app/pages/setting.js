@@ -1,20 +1,14 @@
 import React from 'react'
 import { useCookies } from 'react-cookie'
-import { Button } from 'react-bootstrap'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
+/**
+ * @see
+ * https://www.cookiebot.com/en/cookie-policy/
+ */
 export default function Setting() {
-    const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie', 'cookieAlert']);
+    const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie', 'cookieAlert']);
 
-    // 1. videoState
-    function VideoState() {
-        if (cookies.videoState === undefined) {
-            return <h1>UNDEF</h1>
-        } else {
-            return <h1>{cookies.videoState}</h1>
-        }
-    }
-
-    // 2. noCookie
     function getInitialNoCookie() {
         if (cookies.noCookie === undefined) {
             return false;
@@ -24,17 +18,25 @@ export default function Setting() {
     }
 
     const [noCookieStat, setNoCookieUseStat] = React.useState(getInitialNoCookie());
+    const [openDialog, setOpenDialog] = React.useState(false);
 
-    /**
-     * NOTE: delete the maxAge value for release builds.
-     */
+    const handleOpenDialog = () => {
+        setOpenDialog(true);
+    }
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    }
+
     const handleNoCookieChange = () => {
         if (noCookieStat === false) {
             // make noCookie true, and delete all other cookies.
             setNoCookieUseStat(true);
-            removeCookie('videoState');
+            removeCookie('lastLectureId');
+            removeCookie('videoEnd');
             removeCookie('cookieAlert');
-            setCookie('noCookie', true, { path: '/', maxAge: 120 });
+            setCookie('noCookie', true, { path: '/' });
+            handleCloseDialog();
         } else {
             // make noCookie false
             setNoCookieUseStat(false);
@@ -42,46 +44,73 @@ export default function Setting() {
         }
     }
 
-    const CurrentStat = () => {
-        if (noCookieStat === false)
-            return <h2>noCookie is not set.</h2>
-        else
-            return <h2>noCookie is set.</h2>
-    }
-
-    function getInitialCookieAlert() {
-        if (cookies.cookieAlert === undefined && (cookies.noCookie === false || cookies.noCookie === undefined)) {
-            return true;
+    const CookieSwitcher = () => {
+        if (noCookieStat === false) {
+            return (
+                <>
+                    <h5>All cookies are now being collected.</h5>
+                    <Button variant="contained" color="secondary" onClick={handleOpenDialog}>
+                        Disable and remove all cookies
+                    </Button>
+                </>
+            );
         } else {
-            return false;
-        }
-    }
-
-    const [cookieAlertShow, setCookieAlertShow] = React.useState(getInitialCookieAlert());
-
-    const CookieAlertStat = () => {
-        if (cookieAlertShow === true) {
-            return <h2>Show Cookie Alert...</h2>
-        } else {
-            return <h2>Stop showing cookie alert.</h2>
+            return (
+                <>
+                    <h5>Some of cookies are not being collected.</h5>
+                    <Button variant="contained" color="primary" onClick={handleNoCookieChange}>
+                        Enable cookies
+                    </Button>
+                </>
+            );
         }
     }
 
     return (
         <main>
-            <h1>PRIVACY POLICY</h1>
-            <h3>
-                어떤어떤 이유로 무슨무슨 쿠키 값을 사용합니다. 아마 이 부분은 about 페이지로 포함시킬 듯함
-            </h3>
+            <h1>COOKIE POLICY</h1>
+            <ul>
+                <li><h3>What types of cookies are set? What data they track?</h3></li>
+                <p><ol>
+                    <li>The title of the last video you watched,</li>
+                    <li>whether you have finished the video,</li>
+                    <li>and whether you consent to cookies that are being collected.</li>
+                </ol></p>
 
-            <Button onClick={handleNoCookieChange}>Change noCookie value</Button>
+                <li><h3>How long they persist on your my browser?</h3></li>
+                <p>1 and 2 remains for a year from the last day you watched any lecture video, <br />
+                and 3 remains permanently unless you remove your cookies.</p>
 
-            <h5>디버깅 목적으로 표시해주는 현재 쿠키 값들: </h5>
-            <div>
-                <VideoState />
-                <CurrentStat />
-                <CookieAlertStat />
-            </div>
+                <li><h3>Why are these cookies tracked?</h3></li>
+                <p>These cookies help you explore more comfortably when using this website.<br />
+                Specifically, on the main page, it helps you go to the lecture you want to watch
+                on your next visit at once depending on the last lecture you watched.</p>
+
+                <li><h3>Where is the data sent? Is it shared with third parties?</h3></li>
+                <p>For now, the cookies are not shared anywhere and only exists within your browser, <br />
+                but this may change when Disqus is added in the future. </p>
+
+                <li><h3>How can I reject cookies?</h3></li>
+                <p>To reject collecting cookies, please click the button below. <br />
+                By doing that, we will remove all cookies remaining, and no longer collect any cookies. <br />
+                However, even if you opt out of the collection of cookies,
+                those essential for operation might still be collected (3. whether you consent to cookies that are being collected). </p>
+            </ul>
+            <CookieSwitcher />
+            <Dialog open={openDialog} onClose={handleCloseDialog}>
+                <DialogTitle>{"Disable cookies?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        If you disable cookies, we will not be able to record the last lecture
+                        that you watched and guide you quickly in the main screen! <br />
+                        Continue anyway?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog}>NO</Button>
+                    <Button onClick={handleNoCookieChange}>YES</Button>
+                </DialogActions>
+            </Dialog>
         </main>
     );
 }
