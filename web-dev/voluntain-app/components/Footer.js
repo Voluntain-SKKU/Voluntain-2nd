@@ -16,10 +16,10 @@ export const Footer = () => {
           +82-00-0000-0000
         </Grid>
         <Grid item className={styles.footerItem}>
-          <strong><a href='./setting'>Cookie policy page</a></strong>
+          <strong><a href='./setting'>Cookie Policy</a></strong>
         </Grid>
         <Grid item>
-          <strong><a href='https://www.youtube.com'>Youtube channel</a></strong>
+          <strong><a href='https://www.youtube.com/channel/UCYvzm_6k-_V4UHFjEMdFtuA'>Youtube Channel</a></strong>
         </Grid>
       </Grid>
       <div className={styles.copyright}>© 2021 Voluntain. All rights reserved.</div>
