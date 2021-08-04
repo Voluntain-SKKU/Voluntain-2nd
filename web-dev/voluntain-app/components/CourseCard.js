@@ -20,7 +20,7 @@ export const CourseCard = (props)=> {
     // const stars= [ " ", "★", "★ ★", "★ ★ ★", "★ ★ ★ ★", "★ ★ ★ ★ ★"]
     
     return(
-        <div className={styles.main}>
+        <div>
             <Link href={props.link} >
             <Card className={styles.card}>
                 <Card.Img variant="top" src={props.img} className={styles.cardimg}/>

@@ -6,6 +6,8 @@ import { CardGroup } from 'react-bootstrap';
 export const MainCard = (props)=> {
 
     return(
+        <div className={styles.content}>
+        <h2 className={styles.contenttitle}>COURSES</h2>
         <CardGroup className="d-flex">
             {/* get course inform from backend */}
             {props.courses.map((course) => (
@@ -18,5 +20,6 @@ export const MainCard = (props)=> {
                 />  
             ))}
         </CardGroup>
+        </div>
     );
 }

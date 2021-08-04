@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, CardContent, Typography } from '@material-ui/core'
+import styles from '../styles/Home.module.css'
 
 /**
  * @usage
@@ -10,15 +11,18 @@ import { Card, CardContent, Typography } from '@material-ui/core'
  */
 export const LectureCards = (props) => {
     return (
-        <Card style={{ margin: 10, whiteSpace: 'pre-wrap' }}>
-            <CardContent>
-                <Typography variant="h5" color="textPrimary" gutterBottom>{props.title}</Typography>
-                <Typography variant="h6" color="textSecondary">
-                    {props.content.split('\n').map((line) => {
-                        return <>{line}<br /></>
-                    })}
-                </Typography>
-            </CardContent>
-        </Card>
+        <div className={styles.content}>
+            <h2 className={styles.contenttitle}>Courses</h2>
+            <Card>
+                <CardContent>
+                    <Typography variant="h5" color="textPrimary" gutterBottom>{props.title}</Typography>
+                    <Typography variant="h6" color="textSecondary">
+                        {props.content.split('\n').map((line) => {
+                            return <>{line}<br /></>
+                        })}
+                    </Typography>
+                </CardContent>
+            </Card>
+        </div>
     );
 }
