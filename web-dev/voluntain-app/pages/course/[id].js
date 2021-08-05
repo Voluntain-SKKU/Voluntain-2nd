@@ -56,29 +56,18 @@ function nop() { }
  */
 
 
-
 export default function LecturePage({ course }) {
   const router = useRouter()
-  const { pid } = router.query
+  const lecture_id = router.query.lectureId;
+
+  //console.log(router.query);
+  //console.log(router.query.lectureId);
 
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1); // True
   const [isLastLecture, setLastLecture] = useState(0); // False
-  /**
-   * This composes the content of the sidebar.
-   */
-  const lectureList = [
-    'About Scratch',
-    'Easy',
-    'Hard',
-  ];
-
-  const lowerCardContent = [
-    { 'title': 'Contents', 'content':  course.lectures[lectureId].title},
-    { 'title': 'See Also', 'content':  course.lectures[lectureId].video_link},
-  ]
-
+  
   /**
    * These check whether the current lecture is the first or last one.
    * If it is, disable Prev or Next button.
@@ -119,10 +108,18 @@ const responsivesidebar = () => {
 
 const handleClick = (lecture_number) => {
   setLectureId(lectureId => lecture_number);
-  // useEffect(()=>{
-  //   lectureId = lecture_number;
-  //   console.log(lectureId);
-  // })
+  if (lecture_number == course.lectures.length - 1) {
+    setLastLecture(isLastLecture => 1);
+    setFirstLecture(isFirstLecture => 0)
+
+  } else if (lecture_number == 0) {
+    setLastLecture(isLastLecture => 0);
+    setFirstLecture(isFirstLecture => 1)
+
+  } else {
+    setLastLecture(isLastLecture => 0);
+    setFirstLecture(isFirstLecture => 0)
+  }
 }
 
 const nextLecture = () => {
@@ -195,11 +192,11 @@ const prevLecture = () => {
           <h1>{course.lectures[lectureId].title}</h1>
         </div>
 
-        {/*<div>
+        <div>
           <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
           {' '}
           <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
-        </div>*/}
+        </div>
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
@@ -238,11 +235,10 @@ const prevLecture = () => {
   )
 }
 
-// {url}/courses/id 에 GET Request 보내 courses 정보 받아오기
+// {url}/courses/id?lecture_id 에 GET Request 보내 courses 정보 받아오기
 export const getStaticProps = async (context) => {
   const data = await fetch(`${url}/courses/${context.params.id}`);
   const course = await data.json();
-  
 
   return {
       props: { course },
