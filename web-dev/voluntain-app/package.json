@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@material-ui/core": "^4.12.3",
+=======
+    "@material-ui/core": "^4.12.2",
+>>>>>>> 10d58b1369f06c72ae55ab6cc8398b64f65b8537
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/styles": "^4.11.4",

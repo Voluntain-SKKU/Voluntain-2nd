@@ -17,14 +17,15 @@ import { useWindowSize } from './useWindowSize';
 export const VideoPlayer = (props) => {
   const size = useWindowSize();
 
-  const opts = {
-    height: size.height > 530 ? '480' : size.height - 50,
-    width: size.width > 770 ? '720' : size.width - 50,
-    playerVars: {
-      // To check other variables, check:
-      // https://developers.google.com/youtube/player_parameters
-      cc_load_policy: 1,
-      modestbranding: 1,
+    const opts = {
+      height: size.height > 650 ? '600' : size.height - 50,
+      width: size.width > 950 ? '900' : size.width - 50,
+      playerVars: {
+        // To check other variables, check:
+        // https://developers.google.com/youtube/player_parameters
+        cc_load_policy: 1,
+        modestbranding: 1,
+      }
     }
   }
 
