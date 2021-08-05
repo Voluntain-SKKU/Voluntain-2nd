@@ -11,14 +11,15 @@ import { LectureText } from '../components/LectureText'
 import { SideBar } from '../components/SideBar'
 
 export default function Page() {
-  const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie']);
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
   const handleVideoEnd = () => {
     if (cookies.noCookie === undefined)
       setCookie('videoEnd', 1, { path: '/', maxAge: 31536000 });
   }
   const handleVideoStart = () => {
     if (cookies.noCookie == undefined) {
-      setCookie('lastLectureId', 1, { path: '/', maxAge: 31536000 });
+      setCookie('courseId', 1, { path: '/', maxAge: 31536000 });
+      setCookie('lectureId', 1, { path: '/', maxAge: 31536000 });
       setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
     }
   }
@@ -26,7 +27,7 @@ export default function Page() {
   return (
     <div>
       <div className="Body">
-        <h3>last lecture ID: {cookies.lastLectureId} // videoEnd: {cookies.videoEnd}</h3>
+        <h3>courseId: {cookies.courseId} // lectureID: {cookies.lectureId} // videoEnd: {cookies.videoEnd}</h3>
 
         <div className="RightSide" style={{ float: 'left', margin: 10 }}>
           <div className="LectureTitle" style={{ margin: 10 }}>

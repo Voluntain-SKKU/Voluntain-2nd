@@ -7,7 +7,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
  * https://www.cookiebot.com/en/cookie-policy/
  */
 export default function Setting() {
-    const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie', 'cookieAlert']);
+    const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie', 'cookieAlert']);
 
     function getInitialNoCookie() {
         if (cookies.noCookie === undefined) {
@@ -32,7 +32,8 @@ export default function Setting() {
         if (noCookieStat === false) {
             // make noCookie true, and delete all other cookies.
             setNoCookieUseStat(true);
-            removeCookie('lastLectureId');
+            removeCookie('courseId');
+            removeCookie('lectureId');
             removeCookie('videoEnd');
             removeCookie('cookieAlert');
             setCookie('noCookie', true, { path: '/' });
