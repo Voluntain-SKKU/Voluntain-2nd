@@ -7,6 +7,9 @@ import Main from './Main';
 //import Sidebar from './Sidebar';
 //import CssBaseline from '@material-ui/core/CssBaseline';
 
+import { url } from '../config/next.config' //url 가져오기
+import { MainBanner } from '../components/MainBanner';
+
 const mainFeaturedPost={
     title: 'Voluntain',
     description: "Learn everything, everywhere!",
@@ -27,18 +30,17 @@ const sidebar = {
     ],
   };
 
-export default function Page() {
+export default function Page( { titles } ) {
     const classes = useStyles();
 
   return (
     <div>
-      <div className="Head">
-        <NavigationBar />
-      </div>
+        <NavigationBar titles={titles}/>
+        <MainBanner/> 
       <main>
-          <MainFeaturedPost post={mainFeaturedPost}/>
+          {/* <MainFeaturedPost post={mainFeaturedPost}/> */}
+          <Main />
           <Grid container spacing={5} className={classes.mainGrid}>
-            <Main/> 
             {/*<Sidebar                           
             archives={sidebar.archives}             
             />*/}           
@@ -46,6 +48,18 @@ export default function Page() {
       </main>
     </div>
 
-    
+
   )
 }
+
+export const getStaticProps = async () => {
+
+  // 이거 courses에서 뽑아오고 싶은데??
+  const data0 = await fetch(`${url}/courses/title`);
+  const titles = await data0.json();
+
+  return {
+    props: {  titles },
+    revalidate: 1,//몇 초로 할지?
+  };
+};
