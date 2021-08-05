@@ -54,7 +54,13 @@ export function VideoStateChecker() {
   } else {
     // For the first visiters
     return (
-      <></>
+      <div className={styles.videoStateChecker}>
+      <Alert severity="warning">
+        <AlertTitle>Empty!</AlertTitle>
+        Learn any lecture! {' '}
+        <Link href="/id"><strong>CLICK HERE TO LEARN</strong></Link>
+      </Alert>
+    </div>
     );
   }
 }
