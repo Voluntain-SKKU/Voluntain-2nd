@@ -8,13 +8,15 @@ import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
 import { RecentLecture } from '../components/RecentLecture'
 
-import { useCookies } from 'react-cookie'
-import React from 'react'
 import { Alert, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { useCookies } from 'react-cookie'
 
+import { Footer } from '../components/Footer'
+
+import * as ga from '../lib/ga'
 
 export default function Home({ courses, titles }) {
-
   /**
    * Cookie examples
    */
@@ -39,6 +41,18 @@ export default function Home({ courses, titles }) {
     setCookieAlertShow(false);
     setCookie('cookieAlert', false);
   }
+
+  /**
+   * Logging example
+   */
+   const search = () => {
+     ga.event({
+       action: "search",
+       params : {
+         search_term: " "
+       }
+     })
+   }
 
   return (
     <div className={styles.container}>
@@ -67,12 +81,7 @@ export default function Home({ courses, titles }) {
         <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
       </Alert>
 
-      {/* Footer component 분리해야함 */}
-      <footer className={styles.footer}>
-        <span className={styles.h1}>
-          Powered by Voluntain
-        </span>
-      </footer>
+      <Footer />
     </div>
   )
 }

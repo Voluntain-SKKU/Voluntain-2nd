@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import styles from '../styles/Home.module.css'
 
 export function VideoStateChecker() {
-  const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie']);
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
   const [openWarning, setOpenWarning] = React.useState(true);
 
   if (cookies.noCookie !== undefined) {
@@ -26,7 +26,7 @@ export function VideoStateChecker() {
         </Collapse>
       </div>
     );
-  } else if (cookies.lastLectureId !== undefined) {
+  } else if (cookies.lectureId !== undefined) {
     // For the re-visiters
     if (cookies.videoEnd == 1) {
       // provide a link to the next lecture if exists
@@ -34,7 +34,7 @@ export function VideoStateChecker() {
         <div className={styles.videoStateChecker}>
           <Alert severity="success">
             <AlertTitle>Welcome back!</AlertTitle>
-            Last time you have finishied the lecture {cookies.lastLectureId}. {' '}
+            Last time you have finishied the lecture {cookies.lectureId} of the course {cookies.courseId}. {' '}
             <Link href="/id"><strong>CLICK HERE TO GO FOR THE NEXT LECTURE</strong></Link>
           </Alert>
         </div>
@@ -45,7 +45,7 @@ export function VideoStateChecker() {
         <div className={styles.videoStateChecker}>
           <Alert severity="info">
             <AlertTitle>Welcome back!</AlertTitle>
-            You can continue studying the lecture {cookies.lastLectureId}. {' '}
+            You can continue studying the lecture {cookies.lectureId} of the course {cookies.courseId}. {' '}
             <Link href="/id"><strong>CLICK HERE TO GO FOR IT</strong></Link>
           </Alert>
         </div>
