@@ -51,16 +51,13 @@ export function VideoStateChecker() {
         </div>
       );
     }
-  } else {
+  } else if (cookies.noCookie == undefined){
     // For the first visiters
     return (
-      <div className={styles.videoStateChecker}>
-      <Alert severity="warning">
-        <AlertTitle>Empty!</AlertTitle>
-        Learn any lecture! {' '}
-        <Link href="/id"><strong>CLICK HERE TO LEARN</strong></Link>
-      </Alert>
-    </div>
+      <>
+        <h2>Welcome!</h2>
+        <p>Learn ~~</p>
+      </>
     );
   }
 }
