@@ -238,11 +238,7 @@ const prevLecture = () => {
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
 
         <div style={{ border: 'solid', borderWidth: 'thin' }}>
-<<<<<<< HEAD
-          <VideoPlayer videoId='_9RvpFdUQr0' endChecker={handleVideoEnd} />
-=======
           <VideoPlayer videoId={course.lectures[lectureId].video_link} />
->>>>>>> 10d58b1369f06c72ae55ab6cc8398b64f65b8537
         </div>
 
         <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
