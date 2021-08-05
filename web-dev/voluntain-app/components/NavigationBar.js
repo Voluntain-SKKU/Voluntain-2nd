@@ -23,7 +23,7 @@ export const NavigationBar = (props) => {
           <Navbar.Collapse id="basic-navbar-nav"> 
             <Nav className="ms-auto">
               <Nav.Link href="#home">HOME</Nav.Link>
-              <Nav.Link href="#link">ABOUT</Nav.Link>
+              <Nav.Link href="/about">ABOUT</Nav.Link>
               <NavDropdown title="COURSES" id="basic-nav-dropdown">
                 {props.titles.map((item) => (
                   <NavDropdown.Item href={"/" + item.id}>{item.title}</NavDropdown.Item>
