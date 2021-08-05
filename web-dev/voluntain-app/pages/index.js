@@ -10,9 +10,7 @@ import { RecentLecture } from '../components/RecentLecture'
 
 import { useCookies } from 'react-cookie'
 import React from 'react'
-import { Alert } from 'react-bootstrap'
-
-import { VideoStateChecker } from '../components/VideoStateChecker'
+import { Alert, Button } from 'react-bootstrap'
 
 
 export default function Home({ courses, titles }) {
@@ -54,21 +52,9 @@ export default function Home({ courses, titles }) {
       <MainBanner />
 
       <div className={styles.main}>
-
-      {/* cookie 사용 - 강의 영상 추천 */}
-      <RecentLecture />
-      <VideoStateChecker />
-
-      <h2>Some</h2>
-      <h3>Contents</h3>
-      <h1>here</h1>
-      <h1>Other</h1>
-      <h1>Contents</h1>
-      <h1>there</h1>
-
+        <RecentLecture />
+        <MainCard courses={courses} />
       </div>
-
-      <MainCard courses={courses} />
 
       {/* cookie 수집 동의 */}
       <Alert className={styles.cookieAlert} variant='dark' show={Boolean(cookieAlertShow)}>
