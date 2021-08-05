@@ -11,15 +11,15 @@ import { MainCard } from '../components/MainCard'
 import { Card, Button } from 'react-bootstrap';
 
 import { useCookies } from 'react-cookie'
-import React from 'react'
+import React, { useState } from 'react'
 import { Alert } from 'react-bootstrap'
 
 import { VideoStateChecker } from '../components/VideoStateChecker'
 import { Footer } from '../components/Footer'
 
+import * as ga from '../lib/ga'
 
 export default function Home({ courses, titles }) {
-
   /**
    * Cookie examples
    */
@@ -45,6 +45,18 @@ export default function Home({ courses, titles }) {
     setCookie('cookieAlert', false);
   }
 
+  /**
+   * Logging example
+   */
+   const search = () => {
+     ga.event({
+       action: "search",
+       params : {
+         search_term: " "
+       }
+     })
+   }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -62,6 +74,7 @@ export default function Home({ courses, titles }) {
 
       <VideoStateChecker />
 
+      <button onClick={() => search()}>Search</button>
       <h2>Some</h2>
       <h3>Contents</h3>
       <h1>here</h1>
