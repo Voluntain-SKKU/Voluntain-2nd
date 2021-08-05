@@ -41,14 +41,14 @@ export const Footer = () => {
               horizontal: 'center',
             }}
           >
-            <div style={{padding: 5}}>Copied to clipboard: skku.voluntain@gmail.com</div>
+            <div style={{ padding: 5 }}>Copied to clipboard: skku.voluntain@gmail.com</div>
           </Popover>
         </Grid>
         <Grid item className={styles.footerItem}>
-          <a href='./setting'><Forum />{' '}Slack</a>
+          <a href='https://www.youtube.com/channel/UCYvzm_6k-_V4UHFjEMdFtuA'><YouTube />{' '}Youtube</a>
         </Grid>
         <Grid item>
-          <a href='https://www.youtube.com/channel/UCYvzm_6k-_V4UHFjEMdFtuA'><YouTube />{' '}Youtube</a>
+          <a href='/setting'>Cookie Policy</a>
         </Grid>
       </Grid>
       <div className={styles.copyright}>© 2021 Voluntain. All rights reserved.</div>
