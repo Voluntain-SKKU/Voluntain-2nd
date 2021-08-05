@@ -27,7 +27,6 @@ export const VideoPlayer = (props) => {
         modestbranding: 1,
       }
     }
-  }
 
   const { videoId } = props;
 

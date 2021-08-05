@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export const NavigationBar = (props) => {
   return (
     <div>
-      <Navbar bg="light" expand="md" fixed="top">
+      <Navbar bg="light" expand="md">
         <Container>
           <Navbar.Brand href="/">
           <img

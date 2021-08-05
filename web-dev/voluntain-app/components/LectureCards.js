@@ -12,8 +12,7 @@ import styles from '../styles/Home.module.css'
 export const LectureCards = (props) => {
     return (
         <div className={styles.content}>
-            <h2 className={styles.contenttitle}>Courses</h2>
-            <Card className={styles.card}>
+            <Card>
                 <CardContent>
                     <Typography variant="h5" color="textPrimary" gutterBottom>{props.title}</Typography>
                     <Typography variant="h6" color="textSecondary">
