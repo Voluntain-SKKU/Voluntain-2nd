@@ -70,27 +70,27 @@ export default function Setting() {
         <main>
             <h1>COOKIE POLICY</h1>
             <ul>
-                <li><h3>What types of cookies are set? What data they track?</h3></li>
+                <h3>What types of cookies are set? What data they track?</h3>
                 <p><ol>
                     <li>The title of the last video you watched,</li>
                     <li>whether you have finished the video,</li>
                     <li>and whether you consent to cookies that are being collected.</li>
                 </ol></p>
 
-                <li><h3>How long they persist on your my browser?</h3></li>
+                <h3>How long they persist on your my browser?</h3>
                 <p>1 and 2 remains for a year from the last day you watched any lecture video, <br />
                 and 3 remains permanently unless you remove your cookies.</p>
 
-                <li><h3>Why are these cookies tracked?</h3></li>
+                <h3>Why are these cookies tracked?</h3>
                 <p>These cookies help you explore more comfortably when using this website.<br />
                 Specifically, on the main page, it helps you go to the lecture you want to watch
                 on your next visit at once depending on the last lecture you watched.</p>
 
-                <li><h3>Where is the data sent? Is it shared with third parties?</h3></li>
+                <h3>Where is the data sent? Is it shared with third parties?</h3>
                 <p>For now, the cookies are not shared anywhere and only exists within your browser, <br />
                 but this may change when Disqus is added in the future. </p>
 
-                <li><h3>How can I reject cookies?</h3></li>
+                <h3>How can I reject cookies?</h3>
                 <p>To reject collecting cookies, please click the button below. <br />
                 By doing that, we will remove all cookies remaining, and no longer collect any cookies. <br />
                 However, even if you opt out of the collection of cookies,
