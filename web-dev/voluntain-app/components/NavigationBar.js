@@ -38,13 +38,3 @@ export const NavigationBar = (props) => {
     </div>
   );
 };
-
-// export const getStaticProps = async () => {
-//   const data = await fetch(`${url}/courses/title`);
-//   const titles = await data.json();
-
-//   return {
-//     props: { titles },
-//     revalidate: 1,//몇 초로 할지?
-//   };
-// };

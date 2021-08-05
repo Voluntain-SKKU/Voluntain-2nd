@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import { CourseCard } from './CourseCard';
 import CardColumns from 'react-bootstrap/CardColumns'
 import { CardGroup } from 'react-bootstrap';
+import {url} from '../config/next.config' //url 가져오기
 
 export const MainCard = (props)=> {
 
@@ -13,7 +14,7 @@ export const MainCard = (props)=> {
             {props.courses.map((course) => (
                 <CourseCard
                 title={course.title} 
-                img={"/"+course.title+".png"}
+                img={`${url}`+course.logo_img.url}
                 content={course.about}
                 link={"/" + course.id}
                 level={course.level}
