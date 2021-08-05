@@ -18,15 +18,7 @@ import grey from '@material-ui/core/colors/grey';
 
 import List from '@material-ui/core/List';
 
-/**
- * Style the background of sidebar.
- * 
- * @Properties
- * - width: Background is colored by the ratio specified here. e.g. '100%'
- * - height: Background is colored by the height specified here. e.g. 1000
- * - maxWidth: Background is colored by the width specified here.
- * - backgroundColor
- */
+
 const useStyles = makeStyles((prop) => ({
     root: {
         width: '100%',
@@ -40,10 +32,7 @@ const useStyles = makeStyles((prop) => ({
     }
 }));
 
-/**
- * Make the rows of the list.
- * If you want to change the contents of the sidebar, modify this.
- */
+
 function renderRow(props) {
     const { index, style } = props;
 
@@ -59,20 +48,7 @@ renderRow.propTypes = {
     style: PropTypes.object.isRequired,
 };
 
-/**
- * @Properties
- * - height
- * - width
- * - itemSize
- * - itemCount
- * 
- * @Usage
- * \<SideBar height={0} width={0} \/\>
- * 
- * @Note
- * SideBar is automatically hidden when page size is below 'sm'.
- * See also https://material-ui.com/customization/breakpoints/#withwidth.
- */
+
 export const SideBar = (prop) => {
     const classes = useStyles(prop);
     const [open, setOpen] = React.useState(true);
