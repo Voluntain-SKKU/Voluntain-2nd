@@ -42,6 +42,15 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "exercise_question": {
+      "type": "richtext"
+    },
+    "about": {
+      "type": "richtext"
+    },
+    "exercise_answer": {
+      "type": "richtext"
     }
   }
 }

@@ -1,12 +1,21 @@
 /* .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: ro;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 } */
+
+.content {
+  width: 70%;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.contenttitle{
+  text-align: left;
+  font-weight: 800;
+  margin-bottom: 2rem; margin-top: 1rem;
+}
 
 /* custom */
 .nav {
@@ -33,31 +42,48 @@
   width: 100%;
   height: 500px;
 }
-/* custom */
 
 .main {
-  padding: .5rem 0;
+  padding: .5rem;
+  margin: .5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
+/* End custom */
 
 .footer {
+  background: #ece6cc;
   width: 100%;
   height: 100px;
-  border-top: 1px solid #eaeaea;
-  display: flex;
+  position: relative;
+  bottom: 0px;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 20px;
+  color: #505050;
+}
+
+.copyright {
+  padding-top: 10px;
+}
+
+.footerItem {
+  border-right: 1px solid #999999;
 }
 
 .footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer a:hover {
+  color: #00A553;
 }
 
 .title a {
@@ -71,18 +97,14 @@
   text-decoration: underline;
 }
 
-.title {
+.maintitle {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
+  font-size: 5rem;
   text-align: center;
 }
 
-.description {
+.slogan {
   line-height: 3;
   font-size: 1.2rem;
 }
@@ -105,16 +127,30 @@
   margin-top: 3rem;
 }
 
+.colcard {
+  display: flex;
+  max-width: fit-content;
+  /* max-height: fit-content; */
+  margin: 2rem; 
+}
+
+.cardlist{
+  max-width: 450px;
+  margin-top: 2rem;
+}
+
+/* custom */
 .card {
+  flex-direction: row;
   margin: 1rem;
-  padding: 1.5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  width: 70%;
+  width: 100%;
+  max-height: fit-content;
 }
 
 .card:hover,
@@ -135,9 +171,27 @@
   line-height: 1.5;
 }
 
+.cardimg {
+  width: 10rem;
+  height: fit-content;
+  margin: .5rem;
+}
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.cookieAlert {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.videoStateChecker {
+  position: relative;
+  width: 100%;
+  margin: 10px auto;
 }
 
 

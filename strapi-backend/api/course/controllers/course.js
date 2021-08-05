@@ -5,4 +5,36 @@
  * to customize this controller
  */
 
-module.exports = {};
+
+module.exports = {
+
+    findData: async ctx => {
+        const result = await strapi.query('course').model.fetchAll({
+            columns: ['id', 'title', 'about', 'level'],
+            withRelated : [ 'logo_img' ]
+        });
+
+        ctx.send(result);
+    },
+
+    findTitle: async ctx => {
+        const result = await strapi
+        .query('course')
+        .model.query((qb) => {
+            qb.select('id', 'title'); //필요한 field만 선택
+        })
+        .fetchAll({
+            withRelated: [] //lecture relations에 대한 정보 제외
+        });
+
+        ctx.send(result);
+
+    }
+
+};
+
+
+
+
+
+

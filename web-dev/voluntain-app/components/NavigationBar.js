@@ -5,10 +5,10 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // export default - const difference
-export const NavigationBar = () => {
+export const NavigationBar = (props) => {
   return (
     <div>
-      <Navbar bg="light" expand="lg" sticky="top">
+      <Navbar bg="light" expand="md">
         <Container>
           <Navbar.Brand href="/">
           <img
@@ -20,14 +20,14 @@ export const NavigationBar = () => {
           />&nbsp;&nbsp;
            VOLUNTAIN</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+          <Navbar.Collapse id="basic-navbar-nav"> 
+            <Nav className="ms-auto">
               <Nav.Link href="#home">HOME</Nav.Link>
-              <Nav.Link href="#link">ABOUT</Nav.Link>
+              <Nav.Link href="/about">ABOUT</Nav.Link>
               <NavDropdown title="COURSES" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/id">Scratch</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Python</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">C/C++</NavDropdown.Item>
+                {props.titles.map((item) => (
+                  <NavDropdown.Item href={"/" + item.id}>{item.title}</NavDropdown.Item>
+                ))}
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Other</NavDropdown.Item>
               </NavDropdown>

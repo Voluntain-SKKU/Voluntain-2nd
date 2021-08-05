@@ -14,11 +14,11 @@ export const MainBanner = () => {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous"
       /> */}
-      <div className={styles.title}>
+      <div className={styles.maintitle}>
         VOLUNTAIN
       </div>
-      <div className={styles.description}>
-        Learn everthing everywhere
+      <div className={styles.slogan}>
+        Study All Together, Voluntain!  
       </div>
     </div>
   );

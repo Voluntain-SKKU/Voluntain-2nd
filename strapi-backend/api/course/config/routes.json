@@ -3,9 +3,17 @@
     {
       "method": "GET",
       "path": "/courses",
-      "handler": "course.find",
+      "handler": "course.findData",
       "config": {
-        "policies": []
+        
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/courses/title",
+      "handler": "course.findTitle",
+      "config": {
+        
       }
     },
     {

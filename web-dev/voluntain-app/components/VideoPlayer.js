@@ -8,28 +8,29 @@ import { useWindowSize } from './useWindowSize';
  * https://developers.google.com/youtube/player_parameters
  * 
  * @usage
- *     \<VideoPlayer videoId='_9RvpFdUQr0' endChecker={} \/\>
+ *     \<VideoPlayer videoId='_9RvpFdUQr0' startChecker={} endChecker={} \/\>
  * 
  * @note
- * When a video is ended, the method given to endChecker is called.
+ * When a video starts, the method given to startChecker is called.
+ * When a video ends, the method given to endChecker is called.
  */
 export const VideoPlayer = (props) => {
   const size = useWindowSize();
 
-  const opts = {
-    height: size.height > 530 ? '480' : size.height - 50,
-    width: size.width > 770 ? '720' : size.width - 50,
-    playerVars: {
-      // To check other variables, check:
-      // https://developers.google.com/youtube/player_parameters
-      cc_load_policy: 1,
-      modestbranding: 1,
+    const opts = {
+      height: size.height > 650 ? '600' : size.height - 50,
+      width: size.width > 950 ? '900' : size.width - 50,
+      playerVars: {
+        // To check other variables, check:
+        // https://developers.google.com/youtube/player_parameters
+        cc_load_policy: 1,
+        modestbranding: 1,
+      }
     }
-  }
 
   const { videoId } = props;
 
   return (
-      <Youtube videoId={videoId} opts={opts} onEnd={props.endChecker} />
+      <Youtube videoId={videoId} opts={opts} onPlay={props.startChecker} onEnd={props.endChecker} />
   );
 }
