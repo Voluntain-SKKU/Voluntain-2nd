@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import { url } from "../../config/next.config";
 import { useRouter } from 'next/router';
@@ -129,6 +130,10 @@ export default function LecturePage({ course, titles }) {
 
   return (
     <div className={styles.lectureContainer}>
+      <Head>
+        <title>{course.lectures[lectureId].title} - Voluntain</title>
+      </Head>
+
       <div className="HEADER">
         <NavigationBar titles={titles} />
       </div>

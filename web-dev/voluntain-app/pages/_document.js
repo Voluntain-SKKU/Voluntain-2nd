@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
+          <meta name="description" content='Study All Together, Voluntain! Learn programming easily with tutorial videos of Sungkyunkwan University students.' />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
@@ -13,10 +14,11 @@ export default class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
+            window['ga-disable-${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}'] = false;
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-DPJN82ZDWH');
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
           `,
             }}
           />
