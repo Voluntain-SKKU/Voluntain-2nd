@@ -15,7 +15,7 @@ import { TitleProvider, TitleContext } from '../lib/context';
 
 import React from "react";
 
-export default function Home( { courses } ) {
+export default function Home( { courses, titles } ) {
 
   // const [ context, setContext] = React.useState(data)
 
@@ -28,7 +28,7 @@ export default function Home( { courses } ) {
       </Head>
 
       {/* Nav Bar Component */}
-      <TitleProvider>
+      <TitleProvider value={titles}>
         <NavigationBar />
       </TitleProvider>
 
@@ -52,12 +52,13 @@ export const getStaticProps = async () => {
   const courses = await data.json();
 
   // 이거 courses에서 뽑아오고 싶은데??
-  // const data0 = await fetch(`${url}/courses/title`);
-  // const titles = await data0.json();
+  const data0 = await fetch(`${url}/courses/title`);
+  const titles = await data0.json();
 
+  console.log(titles);
 
   return {
-    props: { courses },
+    props: { courses, titles },
     revalidate: 1,//몇 초로 할지?
   };
 };

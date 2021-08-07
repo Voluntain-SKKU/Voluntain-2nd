@@ -15,8 +15,8 @@ class TitleProvider extends Component {
      * Context 객체에 담을 상태값, 메소드 정의
      */
     state = {
-        titles: '',
-        id: 1,
+        id: 0,
+        titles: 'scratch',
       }
     actions = {
       setValue: (value) => {
@@ -26,9 +26,7 @@ class TitleProvider extends Component {
     
     render() {
         const { state, actions } = this;
-        // Provider 내에서 사용할 값은, "value" 라고 부릅니다.
-        // 현재 컴포넌트의 state 와 actions 객체를 넣은 객체를 만들어서,
-        // Provider 의 value 값으로 사용하겠습니다.
+
         const value = { state, actions };
         return (
           <Provider value={value}>
