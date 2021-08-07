@@ -116,9 +116,6 @@ export default function LecturePage({ course, titles }) {
 
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
   const handleVideoEnd = () => {
-<<<<<<< HEAD
-    setCookie('video', "watched", { path: '/', maxAge: 30 });
-=======
     if (cookies.noCookie === undefined)
       setCookie('videoEnd', 1, { path: '/', maxAge: 31536000 });
   }
@@ -128,81 +125,83 @@ export default function LecturePage({ course, titles }) {
       setCookie('lectureId', 1, { path: '/', maxAge: 31536000 });
       setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
     }
->>>>>>> 80d387d2f4a2ea09ad7ee39e5994f8e1d3b3c6a3
   }
 
   return (
-    <div className={styles.container}>
-      <NavigationBar titles={titles} />
+    <div className={styles.lectureContainer}>
+      <div className="HEADER">
+        <NavigationBar titles={titles} />
+      </div>
 
-      <div className="Left" style={{float : 'left'}}>
-          <ListItem onClick={responsivesidebar} style={{background : '#003458', height: 48, color:grey[50]}}>
-            <StarBorder style={{color:grey[50]}}/>
-            <ListItemText primary={course.title}/>
-            {open? <ExpandLess/> : <ExpandMore/>}
+      <main className={styles.lecturePage}>
+        <div className={styles.lectureSidebar}>
+          <ListItem onClick={responsivesidebar} style={{ background: '#003458', height: 48, color: grey[50] }}>
+            <StarBorder style={{ color: grey[50] }} />
+            <ListItemText primary={course.title} />
+            {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
 
           <Collapse in={open} timeout="auto" unmountOnExit>
             <div className="LeftSide" style={{ float: 'left' }}>
-            {course.lectures.map((element) => {
+              {course.lectures.map((element) => {
                 return (
                   <List disablePadding>
-                    <ListItem button onClick={(e) => handleClick(element.lecture_number, e)} style={{background : '#003458', height: 48, color:grey[50]}}>
+                    <ListItem button onClick={(e) => handleClick(element.lecture_number, e)} style={{ background: '#003458', height: 48, color: grey[50] }}>
                       <ListItemIcon>
-                        <StarBorder style={{color:grey[50]}}/>
+                        <StarBorder style={{ color: grey[50] }} />
                       </ListItemIcon>
                       <ListItemText primary={element.title} />
-                      </ListItem>
+                    </ListItem>
                   </List>
                 )
               })}
             </div>
           </Collapse>
-      </div>
+        </div>
 
-      <main className={styles.main}>
-        <div>
+        <div className={styles.lectureContent}>
           <h1>{course.lectures[lectureId].title}</h1>
-        </div>
 
-        <div>
-          <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
-          {' '}
-          <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
-        </div>
 
-        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+          <div>
+            <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
+            {' '}
+            <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
+          </div>
 
-        <div style={{ border: 'solid', borderWidth: 'thin' }}>
-          <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} />
-        </div>
+          <hr />
+          <div>
+            <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} />
+          </div>
 
-        <Divider style={{ margin: 10, width: '70%', background: '#ffffff', borderTop: 'thin solid black' }} />
+          <hr />
 
-        <LectureCards title="Lecture Info" content={course.lectures[lectureId].title} />
+          <LectureCards title="Lecture Info" content={course.lectures[lectureId].about} />
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: 900, alignItems: 'center', justifyContent: 'center' }}>
-          <LectureCards title="Exercise" content={course.lectures[lectureId].title} />  
-          <LectureCards title="Answer" content={course.lectures[lectureId].title} />
-        </div>
+          <div style={{ flexWrap: 'wrap' }}>
+            <LectureCards title="Exercise" content={course.lectures[lectureId].exercise_question} />
+            <LectureCards title="Answer" content={course.lectures[lectureId].exercise_answer} />
+          </div>
 
-        {/* <div style={{ outline: 'thin solid black' }}>
-          <Comment />
-        </div> */}
-
-        <div style={{ width: 900, height: 90, alignItems: 'center' }}>
-          <DiscussionEmbed
-            shortname={disqusShortname}
-            config={disqusConfig}
-          />
+          <div style={{ width: '100%' }}>
+            <DiscussionEmbed
+              shortname={disqusShortname}
+              config={disqusConfig}
+            />
+          </div>
         </div>
       </main>
+      {/*
       <Hidden smUp>
         <Fab color="primary" style={{ position: 'sticky', bottom: 10, left: 10 }}>
           <ListIcon onClick={nop} />
         </Fab>
       </Hidden>
-      <Footer />
+            */}
+      <footer className={styles.lectureFooter}>
+        <Footer />
+      </footer>
+
     </div>
   )
 };
@@ -217,8 +216,8 @@ export const getStaticProps = async (context) => {
   const titles = await data0.json();
 
   return {
-      props: { course, titles },
-      revalidate: 1,
+    props: { course, titles },
+    revalidate: 1,
   };
 };
 
@@ -226,8 +225,8 @@ export async function getStaticPaths() {
   const res = await fetch(`${url}/courses`);
   const courses = await res.json();
 
-  const paths = courses.map((item)=> ({
-      params: { id: item.id.toString() },
+  const paths = courses.map((item) => ({
+    params: { id: item.id.toString() },
   }));
 
   return { paths, fallback: false };

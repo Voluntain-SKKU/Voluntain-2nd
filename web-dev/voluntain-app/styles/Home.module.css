@@ -194,6 +194,33 @@
   margin: 10px auto;
 }
 
+.lectureContainer hr {
+  width: 100%;
+}
+
+.lecturePage {
+  display: flex;
+}
+
+.lectureSidebar {
+  width: 250px;
+  background-color: #003458;
+}
+
+.lectureContent {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.lectureFooter {
+  bottom: 0;
+  left: 0;
+}
+
 
 @media (max-width: 600px) {
   .grid {

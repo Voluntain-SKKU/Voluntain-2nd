@@ -19,7 +19,7 @@ export const VideoPlayer = (props) => {
 
     const opts = {
       height: size.height > 650 ? '600' : size.height - 50,
-      width: size.width > 950 ? '900' : size.width - 50,
+      width: size.width > 1050 ? '900' : size.width - 250,
       playerVars: {
         // To check other variables, check:
         // https://developers.google.com/youtube/player_parameters
