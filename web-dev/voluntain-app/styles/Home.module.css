@@ -139,6 +139,12 @@
   margin-top: 2rem;
 }
 
+.maincard {
+  flex-direction: row;
+  width: 450px;
+  margin: .5rem;
+}
+
 /* custom */
 .card {
   flex-direction: row;

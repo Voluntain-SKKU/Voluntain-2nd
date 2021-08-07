@@ -22,7 +22,7 @@ export const CourseCard = (props)=> {
     return(
         <div>
             <Link href={props.link} >
-            <Card className={styles.card}>
+            <Card className={styles.maincard}>
                 <Card.Img variant="top" src={props.img} className={styles.cardimg}/>
                 <Card.Body>
                 <Card.Title className="fw-bold fs-2">{props.title}</Card.Title>

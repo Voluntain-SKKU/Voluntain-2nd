@@ -9,10 +9,10 @@ export const MainCard = (props)=> {
     return(
         <div className={styles.content}>
         <h2 className={styles.contenttitle}>Courses</h2>
-        <CardGroup className="d-flex">
+        <CardGroup className="d-flex justify-content-left">
             {/* get course inform from backend */}
             {props.courses.map((course) => (
-                <CourseCard
+                <CourseCard 
                 title={course.title} 
                 img={`${url}`+course.logo_img.url}
                 content={course.about}
