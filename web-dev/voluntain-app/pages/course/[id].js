@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { url } from "../../config/next.config";
-import { useRouter } from 'next/router';
 
 import PropTypes from 'prop-types';
 import { useCookies } from 'react-cookie'
@@ -34,13 +33,18 @@ import grey from '@material-ui/core/colors/grey';
 function nop() { }
 
 export default function LecturePage({ course, titles }) {
-  const router = useRouter()
-  const lecture_id = router.query.lectureId;
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
 
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1); // True
   const [isLastLecture, setLastLecture] = useState(0); // False
+
+  useEffect(() => { 
+    if(cookies.lectureId !== undefined){ 
+      setLectureId(cookies.lectureId); 
+    } 
+  },[]);
 
   function renderRow(props) {
     const { index, style } = props;
@@ -63,7 +67,7 @@ export default function LecturePage({ course, titles }) {
   };
 
   const handleClick = (lecture_number) => {
-    setLectureId(lectureId => lecture_number - 1);
+    setLectureId(lectureId => lecture_number);
     if (lecture_number == course.lectures.length - 1) {
       setLastLecture(isLastLecture => 1);
       setFirstLecture(isFirstLecture => 0)
@@ -114,7 +118,7 @@ export default function LecturePage({ course, titles }) {
     title: course.lectures[lectureId].title // Single post title
   }
 
-  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
+  //const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
   const handleVideoEnd = () => {
     if (cookies.noCookie === undefined)
       setCookie('videoEnd', 1, { path: '/', maxAge: 31536000 });
@@ -204,7 +208,7 @@ export default function LecturePage({ course, titles }) {
 };
 
 
-// {url}/courses/id?lecture_id 에 GET Request 보내 courses 정보 받아오기
+// {url}/courses/id 에 GET Request 보내 courses 정보 받아오기
 export const getStaticProps = async (context) => {
   const data = await fetch(`${url}/courses/${context.params.id}`);
   const course = await data.json();
