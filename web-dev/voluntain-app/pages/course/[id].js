@@ -1,43 +1,26 @@
 import Head from 'next/head'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { url } from "../../config/next.config";
 import { useRouter } from 'next/router';
 
 import PropTypes from 'prop-types';
 import { useCookies } from 'react-cookie'
-import { FixedSizeList } from 'react-window';
 import { DiscussionEmbed } from "disqus-react"
 
-import { Button, Collapse, Divider, Fab, Hidden, List, ListItem, ListItemIcon, ListItemText, ListSubheader, TextField } from '@material-ui/core'
-import ListIcon from '@material-ui/icons/List'
+import { Button, Collapse, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 
 import { VideoPlayer } from '../../components/VideoPlayer'
 import { NavigationBar } from '../../components/NavigationBar'
-import { Comment } from '../../components/Comment'
-import { SideBar } from '../../components/SideBar'
 import { LectureCards } from '../../components/LectureCards'
 import { Footer } from '../../components/Footer';
 import styles from '../../styles/Home.module.css'
 
-import SendIcon from '@material-ui/icons/Send';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import grey from '@material-ui/core/colors/grey';
 
-/**
- * This function is executed when the floating-button that appears when page
- * width is small is clicked.
- * This does nothing now, but might be replaced with another function.
- */
-function nop() { }
-
 export default function LecturePage({ course, titles }) {
-  const router = useRouter()
-  const lecture_id = router.query.lectureId;
-
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1); // True
@@ -139,7 +122,7 @@ export default function LecturePage({ course, titles }) {
       </div>
 
       <main className={styles.lecturePage}>
-        <div className={styles.lectureSidebar}>
+        <aside className={styles.lectureSidebar}>
           <ListItem onClick={responsivesidebar} style={{ background: '#003458', height: 48, color: grey[50] }}>
             <StarBorder style={{ color: grey[50] }} />
             <ListItemText primary={course.title} />
@@ -162,17 +145,11 @@ export default function LecturePage({ course, titles }) {
               })}
             </div>
           </Collapse>
-        </div>
+        </aside>
 
         <div className={styles.lectureContent}>
-          <h1>{course.lectures[lectureId].title}</h1>
-
-
-          <div>
-            <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
-            {' '}
-            <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
-          </div>
+          <h1 className={styles.lectureTitle}>{course.lectures[lectureId].title}</h1>
+          <p className={styles.lectureDate}>{course.lectures[lectureId].uploaded_date}</p>
 
           <hr />
           <div>
@@ -180,12 +157,25 @@ export default function LecturePage({ course, titles }) {
           </div>
 
           <hr />
+          <div className={styles.lectureCardContainer}>
+            <div className={styles.lectureCardsRow}>
+              <LectureCards
+                title='Lecture Info'
+                content={course.lectures[lectureId].about}
+              />
+            </div>
+            <div className={styles.lectureCardsRow}>
+              <LectureCards
+                title='Exercise'
+                content={course.lectures[lectureId].exercise_question}
+              />
+            </div>
+          </div>
 
-          <LectureCards title="Lecture Info" content={course.lectures[lectureId].about} />
-
-          <div style={{ flexWrap: 'wrap' }}>
-            <LectureCards title="Exercise" content={course.lectures[lectureId].exercise_question} />
-            <LectureCards title="Answer" content={course.lectures[lectureId].exercise_answer} />
+          <div>
+            <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture} style={{ float: 'left' }}>{'< Prev'}</Button>
+            {' '}
+            <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture} style={{ float: 'right' }}>{'Next >'}</Button>
           </div>
 
           <div style={{ width: '100%' }}>
