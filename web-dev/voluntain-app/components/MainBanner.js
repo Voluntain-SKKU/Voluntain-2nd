@@ -7,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // export default - const difference
 export const MainBanner = () => {
   return (
-    <div className={styles.banner} fixed="top">
+    <div className={styles.mainwrapper}>
+    <div className={styles.banner}>
       {/* <link // bootstrap css 가져오기
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -20,6 +21,7 @@ export const MainBanner = () => {
       <div className={styles.slogan}>
         Study All Together, Voluntain!  
       </div>
+    </div>
     </div>
   );
 };

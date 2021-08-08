@@ -11,13 +11,17 @@ import { VideoStateChecker } from './VideoStateChecker';
  */
 export const RecentLecture = () => {
     const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie']);
-    const [openWarning, setOpenWarning] = React.useState(true)
+    // const [openWarning, setOpenWarning] = React.useState(true)
 
-    
-    return (
-        <div className={styles.content}>
-            <h2 className={styles.contenttitle}>Recent Lecture</h2>
-            <VideoStateChecker />
-        </div>
-      );
+    if (cookies.noCookie == undefined){
+        return (<> </>)
+    }
+    else{
+        return (
+            <div className={styles.content}>
+                <h2 className={styles.contenttitle}>Recent Lecture</h2>
+                <VideoStateChecker />
+            </div>
+        );
+    }
 };
