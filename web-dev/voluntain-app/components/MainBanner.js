@@ -9,15 +9,7 @@ export const MainBanner = () => {
   return (
     <div className={styles.mainwrapper}>
     <div className={styles.banner}>
-      {/* <link // bootstrap css 가져오기
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous"
-      /> */}
-      <div className={styles.maintitle}>
-        VOLUNTAIN
-      </div>
+      <div className={styles.maintitle}>VOLUNTAIN</div>
       <div className={styles.slogan}>
         Study All Together, Voluntain!  
       </div>
