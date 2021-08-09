@@ -18,19 +18,24 @@ import Link from 'next/link'
  */
 export const CourseCard = (props)=> {
     // const stars= [ " ", "★", "★ ★", "★ ★ ★", "★ ★ ★ ★", "★ ★ ★ ★ ★"]
-    
+    let stars = new Map(
+        [
+            ["easy", "★"], ["normal", "★ ★"], ["hard", "★ ★ ★"]
+        ]
+    );
+
     return(
         <div>
             <Link href={props.link} >
-            <Card className={styles.card}>
+            <Card className={styles.maincard}>
                 <Card.Img variant="top" src={props.img} className={styles.cardimg}/>
                 <Card.Body>
-                <Card.Title className="fw-bold fs-2">{props.title}</Card.Title>
-                <Card.Text className="py-2 mb-2">
+                <Card.Title className={styles.title}>{props.title}</Card.Title>
+                <Card.Text className={styles.text}>
                     {props.content}
                 </Card.Text>
                 <Card.Footer className="py-2 px-0 bg-transparent border-secondary">
-                    Difficulty : { props.level } 
+                    Difficulty : { props.level } {' '} {stars.get(props.level)}
                 </Card.Footer>
                 </Card.Body>
             </Card>

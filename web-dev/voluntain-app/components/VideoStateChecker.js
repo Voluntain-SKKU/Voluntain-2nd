@@ -51,12 +51,10 @@ export function VideoStateChecker() {
         </div>
       );
     }
-  } else if (cookies.noCookie == undefined){
+  } else{
     // For the first visiters
     return (
       <>
-        <h2>Welcome!</h2>
-        <p>Learn ~~</p>
       </>
     );
   }
