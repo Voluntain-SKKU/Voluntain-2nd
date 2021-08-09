@@ -3,11 +3,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import styles from '../styles/Home.module.css'
 
 // export default - const difference
 export const NavigationBar = () => {
   return (
-    <div>
+    <div className={styles.about}>
       <Navbar bg="light" expand="lg" sticky="top">
         <Container>
           <Navbar.Brand href="/">
