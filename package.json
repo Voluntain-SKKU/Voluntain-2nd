@@ -1,0 +1,25 @@
+{
+  "name": "voluntain-web",
+  "version": "1.0.0",
+  "description": "```\r $ cd web-dev/voluntain-web\r $ npm install \r $ npm run dev\r ```",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "concurrently \"cd strapi-backend && npm run develop\" \"cd web-dev/voluntain-app && npm run dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Voluntain-SKKU/voluntain-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Voluntain-SKKU/voluntain-web/issues"
+  },
+  "homepage": "https://github.com/Voluntain-SKKU/voluntain-web#readme"
+}

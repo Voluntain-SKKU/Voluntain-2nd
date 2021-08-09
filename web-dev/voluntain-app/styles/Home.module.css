@@ -1,23 +1,87 @@
-/* .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-} */
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Signika+Negative:wght@300;700&display=swap');
 
-/* custom */
-.nav {
-  width: 100%;
+.titlefont {
+  font-family: 'Signika Negative', sans-serif;
+}
+
+.navwrapper{
   display: flex;
+  background-color: #fafafa;
+}
+
+.navbar{
+  width: 70%;
+  margin: auto;
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: 700;
+}
+
+.navcontainer{
+  padding: 0;
+  margin: .1rem;
+  max-width:100%;
+}
+
+.maintitle {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 5rem;
+  text-align: center;
+  /* font-family: 'Black Han Sans', sans-serif; */
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: 700;
+}
+
+.slogan {
+  line-height: 3;
+  font-size: 2rem;
+  font-family: 'Indie Flower', cursive;
+}
+
+.contenttitle{
+  text-align: left;
+  font-weight: 800;
+  margin-bottom: 2rem; margin-top: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.content {
+  width: 70%;
   align-items: center;
-  flex-wrap: wrap;
-  background: #f5f5dc;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+}
+/* Main course card*/
+.maincard {
+  flex-direction: row;
+  width: 460px;
+  margin: .6rem;
+}
+.maincard .title{
+  font-size: 2.5rem;
+  font-family: 'Signika Negative', sans-serif;
+}
+.maincard .text{
+  height: 70px;
+  padding-top: .1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display:-webkit-box;
+  word-wrap:break-word; 
+  -webkit-line-clamp:3; /* 3줄이상이면 ...으로 줄이기 */ 
+  -webkit-box-orient:vertical;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .menu{
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+}
+
+.mainwrapper{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,12 +95,12 @@
   background-color: #003458; /* #0c4890 #00498c*/
   color: white;
   width: 100%;
-  height: 500px;
+  height: 350px;
 }
 
 .main {
   padding: .5rem;
-  margin: 1rem;
+  margin: .5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -47,19 +111,34 @@
 /* End custom */
 
 .footer {
+  background: #ece6cc;
   width: 100%;
   height: 100px;
-  border-top: 1px solid #eaeaea;
-  display: flex;
+  position: relative;
+  bottom: 0px;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 20px;
+  color: #505050;
+}
+
+.copyright {
+  padding-top: 10px;
+}
+
+.footerItem {
+  border-right: 1px solid #999999;
 }
 
 .footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer a:hover {
+  color: #00A553;
 }
 
 .title a {
@@ -73,21 +152,6 @@
   text-decoration: underline;
 }
 
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  line-height: 3;
-  font-size: 1.2rem;
-}
 
 .code {
   background: #fafafa;
@@ -106,6 +170,19 @@
   max-width: 800px;
   margin-top: 3rem;
 }
+
+.colcard {
+  display: flex;
+  max-width: fit-content;
+  /* max-height: fit-content; */
+  margin: 2rem; 
+}
+
+.cardlist{
+  max-width: 450px;
+  margin-top: 2rem;
+}
+
 
 /* custom */
 .card {
@@ -148,6 +225,18 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.cookieAlert {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.videoStateChecker {
+  position: relative;
+  width: 100%;
+  margin: 10px auto;
 }
 
 
