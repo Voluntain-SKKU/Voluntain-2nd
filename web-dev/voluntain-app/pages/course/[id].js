@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useState, useEffect  } from 'react'
 import { url } from "../../config/next.config";
 
 import PropTypes from 'prop-types';
