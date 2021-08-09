@@ -5,21 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DPJN82ZDWH');
-          `,
-            }}
-          />
+          <meta name="description" content='Study All Together, Voluntain! Learn programming easily with tutorial videos of Sungkyunkwan University students.' />
         </Head>
         <body>
           <Main />

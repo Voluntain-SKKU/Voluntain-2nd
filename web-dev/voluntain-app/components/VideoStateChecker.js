@@ -35,7 +35,7 @@ export function VideoStateChecker() {
           <Alert severity="success">
             <AlertTitle>Welcome back!</AlertTitle>
             Last time you have finishied the lecture {cookies.lectureId} of the course {cookies.courseId}. {' '}
-            <Link href="/id"><strong>CLICK HERE TO GO FOR THE NEXT LECTURE</strong></Link>
+            <Link href="/course/1"><strong>CLICK HERE TO GO FOR THE NEXT LECTURE</strong></Link>
           </Alert>
         </div>
       );
@@ -46,7 +46,7 @@ export function VideoStateChecker() {
           <Alert severity="info">
             <AlertTitle>Welcome back!</AlertTitle>
             You can continue studying the lecture {cookies.lectureId} of the course {cookies.courseId}. {' '}
-            <Link href="/id"><strong>CLICK HERE TO GO FOR IT</strong></Link>
+            <Link href="/course/1"><strong>CLICK HERE TO GO FOR IT</strong></Link>
           </Alert>
         </div>
       );

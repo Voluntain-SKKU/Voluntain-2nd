@@ -39,7 +39,7 @@ export default function Home({ courses, titles }) {
   const handleCookieAlertOff = () => {
     // If user press the accept button, do not show the alarm again.
     setCookieAlertShow(false);
-    setCookie('cookieAlert', false);
+    setCookie('cookieAlert', false, { path: '/', maxAge: 31536000 });
   }
 
   /**
@@ -57,8 +57,7 @@ export default function Home({ courses, titles }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title> Voluntain </title>
-        <meta name="description" content="SKKU Global Volunteer Community" />
+        <title> Main - Voluntain </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
