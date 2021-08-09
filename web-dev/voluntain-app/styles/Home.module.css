@@ -194,6 +194,63 @@
   margin: 10px auto;
 }
 
+.lectureContainer hr {
+  width: 100%;
+}
+
+.lecturePage {
+  display: flex;
+}
+
+.lectureSidebar {
+  width: 250px;
+  background-color: #003458;
+}
+
+.lectureContent {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.lectureFooter {
+  bottom: 0;
+  left: 0;
+}
+
+.lectureCardContainer {
+  margin: 20px;
+}
+
+.lectureCardsRow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.lectureCards {
+  background: #ffffff;
+  position: relative;
+  flex: 1;
+  max-width: 60%;
+  height: max-content;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.lectureTitle {
+  padding-top: 10px;
+}
+
+.lectureDate {
+  color:#b1b1b1;
+}
 
 @media (max-width: 600px) {
   .grid {

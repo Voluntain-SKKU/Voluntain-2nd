@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { NavigationBar } from '../components/NavigationBar'
@@ -35,6 +36,9 @@ export default function Page( { titles } ) {
 
   return (
     <div>
+      <Head>
+        <title>About Us - Voluntain</title>
+      </Head>
         <NavigationBar titles={titles}/>
         <MainBanner/> 
       <main>

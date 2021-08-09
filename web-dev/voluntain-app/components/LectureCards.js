@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card, CardContent, Typography } from '@material-ui/core'
 import styles from '../styles/Home.module.css'
 
 /**
@@ -8,20 +7,15 @@ import styles from '../styles/Home.module.css'
  * 
  * @note
  * To make a newline in content, insert \n.
+ * When using Strapi API, there is no need to specify \n.
  */
 export const LectureCards = (props) => {
     return (
-        <div className={styles.content}>
-            <Card>
-                <CardContent>
-                    <Typography variant="h5" color="textPrimary" gutterBottom>{props.title}</Typography>
-                    <Typography variant="h6" color="textSecondary">
-                        {props.content.split('\n').map((line) => {
-                            return <>{line}<br /></>
-                        })}
-                    </Typography>
-                </CardContent>
-            </Card>
+        <div className={styles.lectureCards}>
+            <h3>{props.title}</h3>
+            <h5>{props.content.split('\n').map((line) => {
+                return <>{line}<br /></>
+            })}</h5>
         </div>
     );
 }
