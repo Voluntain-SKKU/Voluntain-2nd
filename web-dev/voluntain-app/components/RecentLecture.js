@@ -1,3 +1,7 @@
+/**
+ * Obsolete,
+ * merged to VideoStateChecker.
+ */
 import styles from '../styles/Home.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 

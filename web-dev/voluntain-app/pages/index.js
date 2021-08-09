@@ -6,7 +6,7 @@ import { url } from '../config/next.config' //url 가져오기
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
-import { RecentLecture } from '../components/RecentLecture'
+import { VideoStateChecker } from '../components/VideoStateChecker'
 
 import { Alert, Button } from 'react-bootstrap'
 import React, { useState } from 'react'
@@ -42,18 +42,6 @@ export default function Home({ courses, titles }) {
     setCookie('cookieAlert', false, { path: '/', maxAge: 31536000 });
   }
 
-  /**
-   * Logging example
-   */
-   const search = () => {
-     ga.event({
-       action: "search",
-       params : {
-         search_term: " "
-       }
-     })
-   }
-
   return (
     <div className={styles.container}>
       <Head>
@@ -65,7 +53,7 @@ export default function Home({ courses, titles }) {
       <MainBanner />
 
       <div className={styles.main}>
-        <RecentLecture />
+        <VideoStateChecker />
         <MainCard courses={courses} />
       </div>
 
