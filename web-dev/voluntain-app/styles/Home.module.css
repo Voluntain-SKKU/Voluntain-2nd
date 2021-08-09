@@ -96,6 +96,7 @@
   color: white;
   width: 100%;
   height: 350px;
+  font-family: 'Exo 2', sans-serif;
 }
 
 .main {
@@ -295,6 +296,12 @@
 
 .lectureDate {
   color:#b1b1b1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@800&family=Karla:ital,wght@1,200&family=Merriweather:ital,wght@1,700&display=swap');
+
+.about {
+  font-family: 'Karla', sans-serif;
 }
 
 @media (max-width: 600px) {
