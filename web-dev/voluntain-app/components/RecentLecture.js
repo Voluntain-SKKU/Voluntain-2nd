@@ -10,10 +10,10 @@ import { VideoStateChecker } from './VideoStateChecker';
  * cookie 정보 가져오기
  */
 export const RecentLecture = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'videoEnd', 'noCookie']);
+    const [cookies, setCookie, removeCookie] = useCookies(['lastLectureId', 'lectureId', 'videoEnd', 'noCookie']);
     // const [openWarning, setOpenWarning] = React.useState(true)
 
-    if (cookies.noCookie == undefined){
+    if (cookies.lectureId == undefined){
         return (<> </>)
     }
     else{
