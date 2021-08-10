@@ -15,6 +15,7 @@ import { useCookies } from 'react-cookie'
 import { Footer } from '../components/Footer'
 
 import * as ga from '../lib/ga'
+import { VideoStateChecker } from '../components/VideoStateChecker'
 
 export default function Home({ courses, titles }) {
   /**

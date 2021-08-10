@@ -19,7 +19,7 @@ export const RecentLecture = () => {
     else{
         return (
             <div className={styles.content}>
-                <h2 className={styles.contenttitle}>Recent Lecture</h2>
+                <span className={styles.contenttitle}>Recent Lecture</span>
                 <VideoStateChecker />
             </div>
         );

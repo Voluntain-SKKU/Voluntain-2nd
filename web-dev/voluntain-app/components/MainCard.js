@@ -9,7 +9,7 @@ export const MainCard = (props)=> {
 
     return(
         <div className={styles.content}>
-        <h2 className={styles.contenttitle}>Courses</h2>
+        <span className={styles.contenttitle}>Courses</span>
         <CardGroup style={ {width: 'fit-content'} }>
             {/* get course inform from backend */}
             {props.courses.map((course) => (
