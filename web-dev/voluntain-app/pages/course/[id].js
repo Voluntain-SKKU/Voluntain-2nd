@@ -161,12 +161,12 @@ export default function LecturePage({ course, titles }) {
           <div>
             <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} />
           </div>
+          <hr />
           <div>
             <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
             {' '}
             <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
           </div>
-          <hr />
           <div className={styles.lectureCardContainer}>
             <div className={styles.lectureCardsRow}>
               <LectureCards
