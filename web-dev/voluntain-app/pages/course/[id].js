@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useCookies } from 'react-cookie'
 import { DiscussionEmbed } from "disqus-react"
 
-import { Button, Collapse, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
 import { VideoPlayer } from '../../components/VideoPlayer'
 import { NavigationBar } from '../../components/NavigationBar'
@@ -14,10 +14,10 @@ import { LectureCards } from '../../components/LectureCards'
 import { Footer } from '../../components/Footer';
 import styles from '../../styles/Home.module.css'
 
-import StarBorder from '@material-ui/icons/StarBorder';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import grey from '@material-ui/core/colors/grey';
+import { makeStyles } from '@material-ui/core/styles';
+import ListIcon from '@material-ui/icons/List';
 
 export default function LecturePage({ course, titles }) {
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
@@ -26,12 +26,6 @@ export default function LecturePage({ course, titles }) {
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1); // True
   const [isLastLecture, setLastLecture] = useState(0); // False
-
-  useEffect(() => { 
-    if(cookies.lectureId !== undefined){ 
-      setLectureId(cookies.lectureId); 
-    } 
-  },[]);
 
   function renderRow(props) {
     const { index, style } = props;
@@ -48,7 +42,7 @@ export default function LecturePage({ course, titles }) {
     style: PropTypes.object.isRequired,
   };
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const responsivesidebar = () => {
     setOpen(!open)
   };
@@ -118,6 +112,56 @@ export default function LecturePage({ course, titles }) {
     }
   }
 
+  const useStyles = makeStyles({
+    default: {
+      height: 48,
+      '&$selected': {
+        backgroundColor: '#00A553',
+        "&:hover": {
+          backgroundColor: "#00A553",
+        },
+      },
+    },
+    selected: {},
+  });
+  const classes = useStyles();
+
+  const sidebar = () => (
+    <aside className={styles.lectureSidebar}>
+      <ListItem onClick={responsivesidebar} style={{ height: 60 }}>
+        <ListItemText primary={course.title} />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <div className="LeftSide" style={{ float: 'left' }}>
+          {course.lectures.map((element, index) => {
+            return (
+              <List disablePadding>
+                <ListItem button classes={{ root: classes.default, selected: classes.selected }} selected={index == lectureId} onClick={() => { handleClick(element.lecture_number - 1); console.log(`index: ${index}, lectureId: ${lectureId}, ${index == lectureId}`); }}>
+                  <ListItemText primary={element.title} style={{ marginLeft: '20px' }} />
+                </ListItem>
+              </List>
+            )
+          })}
+        </div>
+      </Collapse>
+    </aside>
+  );
+
+  useEffect(() => {
+    if (cookies.lectureId !== undefined) {
+      setLectureId(cookies.lectureId);
+    }
+    setOpen(true);
+  }, []);
+
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+
+  const toggleDrawer = () => {
+    setOpenDrawer(!openDrawer);
+  }
+
   return (
     <div className={styles.lectureContainer}>
       <Head>
@@ -129,30 +173,13 @@ export default function LecturePage({ course, titles }) {
       </div>
 
       <main className={styles.lecturePage}>
-        <aside className={styles.lectureSidebar}>
-          <ListItem onClick={responsivesidebar} style={{ background: '#003458', height: 48, color: grey[50] }}>
-            <StarBorder style={{ color: grey[50] }} />
-            <ListItemText primary={course.title} />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
+        <Hidden smDown>
+          {sidebar()}
+        </Hidden>
 
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <div className="LeftSide" style={{ float: 'left' }}>
-              {course.lectures.map((element) => {
-                return (
-                  <List disablePadding>
-                    <ListItem button onClick={(e) => handleClick(element.lecture_number, e)} style={{ background: '#003458', height: 48, color: grey[50] }}>
-                      <ListItemIcon>
-                        <StarBorder style={{ color: grey[50] }} />
-                      </ListItemIcon>
-                      <ListItemText primary={element.title} />
-                    </ListItem>
-                  </List>
-                )
-              })}
-            </div>
-          </Collapse>
-        </aside>
+        <Drawer open={openDrawer} onClose={toggleDrawer}>
+          {sidebar()}
+        </Drawer>
 
         <div className={styles.lectureContent}>
           <h1 className={styles.lectureTitle}>{course.lectures[lectureId].title}</h1>
@@ -190,13 +217,13 @@ export default function LecturePage({ course, titles }) {
           </div>
         </div>
       </main>
-      {/*
-      <Hidden smUp>
+      
+      <Hidden mdUp>
         <Fab color="primary" style={{ position: 'sticky', bottom: 10, left: 10 }}>
-          <ListIcon onClick={nop} />
+          <ListIcon onClick={toggleDrawer} />
         </Fab>
       </Hidden>
-            */}
+
       <footer className={styles.lectureFooter}>
         <Footer />
       </footer>
