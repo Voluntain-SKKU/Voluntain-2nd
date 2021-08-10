@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useState, useEffect  } from 'react'
+import React, { useState, useEffect } from 'react'
 import { url } from "../../config/next.config";
 
 import PropTypes from 'prop-types';
@@ -113,7 +113,7 @@ export default function LecturePage({ course, titles }) {
   const handleVideoStart = () => {
     if (cookies.noCookie == undefined) {
       setCookie('courseId', 1, { path: '/', maxAge: 31536000 });
-      setCookie('lectureId', 1, { path: '/', maxAge: 31536000 });
+      setCookie('lectureId', 0, { path: '/', maxAge: 31536000 });
       setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
     }
   }
