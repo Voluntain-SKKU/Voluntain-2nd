@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import styles from '../styles/Home.module.css'
+import { url } from '../config/next.config' //url 가져오기
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,24 +31,23 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '100%',
   },
   typography:{
-    fontFamily:[
-      'Karla',
-    ].join(','),
+
   },
   typographytitle:{
-    fontFamily:[
-      'Merriweather'
-    ].join(',')
+
   }
 }));
 
-export default function Page() {
+export default function Page( { titles }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={styles.container}>
+      <Head>
+          <title>About Voluntain</title>
+      </Head>
       <div className="Head">
-        <NavigationBar />
+        <NavigationBar titles={titles} />
         <MainBanner />
       </div>
       <br></br>
@@ -63,10 +64,6 @@ export default function Page() {
               <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={3}>
                   <Grid item xs>
-                    <Typography gutterBottom variant="h5" className={classes.typographytitle}>
-                      Introduction
-                    </Typography>
-                    <br></br>
                     <Typography variant="body1" gutterBottom className={classes.typographytitle}>
                       Voluntain introduces and teaches programming easily for children and students abroad.
                     </Typography>
@@ -162,3 +159,15 @@ export default function Page() {
     
   )
 }
+
+export const getStaticProps = async () => {
+
+  // 이거 courses에서 뽑아오고 싶은데??
+  const data0 = await fetch(`${url}/courses/title`);
+  const titles = await data0.json();
+
+  return {
+    props: {  titles },
+    revalidate: 1,//몇 초로 할지?
+  };
+};
