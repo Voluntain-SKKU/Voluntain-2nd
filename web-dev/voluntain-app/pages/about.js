@@ -10,8 +10,6 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import styles from '../styles/Home.module.css'
 import { url } from '../config/next.config' //url 가져오기
 
-import { url } from '../config/next.config' //url 가져오기
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -44,22 +42,17 @@ export default function Page( { titles }) {
   const classes = useStyles();
 
   return (
-    <div className={styles.container}>
-<<<<<<< HEAD
-      <div className="Head">
-        <NavigationBar titles={titles}/>
-=======
+    <div >
       <Head>
           <title>About Voluntain</title>
       </Head>
       <div className="Head">
         <NavigationBar titles={titles} />
->>>>>>> 53f8c69821ee595131aff8e3b3b0e68920534d2f
         <MainBanner />
       </div>
       <br></br>
       <br></br>
-      <main>
+      <main  className={styles.container}>
         <div className={classes.root}>
           <Paper className={classes.paper}>
             <Grid container spacing={2}>
@@ -166,10 +159,6 @@ export default function Page( { titles }) {
     
   )
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 53f8c69821ee595131aff8e3b3b0e68920534d2f
 export const getStaticProps = async () => {
 
   // 이거 courses에서 뽑아오고 싶은데??

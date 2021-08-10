@@ -6,6 +6,7 @@ import { url } from '../config/next.config' //url 가져오기
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
+import { VideoStateChecker } from '../components/VideoStateChecker'
 
 import { Alert, Button } from 'react-bootstrap'
 import React, { useState } from 'react'
