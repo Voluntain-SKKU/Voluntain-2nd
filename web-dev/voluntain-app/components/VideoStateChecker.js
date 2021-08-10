@@ -41,7 +41,6 @@ export function VideoStateChecker() {
           <div className={styles.videoStateChecker}>
             <h4>Keep going!</h4>
             <p><>
-            You have finished a lecture last time! <br />
             You can continue studying <a href={"/course/" + cookies.courseId}>the next lecture.</a>
             </></p>
           </div>
@@ -57,7 +56,6 @@ export function VideoStateChecker() {
           <div className={styles.videoStateChecker}>
             <h4>Continue your study</h4>
             <p><>
-            You were watching a lecture last time. <br />
             You can continue studying <a href={"course/" + cookies.courseId}>the last lecture.</a>
             </></p>
           </div>
