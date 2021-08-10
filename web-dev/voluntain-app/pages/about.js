@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import styles from '../styles/Home.module.css'
 
+import { url } from '../config/next.config' //url 가져오기
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -40,13 +42,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Page() {
+export default function Page( { titles }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className="Head">
-        <NavigationBar />
+        <NavigationBar titles={titles}/>
         <MainBanner />
       </div>
       <br></br>
@@ -162,3 +164,14 @@ export default function Page() {
     
   )
 }
+export const getStaticProps = async () => {
+
+  // 이거 courses에서 뽑아오고 싶은데??
+  const data0 = await fetch(`${url}/courses/title`);
+  const titles = await data0.json();
+
+  return {
+    props: {  titles },
+    revalidate: 1,//몇 초로 할지?
+  };
+};

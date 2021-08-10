@@ -119,7 +119,7 @@ export default function LecturePage({ course, titles }) {
   }
 
   return (
-    <div className={styles.lectureContainer}>
+    <div className={styles.container}>
       <Head>
         <title>{course.lectures[lectureId].title} - Voluntain</title>
       </Head>

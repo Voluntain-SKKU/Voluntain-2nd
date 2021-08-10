@@ -19,7 +19,7 @@ export default function Page( { titles } ) {
     }
 
     return (
-        <div>
+        <div className={styles.container}>
             <NavigationBar titles={titles}/>
             <MainBanner/> 
         <main className={styles.main}>
