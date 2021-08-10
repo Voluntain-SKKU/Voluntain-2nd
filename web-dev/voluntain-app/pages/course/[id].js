@@ -157,12 +157,15 @@ export default function LecturePage({ course, titles }) {
         <div className={styles.lectureContent}>
           <h1 className={styles.lectureTitle}>{course.lectures[lectureId].title}</h1>
           <p className={styles.lectureDate}>{course.lectures[lectureId].uploaded_date}</p>
-
           <hr />
           <div>
             <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} />
           </div>
-
+          <div>
+            <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture}>{'< Prev'}</Button>
+            {' '}
+            <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
+          </div>
           <hr />
           <div className={styles.lectureCardContainer}>
             <div className={styles.lectureCardsRow}>
@@ -177,12 +180,6 @@ export default function LecturePage({ course, titles }) {
                 content={course.lectures[lectureId].exercise_question}
               />
             </div>
-          </div>
-
-          <div>
-            <Button variant="contained" color="primary" disabled={isFirstLecture} onClick={prevLecture} style={{ float: 'left' }}>{'< Prev'}</Button>
-            {' '}
-            <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture} style={{ float: 'right' }}>{'Next >'}</Button>
           </div>
 
           <div style={{ width: '100%' }}>

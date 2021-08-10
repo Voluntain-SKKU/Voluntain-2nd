@@ -242,9 +242,21 @@
 }
 
 .videoStateChecker {
+  background: #d9ff00;
   position: relative;
+  flex: 1;
+  max-width: 60%;
+  height: max-content;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.videoStateCheckerContainer {
   width: 100%;
-  margin: 10px auto;
+  display: flex;
+  justify-content: center;
 }
 
 .container hr {
