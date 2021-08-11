@@ -8,7 +8,10 @@ import { DiscussionEmbed } from "disqus-react"
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
-import { VideoPlayer } from '../../components/VideoPlayer'
+import Youtube from 'react-youtube'
+import { useWindowSize } from '../../components/useWindowSize';
+
+
 import { NavigationBar } from '../../components/NavigationBar'
 import { LectureCards } from '../../components/LectureCards'
 import { Footer } from '../../components/Footer';
@@ -20,12 +23,29 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListIcon from '@material-ui/icons/List';
 
 export default function LecturePage({ course, titles }) {
-  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie', 'isLastLecture']);
-
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
+  
+  //for exercise link
+  const [targetPlayer, setTargetPlayer] = useState({});
+  
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1);
   const [isLastLecture, setLastLecture] = useState(course.lectures.length == 1 ? 1 : 0);
+
+  //exercise 변수
+  const size = useWindowSize();
+
+    const opts = {
+      height: size.height > 650 ? '600' : size.height - 50,
+      width: size.width > 1050 ? '900' : size.width - 250,
+      playerVars: {
+        // To check other variables, check:
+        // https://developers.google.com/youtube/player_parameters
+        cc_load_policy: 1,
+        modestbranding: 1,
+      }
+    }
 
   function renderRow(props) {
     const { index, style } = props;
@@ -46,6 +66,24 @@ export default function LecturePage({ course, titles }) {
   const responsivesidebar = () => {
     setOpen(!open)
   };
+
+  
+
+  //exercise 관련 함수
+  //현재 video 저장
+  const onPlayerReady = (event) => {
+    
+    setTargetPlayer(targetPlayer => event.target);
+   
+  }
+
+  //exercise answer 시간으로 이동
+  const toExercise = (e) => {
+    e.preventDefault();
+    targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, true);
+  }
+
+
 
   const handleClick = (lecture_number) => {
     setLectureId(lectureId => lecture_number);
@@ -190,7 +228,7 @@ export default function LecturePage({ course, titles }) {
           <p className={styles.lectureDate}>{course.lectures[lectureId].uploaded_date}</p>
           <hr />
           <div>
-            <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} />
+            <Youtube videoId={course.lectures[lectureId].video_link} opts={opts} onPlay={handleVideoStart} onEnd={handleVideoEnd} onReady={onPlayerReady}/>
           </div>
           <hr />
           <div>
@@ -198,6 +236,7 @@ export default function LecturePage({ course, titles }) {
             {' '}
             <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
           </div>
+          
           <div className={styles.lectureCardContainer}>
             <div className={styles.lectureCardsRow}>
               <LectureCards
@@ -211,6 +250,8 @@ export default function LecturePage({ course, titles }) {
                 content={course.lectures[lectureId].exercise_question}
               />
             </div>
+            <Button variant="contained" color="primary" onClick= {toExercise}>Check Answer</Button>
+
           </div>
 
           <div style={{ width: '100%' }}>

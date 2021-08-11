@@ -50,7 +50,7 @@
       "type": "richtext"
     },
     "exercise_answer": {
-      "type": "richtext"
+      "type": "integer"
     }
   }
 }
