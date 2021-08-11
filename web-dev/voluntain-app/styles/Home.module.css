@@ -375,8 +375,39 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@800&family=Karla:ital,wght@1,200&family=Merriweather:ital,wght@1,700&display=swap');
 
+.aboutfont{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+
+.aboutfont2{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem
+}
+
 .about {
-  font-family: 'Karla', sans-serif;
+  padding-left: 30px;
+  padding-right:30px;
+  padding-top:15px;
+  padding-bottom:15px;
+  margin: 80px;
+  width: 100%;
+  align-items: center;
+  max-width: 90%;
+}
+
+.aboutimg {
+  display: 'block';
+  max-width: 100%;
+  align-items: center;
+}
+
+.abouttitle{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
