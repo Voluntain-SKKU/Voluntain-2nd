@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "concurrently \"cd strapi-backend && npm run develop\" \"cd web-dev/voluntain-app && npm run dev\"",
+    "dev": "concurrently \"cd strapi-backend && npm run develop\" \"cd voluntain-app && npm run dev\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
