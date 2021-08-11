@@ -246,7 +246,7 @@ export default function LecturePage({ course, titles }) {
                 content={course.lectures[lectureId].exercise_question}
               />
             </div>
-            <button onClick= {toExercise}>Check Answer</button>
+            <Button variant="contained" color="primary" onClick= {toExercise}>Check Answer</Button>
 
           </div>
 
