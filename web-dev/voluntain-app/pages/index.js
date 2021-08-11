@@ -9,18 +9,18 @@ import { MainCard } from '../components/MainCard'
 import { RecentLecture } from '../components/RecentLecture'
 
 import { Alert, Button } from 'react-bootstrap'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { Footer } from '../components/Footer'
 
 import * as ga from '../lib/ga'
 
-export default function Home({ courses, titles }) {
+export default function Home({ courses, titles, lectures }) {
   /**
    * Cookie examples
    */
-  const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie', 'cookieAlert']);
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'videoState', 'noCookie', 'cookieAlert']);
 
   // 3. cookieAlert
   /**
@@ -54,7 +54,7 @@ export default function Home({ courses, titles }) {
 
       <div className={styles.main}>
         {/* <VideoStateChecker /> */}
-        <RecentLecture/>
+        <RecentLecture lectures={lectures.lectures}/>
         <MainCard courses={courses} />
       </div>
 
@@ -83,8 +83,11 @@ export const getStaticProps = async () => {
   const data0 = await fetch(`${url}/courses/title`);
   const titles = await data0.json();
 
+  const LEC = await fetch(`${url}/courses/1`);
+  const lectures = await LEC.json();
+
   return {
-    props: { courses, titles },
+    props: { courses, titles, lectures },
     revalidate: 1,//몇 초로 할지?
   };
 };

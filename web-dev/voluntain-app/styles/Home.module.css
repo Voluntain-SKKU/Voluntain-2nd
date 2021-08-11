@@ -180,11 +180,11 @@
 }
 
 .cookiecard {
-  width:70%;
+  width:100%;
   flex-direction: row;
   margin: auto;
   text-align: center;
-  background-color: #d8f5cc;
+  /* background-color: #d8f5cc; */
   border-radius: 0;
   border-style: outset;
   border-width: 2px;
@@ -192,7 +192,7 @@
 
 .cookiecard .button{
   /* width: 30%; */
-  background-color: #d8f5cc;
+  background-color: white;
   color: black;
   font-size: 2rem;
   height: fit-content;
