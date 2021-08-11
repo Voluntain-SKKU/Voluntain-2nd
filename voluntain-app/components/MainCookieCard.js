@@ -14,22 +14,12 @@ export function MainCookieCard( props ) {
   }
   return (
     <Collapse in={open}>
-      {/* <Card className={styles.cookiecard}>
-        <Card.Body style={{padding: '1.5rem', width: 'fit-content'}}>
-        <Card.Title className={styles.title}>{props.title}</Card.Title>
-        <a href={props.link}>
-          <Card.Text className={styles.text}>{props.lectureTitle?props.lectureTitle:props.text}</Card.Text> 
-        </a>
-        </Card.Body>
-        <Button className={styles.button} onClick={()=> handleClick()}>X</Button>
-      </Card> */}
-      <Alert severity={props.severity} className={styles.cookiecard}>
+      <Alert onClose={() => {handleClick()}} severity={props.severity} className={styles.cookiecard}>
           <span className={styles.text}>
           {props.title}
           &nbsp;&nbsp;
           <a href={props.link}>{props.lectureTitle?props.lectureTitle:props.text}</a>
           </span>     
-          <Button className={styles.button} onClick={()=> handleClick()}>X</Button>   
       </Alert>
     </Collapse>
   );
