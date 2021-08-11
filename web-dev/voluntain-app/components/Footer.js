@@ -48,7 +48,7 @@ export const Footer = () => {
           <a href='https://www.youtube.com/channel/UCYvzm_6k-_V4UHFjEMdFtuA'><YouTube />{' '}Youtube</a>
         </Grid>
         <Grid item>
-          <a href='/setting'>Cookie Policy</a>
+          <a href='/setting'>Privacy Policy</a>
         </Grid>
       </Grid>
       <div className={styles.copyright}>© 2021 Voluntain. All rights reserved.</div>

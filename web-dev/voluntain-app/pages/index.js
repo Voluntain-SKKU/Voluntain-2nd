@@ -6,21 +6,21 @@ import { url } from '../config/next.config' //url 가져오기
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
-import { VideoStateChecker } from '../components/VideoStateChecker'
+import { RecentLecture } from '../components/RecentLecture'
 
 import { Alert, Button } from 'react-bootstrap'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { Footer } from '../components/Footer'
 
 import * as ga from '../lib/ga'
 
-export default function Home({ courses, titles }) {
+export default function Home({ courses, titles, lectures }) {
   /**
    * Cookie examples
    */
-  const [cookies, setCookie, removeCookie] = useCookies(['videoState', 'noCookie', 'cookieAlert']);
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'videoState', 'noCookie', 'cookieAlert']);
 
   // 3. cookieAlert
   /**
@@ -53,7 +53,8 @@ export default function Home({ courses, titles }) {
       <MainBanner />
 
       <div className={styles.main}>
-        <VideoStateChecker />
+        {/* <VideoStateChecker /> */}
+        <RecentLecture lectures={lectures.lectures}/>
         <MainCard courses={courses} />
       </div>
 
@@ -63,7 +64,7 @@ export default function Home({ courses, titles }) {
         <p>
           We use cookies in order to provide you better experiences.
           If you want more information, please visit our {' '}
-          <Alert.Link href="/setting">cookie policy page.</Alert.Link>
+          <Alert.Link href="/setting">privacy policy page.</Alert.Link>
         </p>
         <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
       </Alert>
@@ -82,10 +83,11 @@ export const getStaticProps = async () => {
   const data0 = await fetch(`${url}/courses/title`);
   const titles = await data0.json();
 
-  console.log(titles);
+  const LEC = await fetch(`${url}/courses/1`);
+  const lectures = await LEC.json();
 
   return {
-    props: { courses, titles },
+    props: { courses, titles, lectures },
     revalidate: 1,//몇 초로 할지?
   };
 };

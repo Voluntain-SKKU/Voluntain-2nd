@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
  */
 export default function Setting( { titles } ) {
     const classes = useStyles();
-    const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie', 'noAnalytics', 'cookieAlert']);
+    const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie', 'noAnalytics', 'cookieAlert', 'isLastLecture']);
 
     function getInitialNoCookie() {
         if (cookies.noCookie === undefined) {
@@ -65,6 +65,7 @@ export default function Setting( { titles } ) {
             removeCookie('lectureId');
             removeCookie('videoEnd');
             removeCookie('cookieAlert');
+            removeCookie('isLastLecture');
             setCookie('noCookie', true, { path: '/', maxAge: 31536000 });
             handleCloseDialog();
         } else {

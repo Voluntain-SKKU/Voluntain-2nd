@@ -1,7 +1,7 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Black+Han+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Signika+Negative:wght@300;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500;600&family=Ubuntu:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@400;500;600&family=Ubuntu:wght@700&display=swap');
 
 .container {
   font-family: 'Noto Sans', sans-serif;
@@ -46,11 +46,12 @@
 }
 
 .contenttitle{
+  display: inline-block;
   text-align: left;
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 2rem; margin-top: 1rem;
   font-family: 'Poppins', sans-serif;
+  margin-bottom: 1rem;
 }
 
 .content {
@@ -109,14 +110,13 @@
 .main {
   padding: .5rem;
   margin: .5rem;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-/* End custom */
+
 
 .footer {
   background: #ece6cc;
@@ -179,20 +179,60 @@
   margin-top: 3rem;
 }
 
-.colcard {
+.cookiecard {
+  width:100%;
+  flex-direction: row;
+  margin: auto;
+  text-align: center;
+  /* background-color: #d8f5cc; */
+  border-radius: 0;
+  border-style: outset;
+  border-width: 2px;
+}
+
+.cookiecard .button{
+  /* width: 30%; */
+  background-color: white;
+  color: black;
+  font-size: 2rem;
+  height: fit-content;
+  font-family: 'Ubuntu', sans-serif;
+  border-style: none;
+}
+
+.cookiecard .title{
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-top: .3rem; padding-bottom: .3rem;
+}
+
+.cookiecard .text{
+  font-size: 1.2rem;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cookiecard a{
+  color: #00498c;
+}
+
+.cookiecard a:hover{
+  color: #0070f3;
+}
+
+/* .colcard {
   display: flex;
   max-width: fit-content;
-  /* max-height: fit-content; */
+  max-height: fit-content; 
   margin: 2rem; 
 }
 
 .cardlist{
   max-width: 450px;
   margin-top: 2rem;
-}
-
-
-/* custom */
+} 
 .card {
   flex-direction: row;
   margin: 1rem;
@@ -223,7 +263,7 @@
   font-size: 1.25rem;
   line-height: 1.5;
 }
-
+*/
 .cardimg {
   width: 10rem;
   height: fit-content;
@@ -233,7 +273,7 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
+} 
 
 .cookieAlert {
   position: sticky;
@@ -242,10 +282,10 @@
 }
 
 .videoStateChecker {
-  background: #d9ff00;
+  /* background: #d9ff00; */
   position: relative;
   flex: 1;
-  max-width: 60%;
+  max-width: 70%;
   height: max-content;
   margin: 10px;
   border-radius: 5px;
@@ -256,6 +296,7 @@
 .videoStateCheckerContainer {
   width: 100%;
   display: flex;
+  /* flex-direction: row; */
   justify-content: center;
 }
 
