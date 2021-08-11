@@ -8,10 +8,8 @@ import { DiscussionEmbed } from "disqus-react"
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
-// import { VideoPlayer } from '../../components/VideoPlayer'
-// import VideoPlayer from '../../components/VideoPlayer'
 import Youtube from 'react-youtube'
-import { useWindowSize } from './useWindowSize';
+import { useWindowSize } from '../../components/useWindowSize';
 
 
 import { NavigationBar } from '../../components/NavigationBar'
@@ -72,14 +70,16 @@ export default function LecturePage({ course, titles }) {
   
 
   //exercise 관련 함수
+  //현재 video 저장
   const onPlayerReady = (event) => {
     
     setTargetPlayer(targetPlayer => event.target);
-    // var targetPlayer;
-    // targetPlayer= event.target;
+   
   }
 
-  const toExercise = () => {
+  //exercise answer 시간으로 이동
+  const toExercise = (e) => {
+    e.preventDefault();
     targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, false);
   }
 
@@ -224,10 +224,7 @@ export default function LecturePage({ course, titles }) {
           <p className={styles.lectureDate}>{course.lectures[lectureId].uploaded_date}</p>
           <hr />
           <div>
-            {/* <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} /> */}
-
             <Youtube videoId={course.lectures[lectureId].video_link} opts={opts} onPlay={handleVideoStart} onEnd={handleVideoEnd} onReady={onPlayerReady}/>
-            <button onClick= {toExercise}>click me</button>
           </div>
           <hr />
           <div>
@@ -235,6 +232,7 @@ export default function LecturePage({ course, titles }) {
             {' '}
             <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
           </div>
+          
           <div className={styles.lectureCardContainer}>
             <div className={styles.lectureCardsRow}>
               <LectureCards
@@ -248,6 +246,8 @@ export default function LecturePage({ course, titles }) {
                 content={course.lectures[lectureId].exercise_question}
               />
             </div>
+            <button onClick= {toExercise}>Check Answer</button>
+
           </div>
 
           <div style={{ width: '100%' }}>
