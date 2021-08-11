@@ -80,7 +80,7 @@ export default function LecturePage({ course, titles }) {
   //exercise answer 시간으로 이동
   const toExercise = (e) => {
     e.preventDefault();
-    targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, false);
+    targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, true);
   }
 
 
