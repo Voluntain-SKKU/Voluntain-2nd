@@ -20,12 +20,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListIcon from '@material-ui/icons/List';
 
 export default function LecturePage({ course, titles }) {
-  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
+  const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie', 'isLastLecture']);
 
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
-  const [isFirstLecture, setFirstLecture] = useState(1); // True
-  const [isLastLecture, setLastLecture] = useState(0); // False
+  const [isFirstLecture, setFirstLecture] = useState(1);
+  const [isLastLecture, setLastLecture] = useState(course.lectures.length == 1 ? 1 : 0);
 
   function renderRow(props) {
     const { index, style } = props;
@@ -106,9 +106,10 @@ export default function LecturePage({ course, titles }) {
   }
   const handleVideoStart = () => {
     if (cookies.noCookie == undefined) {
-      setCookie('courseId', 1, { path: '/', maxAge: 31536000 });
+      setCookie('courseId', course.id, { path: '/', maxAge: 31536000 });
       setCookie('lectureId', lectureId, { path: '/', maxAge: 31536000 });
       setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
+      setCookie('isLastLecture', isLastLecture, { path: '/', maxAge: 31536000 });
     }
   }
 
@@ -150,15 +151,11 @@ export default function LecturePage({ course, titles }) {
   );
 
   useEffect(() => {
-    if (cookies.lectureId !== undefined) {
+    if (cookies.lectureId !== undefined && cookies.courseId == course.id) {
+      console.log(`Loading the recent history...`);
       setLectureId(cookies.lectureId);
-      // prev - next 버튼을 위한 코드
-      if(cookies.lectureId == course.lectures.length - 1){
-        setLastLecture(1);
-      }
-      if(cookies.lectureId != 0){
-        setFirstLecture(0);
-      }
+      setFirstLecture(cookies.lectureId == 0 ? 1 : 0);
+      setLastLecture(cookies.lectureId == course.lectures.length - 1 ? 1 : 0);
     }
     setOpen(true);
   }, []);
@@ -168,6 +165,7 @@ export default function LecturePage({ course, titles }) {
   const toggleDrawer = () => {
     setOpenDrawer(!openDrawer);
   }
+
   return (
     <div className={styles.container}>
       <Head>
