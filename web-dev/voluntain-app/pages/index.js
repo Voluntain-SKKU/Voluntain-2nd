@@ -7,7 +7,6 @@ import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
 import { RecentLecture } from '../components/RecentLecture'
-import { VideoStateChecker } from '../components/VideoStateChecker'
 
 import { Alert, Button } from 'react-bootstrap'
 import React, { useState } from 'react'
@@ -16,7 +15,6 @@ import { useCookies } from 'react-cookie'
 import { Footer } from '../components/Footer'
 
 import * as ga from '../lib/ga'
-import { MainCookieCard } from '../components/MainCookieCard'
 
 export default function Home({ courses, titles }) {
   /**
