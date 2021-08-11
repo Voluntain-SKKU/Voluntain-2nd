@@ -54,7 +54,7 @@ export default function Home({ courses, titles }) {
 
       <div className={styles.main}>
         {/* <VideoStateChecker /> */}
-        <RecentLecture />
+        <RecentLecture/>
         <MainCard courses={courses} />
       </div>
 

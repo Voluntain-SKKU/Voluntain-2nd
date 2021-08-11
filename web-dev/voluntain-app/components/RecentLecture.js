@@ -12,7 +12,7 @@ import { MainCookieCard } from './MainCookieCard';
 /**
  * VideoStateChecker 로직 수정
  */
-export const RecentLecture = () => {
+export const RecentLecture = ( {lecture} ) => {
     const [title, setTitle] = useState("Nothing to continue");
     const [text, setText] = useState("Select the course below.");
     const [link, setLink] = useState("/");
@@ -49,12 +49,39 @@ export const RecentLecture = () => {
     return (
         <div className={styles.content}>
             <span className={styles.contenttitle}>Continue Learning</span>
+            <div>{lecture}</div>
             <MainCookieCard
                 title={title}
                 text={text}
                 link={link}
+                // lectureTitle={lecture['title']}
                 handleClose={handleClose}
             />
         </div>
     );
 };
+
+// 해당 course에서 특정 lecture 찾기
+const find_lectureTitle = (course) =>{
+    for(lec in course[lectures]){
+        console.log('sadfasdf',lec);
+        if(lec[lecture_num] == cookies.lectureId){
+            return lec;
+        }
+    }
+    return null;
+}
+
+// main cookie card에서 추천 강의 제목 가져오기
+export const getStaticProps = async () => {
+    const data = await fetch(`${url}/courses/${cookies.courseId}`);
+    const course = await data.json();
+
+    // cookie 값에 기록된 lecture_num으로 해당되는 강의 찾기
+    const lecture = find_lectureTitle(course);
+    
+    return {
+      props: { lecture },
+    };
+  };
+  

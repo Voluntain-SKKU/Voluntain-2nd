@@ -17,7 +17,7 @@ export function MainCookieCard( props ) {
         <Card.Body style={{padding: '1.5rem', width: 'fit-content'}}>
         <Card.Title className={styles.title}>{props.title}</Card.Title>
         <a href={props.link}><Card.Text className={styles.text}>
-          {props.text}
+          {props.text} {' '}
         </Card.Text> </a>
         </Card.Body>
         <Button className={styles.button} onClick={()=> handleClick()}>X</Button>

@@ -107,7 +107,7 @@ export default function LecturePage({ course, titles }) {
   const handleVideoStart = () => {
     if (cookies.noCookie == undefined) {
       setCookie('courseId', 1, { path: '/', maxAge: 31536000 });
-      setCookie('lectureId', 0, { path: '/', maxAge: 31536000 });
+      setCookie('lectureId', lectureId, { path: '/', maxAge: 31536000 });
       setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
     }
   }
@@ -152,6 +152,13 @@ export default function LecturePage({ course, titles }) {
   useEffect(() => {
     if (cookies.lectureId !== undefined) {
       setLectureId(cookies.lectureId);
+      // prev - next 버튼을 위한 코드
+      if(cookies.lectureId == course.lectures.length - 1){
+        setLastLecture(1);
+      }
+      if(cookies.lectureId != 0){
+        setFirstLecture(0);
+      }
     }
     setOpen(true);
   }, []);
@@ -161,7 +168,6 @@ export default function LecturePage({ course, titles }) {
   const toggleDrawer = () => {
     setOpenDrawer(!openDrawer);
   }
-
   return (
     <div className={styles.container}>
       <Head>
