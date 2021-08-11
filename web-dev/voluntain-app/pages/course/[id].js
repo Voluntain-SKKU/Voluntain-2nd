@@ -8,7 +8,12 @@ import { DiscussionEmbed } from "disqus-react"
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
-import { VideoPlayer } from '../../components/VideoPlayer'
+// import { VideoPlayer } from '../../components/VideoPlayer'
+// import VideoPlayer from '../../components/VideoPlayer'
+import Youtube from 'react-youtube'
+import { useWindowSize } from './useWindowSize';
+
+
 import { NavigationBar } from '../../components/NavigationBar'
 import { LectureCards } from '../../components/LectureCards'
 import { Footer } from '../../components/Footer';
@@ -21,11 +26,28 @@ import ListIcon from '@material-ui/icons/List';
 
 export default function LecturePage({ course, titles }) {
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
-
+  
+  //for exercise link
+  const [targetPlayer, setTargetPlayer] = useState({});
+  
   // lectureId start from 0
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1); // True
   const [isLastLecture, setLastLecture] = useState(0); // False
+
+  //exercise 변수
+  const size = useWindowSize();
+
+    const opts = {
+      height: size.height > 650 ? '600' : size.height - 50,
+      width: size.width > 1050 ? '900' : size.width - 250,
+      playerVars: {
+        // To check other variables, check:
+        // https://developers.google.com/youtube/player_parameters
+        cc_load_policy: 1,
+        modestbranding: 1,
+      }
+    }
 
   function renderRow(props) {
     const { index, style } = props;
@@ -46,6 +68,22 @@ export default function LecturePage({ course, titles }) {
   const responsivesidebar = () => {
     setOpen(!open)
   };
+
+  
+
+  //exercise 관련 함수
+  const onPlayerReady = (event) => {
+    
+    setTargetPlayer(targetPlayer => event.target);
+    // var targetPlayer;
+    // targetPlayer= event.target;
+  }
+
+  const toExercise = () => {
+    targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, false);
+  }
+
+
 
   const handleClick = (lecture_number) => {
     setLectureId(lectureId => lecture_number);
@@ -186,7 +224,10 @@ export default function LecturePage({ course, titles }) {
           <p className={styles.lectureDate}>{course.lectures[lectureId].uploaded_date}</p>
           <hr />
           <div>
-            <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} />
+            {/* <VideoPlayer videoId={course.lectures[lectureId].video_link} startChecker={handleVideoStart} endChecker={handleVideoEnd} /> */}
+
+            <Youtube videoId={course.lectures[lectureId].video_link} opts={opts} onPlay={handleVideoStart} onEnd={handleVideoEnd} onReady={onPlayerReady}/>
+            <button onClick= {toExercise}>click me</button>
           </div>
           <hr />
           <div>
