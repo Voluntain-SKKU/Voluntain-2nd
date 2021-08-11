@@ -4,6 +4,7 @@ import { Collapse } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import styles from '../styles/Home.module.css'
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 export function MainCookieCard( props ) {
   const [open, setOpen] = useState(true);
@@ -13,16 +14,23 @@ export function MainCookieCard( props ) {
   }
   return (
     <Collapse in={open}>
-      <Card className={styles.cookiecard}>
+      {/* <Card className={styles.cookiecard}>
         <Card.Body style={{padding: '1.5rem', width: 'fit-content'}}>
         <Card.Title className={styles.title}>{props.title}</Card.Title>
         <a href={props.link}>
           <Card.Text className={styles.text}>{props.lectureTitle?props.lectureTitle:props.text}</Card.Text> 
         </a>
-        {/* <Card.Text className={styles.text}>{props.text}</Card.Text>  */}
         </Card.Body>
         <Button className={styles.button} onClick={()=> handleClick()}>X</Button>
-      </Card>
+      </Card> */}
+      <Alert severity={props.severity} className={styles.cookiecard}>
+          <span className={styles.text}>
+          {props.title}
+          &nbsp;&nbsp;
+          <a href={props.link}>{props.lectureTitle?props.lectureTitle:props.text}</a>
+          </span>     
+          <Button className={styles.button} onClick={()=> handleClick()}>X</Button>   
+      </Alert>
     </Collapse>
   );
 }

@@ -31,6 +31,7 @@ export const RecentLecture = ( props ) => {
     const [text, setText] = useState("");
     const [link, setLink] = useState("");
     const [contenttitle, setContenttitle] = useState("Continue Learning");
+    const [severity, setSeverity] = useState("warning");
     
     const [lectureTitle, setLectureTitle] = useState("");
     
@@ -50,6 +51,7 @@ export const RecentLecture = ( props ) => {
         }
         else if (cookies.lectureId !== undefined) {
             if (cookies.videoEnd == 1) {
+                setSeverity("success")
                 if(cookies.isLastLecture == 1){ 
                     // 마지막 강의를 끝까지 다 들었을 때
                     setTitle("Congratulations");
@@ -65,6 +67,7 @@ export const RecentLecture = ( props ) => {
             else{
                 setTitle("You are watching");
                 setLink("/course/" + cookies.courseId);
+                setSeverity("info");
             }
         }
         if(cookies.videoEnd != 1 || cookies.isLastLecture != 1){
@@ -83,6 +86,7 @@ export const RecentLecture = ( props ) => {
         <div className={styles.content}>
             <span className={styles.contenttitle}>{contenttitle}</span>
             <MainCookieCard
+                severity={severity}
                 title={title}
                 text={text}
                 link={link}

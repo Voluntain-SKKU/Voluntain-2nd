@@ -180,22 +180,24 @@
 }
 
 .cookiecard {
-  width:100%;
+  width:70%;
   flex-direction: row;
   margin: auto;
   text-align: center;
   /* background-color: #d8f5cc; */
   border-radius: 0;
-  border-style: outset;
+  border-style: none;
   border-width: 2px;
 }
 
 .cookiecard .button{
   /* width: 30%; */
-  background-color: white;
+  background-color: inherit;
   color: black;
-  font-size: 2rem;
-  height: fit-content;
+  font-size: 1.5rem;
+  position: relative;
+  left: 550px; bottom: 10px;
+  /* height: fit-content; */
   font-family: 'Ubuntu', sans-serif;
   border-style: none;
 }
