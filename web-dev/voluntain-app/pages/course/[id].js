@@ -227,7 +227,6 @@ export default function LecturePage({ course, titles }) {
       <footer className={styles.lectureFooter}>
         <Footer />
       </footer>
-
     </div>
   )
 };

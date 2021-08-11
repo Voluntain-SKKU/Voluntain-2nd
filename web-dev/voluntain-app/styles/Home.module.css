@@ -46,11 +46,12 @@
 }
 
 .contenttitle{
+  display: inline-block;
   text-align: left;
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 2rem; margin-top: 1rem;
   font-family: 'Poppins', sans-serif;
+  margin-bottom: .8rem;
 }
 
 .content {
@@ -109,14 +110,13 @@
 .main {
   padding: .5rem;
   margin: .5rem;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-/* End custom */
+
 
 .footer {
   background: #ece6cc;
@@ -179,20 +179,27 @@
   margin-top: 3rem;
 }
 
-.colcard {
+.cookiecard {
+  width:100%;
+}
+
+.cookiecard .title{
+  font-size: 1.5rem;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+
+/* .colcard {
   display: flex;
   max-width: fit-content;
-  /* max-height: fit-content; */
+  max-height: fit-content; 
   margin: 2rem; 
 }
 
 .cardlist{
   max-width: 450px;
   margin-top: 2rem;
-}
-
-
-/* custom */
+} 
 .card {
   flex-direction: row;
   margin: 1rem;
@@ -223,7 +230,7 @@
   font-size: 1.25rem;
   line-height: 1.5;
 }
-
+*/
 .cardimg {
   width: 10rem;
   height: fit-content;
@@ -233,7 +240,7 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
+} 
 
 .cookieAlert {
   position: sticky;
@@ -242,10 +249,10 @@
 }
 
 .videoStateChecker {
-  background: #d9ff00;
+  /* background: #d9ff00; */
   position: relative;
   flex: 1;
-  max-width: 60%;
+  max-width: 70%;
   height: max-content;
   margin: 10px;
   border-radius: 5px;
@@ -256,6 +263,7 @@
 .videoStateCheckerContainer {
   width: 100%;
   display: flex;
+  /* flex-direction: row; */
   justify-content: center;
 }
 

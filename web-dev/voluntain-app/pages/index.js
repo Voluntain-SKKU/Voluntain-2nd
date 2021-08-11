@@ -6,6 +6,7 @@ import { url } from '../config/next.config' //url 가져오기
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
+import { RecentLecture } from '../components/RecentLecture'
 import { VideoStateChecker } from '../components/VideoStateChecker'
 
 import { Alert, Button } from 'react-bootstrap'
@@ -15,6 +16,7 @@ import { useCookies } from 'react-cookie'
 import { Footer } from '../components/Footer'
 
 import * as ga from '../lib/ga'
+import { MainCookieCard } from '../components/MainCookieCard'
 
 export default function Home({ courses, titles }) {
   /**
@@ -53,7 +55,8 @@ export default function Home({ courses, titles }) {
       <MainBanner />
 
       <div className={styles.main}>
-        <VideoStateChecker />
+        {/* <VideoStateChecker /> */}
+        <RecentLecture />
         <MainCard courses={courses} />
       </div>
 
@@ -81,8 +84,6 @@ export const getStaticProps = async () => {
   // 이거 courses에서 뽑아오고 싶은데??
   const data0 = await fetch(`${url}/courses/title`);
   const titles = await data0.json();
-
-  console.log(titles);
 
   return {
     props: { courses, titles },
