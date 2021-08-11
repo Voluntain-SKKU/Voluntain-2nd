@@ -64,7 +64,7 @@ export default function Home({ courses, titles, lectures }) {
         <p>
           We use cookies in order to provide you better experiences.
           If you want more information, please visit our {' '}
-          <Alert.Link href="/setting">cookie policy page.</Alert.Link>
+          <Alert.Link href="/setting">privacy policy page.</Alert.Link>
         </p>
         <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
       </Alert>
