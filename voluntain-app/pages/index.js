@@ -17,12 +17,8 @@ import { Footer } from '../components/Footer'
 import * as ga from '../lib/ga'
 
 export default function Home({ courses, titles, lectures }) {
-  /**
-   * Cookie examples
-   */
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'videoState', 'noCookie', 'cookieAlert']);
 
-  // 3. cookieAlert
   /**
    * Show alert only if user has not accepted, and noCookie is not set.
    */
@@ -42,6 +38,33 @@ export default function Home({ courses, titles, lectures }) {
     setCookie('cookieAlert', false, { path: '/', maxAge: 31536000 });
   }
 
+  /**
+   * Get the ID value of the recently played course.
+   */
+  let recentCourseID = 0;
+  courses.map((element, index) => {
+    if (cookies.courseId !== undefined && cookies.courseId == element.id) {
+      recentCourseID = element.id
+    }
+  })
+
+  /**
+   * Fetch the lecture list of the course using the values obtained above.
+   */
+  const [recentCourse, setRecentCourse] = React.useState(lectures.lectures);
+  React.useEffect(() => {
+    const fetchList = async () => {
+      console.log(`fetcing from: ${url}/courses/${recentCourseID}`)
+      await fetch(`${url}/courses/${recentCourseID}`)
+      .then((response) => response.json())
+      .then(res => {
+        setRecentCourse(res.lectures);
+      })
+    }
+    fetchList();
+  }, [])
+  console.log(recentCourse);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -54,7 +77,7 @@ export default function Home({ courses, titles, lectures }) {
 
       <div className={styles.main}>
         {/* <VideoStateChecker /> */}
-        <RecentLecture lectures={lectures.lectures}/>
+        <RecentLecture lectures={recentCourse} />
         <MainCard courses={courses} />
       </div>
 

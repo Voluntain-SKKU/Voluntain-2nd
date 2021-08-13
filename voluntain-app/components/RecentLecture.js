@@ -6,6 +6,11 @@ import React, { useState, useEffect } from 'react'
 import { MainCookieCard } from './MainCookieCard';
 
 export const RecentLecture = (props) => {
+    const [lectures, setLectures] = React.useState(props.lectures);
+    React.useEffect(() => {
+        setLectures(props.lectures);
+    }, [props]);
+
     const [title, setTitle] = useState("Select the course below.");
     const [text, setText] = useState("");
     const [link, setLink] = useState("");
@@ -56,7 +61,7 @@ export const RecentLecture = (props) => {
         <div className={styles.content}>
             <span className={styles.contenttitle}>{contenttitle}</span>
             <MainCookieCard
-                lectures={props.lectures}
+                lectures={lectures}
                 severity={severity}
                 title={title}
                 text={text}

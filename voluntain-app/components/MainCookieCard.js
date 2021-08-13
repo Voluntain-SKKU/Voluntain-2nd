@@ -13,6 +13,7 @@ export function MainCookieCard(props) {
    * Set lecture title only if there is history
    */
   React.useEffect(() => {
+    console.log(`Updating MainCookieCard...`);
     if (cookies.lectureId !== undefined) {
       console.log(props.lectures);
       Object.keys(props.lectures).forEach(function (key) {
@@ -28,7 +29,7 @@ export function MainCookieCard(props) {
         }
       })
     }
-  }, []);
+  }, [props]);
 
   const [open, setOpen] = useState(true);
   function handleClose() {
