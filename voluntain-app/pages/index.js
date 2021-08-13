@@ -68,8 +68,6 @@ export default function Home({ courses, titles, lectures }) {
         </p>
         <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
       </Alert>
-
-      <Footer />
     </div>
   )
 }

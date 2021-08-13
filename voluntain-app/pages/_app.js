@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as ga from '../lib/ga'
 import Head from 'next/head'
+import { Footer } from '../components/Footer'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -39,6 +40,9 @@ function MyApp({ Component, pageProps }) {
         }} />
       </Head>
       <CookiesProvider><Component {...pageProps} /></CookiesProvider>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

@@ -10,37 +10,40 @@ import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { DiscussionEmbed } from "disqus-react"
 
-export default function Page( { titles } ) {
-    const disqusShortname = "voluntain-skku"
-    const disqusConfig = {
-        url: "https://localhost:3000/question",
-        //identifier: course.lectures[lectureId].id, // Single post id
-        title: "Question for everything" // Single post title
-    }
+export default function Page({ titles }) {
+  const disqusShortname = "voluntain-skku"
+  const disqusConfig = {
+    url: "https://localhost:3000/question",
+    //identifier: course.lectures[lectureId].id, // Single post id
+    title: "Question for everything" // Single post title
+  }
 
-    return (
-        <div className={styles.container}>
-            <NavigationBar titles={titles}/>
-            <MainBanner/> 
-        <main className={styles.main}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary">
-              Q&A
-            </Typography>
-            <Divider style={{ margin: 15, width: '5%', background: '#ffffff', borderTop: 'thin solid black' }} />
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              If you have any questions, feel free to ask!
-            </Typography>
-        
-            <br></br>
-            <div style={{ width: 900, height: 90, alignItems: 'center' }}>
-                <DiscussionEmbed
-                    shortname={disqusShortname}
-                    config={disqusConfig}
-                />
-            </div>
-        </main>
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>QnA - Voluntain</title>
+      </Head>
+      <NavigationBar titles={titles} />
+      <MainBanner />
+      <main className={styles.main}>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary">
+          Q&A
+        </Typography>
+        <Divider style={{ margin: 15, width: '5%', background: '#ffffff', borderTop: 'thin solid black' }} />
+        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+          If you have any questions, feel free to ask!
+        </Typography>
+
+        <br></br>
+        <div style={{ width: 900, alignItems: 'center' }}>
+          <DiscussionEmbed
+            shortname={disqusShortname}
+            config={disqusConfig}
+          />
         </div>
-    )
+      </main>
+    </div>
+  )
 }
 
 export const getStaticProps = async () => {
@@ -50,7 +53,7 @@ export const getStaticProps = async () => {
   const titles = await data0.json();
 
   return {
-    props: {  titles },
+    props: { titles },
     revalidate: 1,//몇 초로 할지?
   };
 };
