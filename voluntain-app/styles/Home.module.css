@@ -5,6 +5,7 @@
 
 .container {
   font-family: 'Noto Sans', sans-serif;
+  --hex-parent-height: 100%;
 }
 
 .titlefont {
@@ -267,10 +268,14 @@
 }
 
 .lectureSidebar {
-  height: 2000px;
+  height: calc(100% * var(--hex-parent-height));;
   width: 250px;
   background-color: #003458;
   color: #ffffff;
+}
+
+.lectureSidebarComponent {
+  float: left;
 }
 
 .lectureContent {
@@ -280,11 +285,6 @@
   text-align: center;
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.lectureFooter {
-  bottom: 0;
-  left: 0;
 }
 
 .lectureCardContainer {
