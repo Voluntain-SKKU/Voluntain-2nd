@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { url } from '../config/next.config' //url 가져오기
 
@@ -11,10 +10,6 @@ import { RecentLecture } from '../components/RecentLecture'
 import { Alert, Button } from 'react-bootstrap'
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-
-import { Footer } from '../components/Footer'
-
-import * as ga from '../lib/ga'
 
 export default function Home({ courses, titles, lectures }) {
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'videoState', 'noCookie', 'cookieAlert']);

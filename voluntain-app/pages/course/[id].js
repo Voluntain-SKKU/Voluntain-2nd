@@ -12,7 +12,6 @@ import { useWindowSize } from '../../components/useWindowSize';
 
 import { NavigationBar } from '../../components/NavigationBar'
 import { LectureCards } from '../../components/LectureCards'
-import { Footer } from '../../components/Footer';
 import styles from '../../styles/Home.module.css'
 
 import ExpandLess from '@material-ui/icons/ExpandLess';

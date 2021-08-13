@@ -1,6 +1,3 @@
-/*  ./components/Navbar.js     */
-import Link from 'next/link';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 

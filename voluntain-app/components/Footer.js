@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Popover } from '@material-ui/core';
-import { Forum, MailOutline, YouTube } from '@material-ui/icons';
+import { MailOutline, YouTube } from '@material-ui/icons';
 
 import styles from '../styles/Home.module.css'
 
