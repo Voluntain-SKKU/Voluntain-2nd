@@ -2,7 +2,6 @@ import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import { url } from "../../config/next.config";
 
-import PropTypes from 'prop-types';
 import { useCookies } from 'react-cookie'
 import { DiscussionEmbed } from "disqus-react"
 
@@ -10,7 +9,6 @@ import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } f
 
 import Youtube from 'react-youtube'
 import { useWindowSize } from '../../components/useWindowSize';
-
 
 import { NavigationBar } from '../../components/NavigationBar'
 import { LectureCards } from '../../components/LectureCards'
@@ -23,58 +21,62 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListIcon from '@material-ui/icons/List';
 
 export default function LecturePage({ course, titles }) {
+  /**
+   * States to handle cookies.
+   * @see https://www.npmjs.com/package/react-cookie
+   */
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
-  
+
   //for exercise link
   const [targetPlayer, setTargetPlayer] = useState({});
-  
-  // lectureId start from 0
+
+  /**
+   * Initializing state values.
+   * lectureId value determines which lecture is displayed in the currently 
+   *     accessed course URL. The starting value is 0.
+   * When isFirstLecture is 1 (true), the prev lecture button is disabled.
+   * When isLastLecture is 1 (true), the next lecture button is disabled.
+   */
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1);
   const [isLastLecture, setLastLecture] = useState(course.lectures.length == 1 ? 1 : 0);
 
-  //exercise 변수
+  /**
+   * State to change the size of the video player to fit the screen size.
+   * @requires ../components/useWindowSize.js
+   */
   const size = useWindowSize();
 
-    const opts = {
-      height: size.height > 650 ? '600' : size.height - 50,
-      width: size.width > 1050 ? '900' : size.width - 250,
-      playerVars: {
-        // To check other variables, check:
-        // https://developers.google.com/youtube/player_parameters
-        cc_load_policy: 1,
-        modestbranding: 1,
-      }
+  /**
+   * Option values to pass to Youtube API.
+   * To give sufficient margin, the height and width values should be slightly 
+   *     smaller than the current screen size (i.e. size.height)
+   * @see https://developers.google.com/youtube/player_parameters
+   */
+  const opts = {
+    height: size.height > 650 ? '600' : size.height - 50,
+    width: size.width > 1050 ? '900' : size.width - 250,
+    playerVars: {
+      cc_load_policy: 1,
+      modestbranding: 1,
     }
-
-  function renderRow(props) {
-    const { index, style } = props;
-
-    return (
-      <ListItem button style={style} key={index}>
-        <ListItemText primary={`Lecture ${index + 1}`} />
-      </ListItem>
-    );
   }
 
-  renderRow.propTypes = {
-    index: PropTypes.number.isRequired,
-    style: PropTypes.object.isRequired,
-  };
-
-  const [open, setOpen] = React.useState(false);
+  /**
+   * State to control the sidebar.
+   * Initially the sidebar is closed, and after rendering the page,
+   * React.useEffect will open the sidebar.
+   * There is a rendering issue if sidebar is open initially.
+   */
+  const [openSidebar, setOpenSidebar] = React.useState(false);
   const responsivesidebar = () => {
-    setOpen(!open)
+    setOpenSidebar(!openSidebar)
   };
-
-  
 
   //exercise 관련 함수
   //현재 video 저장
   const onPlayerReady = (event) => {
-    
     setTargetPlayer(targetPlayer => event.target);
-   
   }
 
   //exercise answer 시간으로 이동
@@ -82,8 +84,6 @@ export default function LecturePage({ course, titles }) {
     e.preventDefault();
     targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, true);
   }
-
-
 
   const handleClick = (lecture_number) => {
     setLectureId(lectureId => lecture_number);
@@ -137,11 +137,28 @@ export default function LecturePage({ course, titles }) {
     title: course.lectures[lectureId].title // Single post title
   }
 
-  //const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
+  /**
+   * When video termination is detected by the Youtube API,
+   * this sets a corresponding cookie:
+   * - cookies.videoEnd to 1
+   * 
+   * This must be given as the onEnd prop of the Youtube object.
+   */
   const handleVideoEnd = () => {
     if (cookies.noCookie === undefined)
       setCookie('videoEnd', 1, { path: '/', maxAge: 31536000 });
   }
+
+  /**
+   * When video start is detected by Youtube API,
+   * this sets the relevant cookie values.
+   * - cookies.courseId to the current course id.
+   * - cookies.lectureId to the current lecture id.
+   * - cookies.videoEnd to 0.
+   * - cookies.isLastLecture to the current isLastLecture value.
+   * 
+   * This must be given as the onPlay prop of the Youtube object.
+   */
   const handleVideoStart = () => {
     if (cookies.noCookie == undefined) {
       setCookie('courseId', course.id, { path: '/', maxAge: 31536000 });
@@ -151,6 +168,10 @@ export default function LecturePage({ course, titles }) {
     }
   }
 
+  /**
+   * State values to style the sidebar.
+   * @see https://material-ui.com/styles/basics/
+   */
   const useStyles = makeStyles({
     default: {
       height: 48,
@@ -165,15 +186,22 @@ export default function LecturePage({ course, titles }) {
   });
   const classes = useStyles();
 
+  /**
+   * Get the list of lectures in the current course from the backend,
+   * and create buttons that change lectureId value so that users can move
+   * to that lecture.
+   * @see https://material-ui.com/components/lists
+   * @see https://material-ui.com/api/collapse
+   */
   const sidebar = () => (
     <aside className={styles.lectureSidebar}>
       <ListItem onClick={responsivesidebar} style={{ height: 60 }}>
         <ListItemText primary={course.title} />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {openSidebar ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
 
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <div className="LeftSide" style={{ float: 'left' }}>
+      <Collapse in={openSidebar} timeout="auto" unmountOnExit>
+        <div className={styles.lectureSidebarComponent}>
           {course.lectures.map((element, index) => {
             return (
               <List disablePadding>
@@ -188,18 +216,26 @@ export default function LecturePage({ course, titles }) {
     </aside>
   );
 
-  useEffect(() => {
+  /**
+   * Using React.useEffect, re-set the previously initialized cookie values
+   * only once after page rendering (if there is video history).
+   * And also open the sidebar.
+   */
+  React.useEffect(() => {
     if (cookies.lectureId !== undefined && cookies.courseId == course.id) {
       console.log(`Loading the recent history...`);
       setLectureId(cookies.lectureId);
       setFirstLecture(cookies.lectureId == 0 ? 1 : 0);
       setLastLecture(cookies.lectureId == course.lectures.length - 1 ? 1 : 0);
     }
-    setOpen(true);
+    setOpenSidebar(true);
   }, []);
 
+  /**
+   * State to control the drawer, that appears when screen width is small enough.
+   * @see https://material-ui.com/components/drawers
+   */
   const [openDrawer, setOpenDrawer] = React.useState(false);
-
   const toggleDrawer = () => {
     setOpenDrawer(!openDrawer);
   }
@@ -228,7 +264,7 @@ export default function LecturePage({ course, titles }) {
           <p className={styles.lectureDate}>{course.lectures[lectureId].uploaded_date}</p>
           <hr />
           <div>
-            <Youtube videoId={course.lectures[lectureId].video_link} opts={opts} onPlay={handleVideoStart} onEnd={handleVideoEnd} onReady={onPlayerReady}/>
+            <Youtube videoId={course.lectures[lectureId].video_link} opts={opts} onPlay={handleVideoStart} onEnd={handleVideoEnd} onReady={onPlayerReady} />
           </div>
           <hr />
           <div>
@@ -236,7 +272,7 @@ export default function LecturePage({ course, titles }) {
             {' '}
             <Button variant="contained" color="primary" disabled={isLastLecture} onClick={nextLecture}>{'Next >'}</Button>
           </div>
-          
+
           <div className={styles.lectureCardContainer}>
             <div className={styles.lectureCardsRow}>
               <LectureCards
@@ -250,7 +286,7 @@ export default function LecturePage({ course, titles }) {
                 content={course.lectures[lectureId].exercise_question}
               />
             </div>
-            <Button variant="contained" color="primary" onClick= {toExercise}>Check Answer</Button>
+            <Button variant="contained" color="primary" onClick={toExercise}>Check Answer</Button>
 
           </div>
 
@@ -262,16 +298,12 @@ export default function LecturePage({ course, titles }) {
           </div>
         </div>
       </main>
-      
+
       <Hidden mdUp>
         <Fab color="primary" style={{ position: 'sticky', bottom: 10, left: 10 }}>
           <ListIcon onClick={toggleDrawer} />
         </Fab>
       </Hidden>
-
-      <footer className={styles.lectureFooter}>
-        <Footer />
-      </footer>
     </div>
   )
 };
