@@ -5,7 +5,16 @@ import { useCookies } from 'react-cookie'
 import React, { useState, useEffect } from 'react'
 import { MainCookieCard } from './MainCookieCard';
 
+/**
+ * 사용자가 마지막 시청 정보에 따라, 덜 본 강의를 추천하거나 다음 강의를 추천하는
+ * 메인 페이지의 컴포넌트입니다.
+ */
 export const RecentLecture = (props) => {
+    /**
+     * 첫 렌더링 시 쿠키 값을 정상적으로 전달받지 못해 기본값으로 렌더링합니다.
+     * 이후 쿠키 값을 처리한 후 index.js에서 새로운 props을 주면
+     * 다시 렌더링합니다.
+     */
     const [lectures, setLectures] = React.useState(props.lectures);
     React.useEffect(() => {
         setLectures(props.lectures);

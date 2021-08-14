@@ -6,17 +6,13 @@ import styles from '../styles/Home.module.css'
 
 import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import { url } from '../config/next.config' //url 가져오기
 
 
 /**
- * @see
- * https://www.cookiebot.com/en/cookie-policy/
+ * 개인정보 정책 페이지입니다.
  */
 export default function Setting( { titles } ) {
     const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie', 'noAnalytics', 'cookieAlert']);
@@ -40,9 +36,14 @@ export default function Setting( { titles } ) {
         setOpenDialog(false);
     }
 
+    /**
+     * 사용자가 쿠키를 비활성화할 경우, noCookie를 true로 하고
+     * 나머지 쿠키를 지웁니다.
+     * 
+     * noCookie와 noAnalytics 쿠키는 지우지 않습니다.
+     */
     const handleNoCookieChange = () => {
         if (noCookieStat === false) {
-            // make noCookie true, and delete all other cookies.
             setNoCookieUseStat(true);
             removeCookie('courseId');
             removeCookie('lectureId');
@@ -52,7 +53,6 @@ export default function Setting( { titles } ) {
             setCookie('noCookie', true, { path: '/', maxAge: 31536000 });
             handleCloseDialog();
         } else {
-            // make noCookie false
             setNoCookieUseStat(false);
             removeCookie('noCookie');
         }
