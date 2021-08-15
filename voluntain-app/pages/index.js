@@ -74,12 +74,12 @@ export default function Home({ courses, titles, lectures }) {
   )
 }
 
-// {url}/courses 에 GET Request 보내 course list 받아오기 (id, title, about, level)
+// {url}/courses 에 GET Request 보내 course list 받아오기 (id, title, about, level, logo_img)
+// {url}/courses/title 에 GET Request 보내 course title list 받아오기 (id, title)
 export const getStaticProps = async () => {
   const data = await fetch(`${url}/courses`);
   const courses = await data.json();
 
-  // 이거 courses에서 뽑아오고 싶은데??
   const data0 = await fetch(`${url}/courses/title`);
   const titles = await data0.json();
 
@@ -88,6 +88,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { courses, titles, lectures },
-    revalidate: 1,//몇 초로 할지?
+    revalidate: 1,
   };
 };

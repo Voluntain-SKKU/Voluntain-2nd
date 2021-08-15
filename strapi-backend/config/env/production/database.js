@@ -1,3 +1,7 @@
+//production 환경일 때 database setting 정보
+////mysql, bookshelf orm 이용
+////환경 변수 (HOST, PORT, NAME, USERNAME, PASSWORD) 정보 이용하여 db 연결
+
 module.exports = ({ env }) => ({
     defaultConnection: 'default',
     connections: {
