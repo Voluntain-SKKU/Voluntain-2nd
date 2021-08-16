@@ -4,7 +4,15 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as ga from '../lib/ga'
 import Head from 'next/head'
+import { Footer } from '../components/Footer'
 
+/**
+ * Next.js에서 제공하는 기능으로, 전체 컴포넌트의 구조를 결정합니다.
+ * 즉, 모든 페이지가 여기에 구성된 대로 만들어지게 됩니다.
+ * 
+ * 현재 전체 페이지에서 GA를 설정하기 위한 코드와, Footer를 삽입하기 위한 코드가
+ * 포함되어 있습니다.
+ */
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [cookies, setCookie, removeCookie] = useCookies(['noAnalytics']);
@@ -27,6 +35,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        {/* Google Analytics Scripts */}
+        {/* noAnalytics 쿠키가 true일 경우, 비활성화됩니다. */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -39,6 +49,11 @@ function MyApp({ Component, pageProps }) {
         }} />
       </Head>
       <CookiesProvider><Component {...pageProps} /></CookiesProvider>
+      
+      {/* 공통 Footer */}
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

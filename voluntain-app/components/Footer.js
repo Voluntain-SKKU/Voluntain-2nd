@@ -1,9 +1,11 @@
 import React from 'react'
 import { Grid, Popover } from '@material-ui/core';
-import { Forum, MailOutline, YouTube } from '@material-ui/icons';
-
+import { MailOutline, YouTube } from '@material-ui/icons';
 import styles from '../styles/Home.module.css'
 
+/**
+ * 모든 페이지에 삽입되는 공통 Footer입니다.
+ */
 export const Footer = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleEmail = (event) => {
@@ -13,6 +15,11 @@ export const Footer = () => {
   const handleEmailClose = () => {
     setAnchorEl(null);
   }
+
+  /**
+   * 사용자가 Email 버튼을 눌렀을 때 실행되어,
+   * 사용자 클립보드에 email.value 문자열을 복사합니다.
+   */
   const copyEmail = () => {
     const email = document.createElement('textarea');
     document.body.appendChild(email);

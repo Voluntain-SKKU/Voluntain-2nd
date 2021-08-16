@@ -1,6 +1,3 @@
-/*  ./components/Navbar.js     */
-import Link from 'next/link';
-import Image from 'next/image';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from '../styles/Home.module.css'

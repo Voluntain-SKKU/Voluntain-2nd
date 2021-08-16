@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link' // 속도 저하? 대신 a 태그 사용
 

@@ -13,7 +13,7 @@ export default function Page( { titles }) {
   return (
     <div>
       <Head>
-          <title>About Voluntain</title>
+          <title>About Us - Voluntain</title>
       </Head>
       <div className="Head">
         <NavigationBar titles={titles} />
