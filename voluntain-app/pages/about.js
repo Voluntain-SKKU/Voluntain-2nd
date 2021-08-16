@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -16,7 +15,6 @@ export default function Page( { titles }) {
           <title>About Us - Voluntain</title>
       </Head>
       <div className="Head">
-        <NavigationBar titles={titles} />
         <MainBanner />
       </div>
       <main>

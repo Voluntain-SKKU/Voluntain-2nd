@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { url } from '../config/next.config' //url 가져오기
 
 import { Divider } from '@material-ui/core'
-import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { DiscussionEmbed } from "disqus-react"
 
@@ -23,7 +22,6 @@ export default function Page({ titles }) {
       <Head>
         <title>QnA - Voluntain</title>
       </Head>
-      <NavigationBar titles={titles} />
       <MainBanner />
       <main className={styles.main}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary">

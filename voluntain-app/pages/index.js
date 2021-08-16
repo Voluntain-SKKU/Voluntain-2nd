@@ -2,7 +2,6 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { url } from '../config/next.config' //url 가져오기
 
-import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
 import { RecentLecture } from '../components/RecentLecture'
@@ -11,7 +10,7 @@ import { Alert, Button } from 'react-bootstrap'
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
-export default function Home({ courses, titles, lectures }) {
+export default function Home({ courses, lectures }) {
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'videoState', 'noCookie', 'cookieAlert']);
 
   function getInitialCookieAlert() {
@@ -77,8 +76,6 @@ export default function Home({ courses, titles, lectures }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* 네비게이션바 props: title 데이터 */}
-      <NavigationBar titles={titles} />
       <MainBanner />
 
       <div className={styles.main}>

@@ -10,7 +10,6 @@ import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } f
 import Youtube from 'react-youtube'
 import { useWindowSize } from '../../components/useWindowSize';
 
-import { NavigationBar } from '../../components/NavigationBar'
 import { LectureCards } from '../../components/LectureCards'
 import styles from '../../styles/Home.module.css'
 
@@ -252,10 +251,6 @@ export default function LecturePage({ course, titles }) {
       <Head>
         <title>{course.lectures[lectureId].title} - Voluntain</title>
       </Head>
-
-      <div className="HEADER">
-        <NavigationBar titles={titles} />
-      </div>
 
       <main className={styles.lecturePage}>
         {/* 페이지 너비가 960px 이하일 경우, 사이드바를 숨깁니다. */}

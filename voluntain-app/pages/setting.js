@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import styles from '../styles/Home.module.css'
 
-import { NavigationBar } from '../components/NavigationBar'
 import { MainBanner } from '../components/MainBanner'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -130,7 +129,6 @@ export default function Setting( { titles } ) {
                 <title>Privacy Policy - Voluntain</title>
             </Head>
             <div className="Head">
-                <NavigationBar titles={titles} />
                 <MainBanner />
             </div>
             <main>

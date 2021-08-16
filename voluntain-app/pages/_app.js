@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import * as ga from '../lib/ga'
 import Head from 'next/head'
 import { Footer } from '../components/Footer'
+import { NavigationBar } from '../components/NavigationBar'
+import { url } from '../config/next.config'
 
 /**
  * Next.js에서 제공하는 기능으로, 전체 컴포넌트의 구조를 결정합니다.
@@ -48,6 +50,7 @@ function MyApp({ Component, pageProps }) {
       `
         }} />
       </Head>
+      <NavigationBar titles={pageProps.titles}/>
       <CookiesProvider><Component {...pageProps} /></CookiesProvider>
       
       {/* 공통 Footer */}
@@ -57,5 +60,17 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
+
+MyApp.getInitialProps  = async ({ Component, ctx }) => {
+  let pageProps = {};
+  const data = await fetch(`${url}/courses/title`);
+  const titles = await data.json();
+
+  // _app에서 props 추가 (모든 컴포넌트에서 공통적으로 사용할 값 추가)
+  pageProps = { ...pageProps, titles };
+  
+  return { pageProps };
+};
+
 
 export default MyApp;
