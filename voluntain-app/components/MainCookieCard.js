@@ -4,7 +4,6 @@ import { Collapse } from 'react-bootstrap'
 import styles from '../styles/Home.module.css'
 import { Alert } from '@material-ui/lab';
 import { Button } from '@material-ui/core';
-import { Collapse } from 'bootstrap';
 
 /**
  * @note
