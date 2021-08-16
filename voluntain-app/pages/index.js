@@ -78,7 +78,9 @@ export default function Home({ courses, lectures }) {
 
       <MainBanner />
 
+      {/* Main page 콘텐츠 공통 레이아웃을 사용합니다. */}
       <div className={styles.main}>
+        {/* cookie로 학습 이어하기 기능을 위한 컴포넌트를 나타냅니다. */}
         <RecentLecture lectures={recentCourse} />
         <MainCard courses={courses} />
       </div>
@@ -97,7 +99,14 @@ export default function Home({ courses, lectures }) {
   )
 }
 
-// {url}/courses 에 GET Request 보내 course list 받아오기 (id, title, about, level)
+/**
+ * @note
+ * Strapi backend에 API를 사용하여 데이터 받아옵니다.
+ * 
+ * @returns {*} props
+ */
+// 
+// API{url}/courses GET Request 보내 course list 받아오기 (id, title, about, level)
 export const getStaticProps = async () => {
   const data = await fetch(`${url}/courses`);
   const courses = await data.json();

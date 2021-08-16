@@ -4,15 +4,15 @@ import { CardGroup } from 'react-bootstrap';
 import {url} from '../config/next.config' //url 가져오기
 
 /**
+ * @note
+ * 현재 등록된 course 정보를 백엔드에서 받아서 카드로 나타내는 컴포넌트
+ * @see CourseCard
  * 
  * @param {*} props
- * @Properties 
- * - courses: 모든 course 정보
- *  
- * @returns 
+ * @properties 
+ * - courses: 등록된 course 정보
  */
 export const MainCard = (props)=> {
-
     return(
         <div className={styles.content}>
         <span className={styles.contenttitle}>Courses</span>

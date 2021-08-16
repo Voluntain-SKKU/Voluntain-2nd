@@ -4,23 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link' // 속도 저하? 대신 a 태그 사용
 
 /**
+ * @note
+ * 상위 MainCard 컴포넌트에서 전달받은 props를 나타내는 레이아웃 컴포넌트
+ * @see MainCard
  * 
  * @param {*} props 
- * @Properties
+ * @properties
  * - title: course 제목
  * - img: course 아이콘 파일 경로
  * - content: 강좌 소개
  * - link: 강좌 페이지 링크 
  * - level: 난이도 (1 ~ 5)
- * 
- * @returns 
  */
 export const CourseCard = (props)=> {
-    let stars = new Map(
-        [
-            ["easy", "★"], ["normal", "★ ★"], ["hard", "★ ★ ★"]
-        ]
-    );
+    // 난이도에 따른 별 기호
+    let stars = new Map([["easy", "★"], ["normal", "★ ★"], ["hard", "★ ★ ★"]]);
 
     return(
         <div className={styles.coursecard}>

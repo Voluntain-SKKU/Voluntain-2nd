@@ -9,7 +9,9 @@ import { MainCookieCard } from './MainCookieCard';
  * @note 
  * 사용자가 마지막 시청 정보에 따라, 덜 본 강의를 추천하거나 다음 강의를 추천하는
  * 메인 페이지의 컴포넌트입니다.
+ * @see MainCookieCard
  * 
+ * @param {*} props
  * @property
  * - lectures: index.js에서 받아온 특정 course에 대한 lectures 정보
  * 
