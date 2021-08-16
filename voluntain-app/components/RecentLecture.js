@@ -6,9 +6,21 @@ import React, { useState, useEffect } from 'react'
 import { MainCookieCard } from './MainCookieCard';
 
 /**
+ * @note 
  * 사용자가 마지막 시청 정보에 따라, 덜 본 강의를 추천하거나 다음 강의를 추천하는
  * 메인 페이지의 컴포넌트입니다.
- */
+ * 
+ * @property
+ * - lectures: index.js에서 받아온 특정 course에 대한 lectures 정보
+ * 
+ * @case 
+ * cookie 유형 분류
+ * - 1. cookie 비동의
+ * - 2. 마지막 강의 시청 완료
+ * - 3. (마지막 강의가 아닌 다른) 강의 시청 완료
+ * - 4. (어떤 강의든) 시청 중
+ * - 5. cookie 비동의는 아니지만 쿠키 값이 없을 때
+*/
 export const RecentLecture = (props) => {
     /**
      * 첫 렌더링 시 쿠키 값을 정상적으로 전달받지 못해 기본값으로 렌더링합니다.
@@ -20,6 +32,7 @@ export const RecentLecture = (props) => {
         setLectures(props.lectures);
     }, [props]);
 
+    // MainCookieCard에 props로 넘겨줄 정보
     const [title, setTitle] = useState("Select the course below.");
     const [text, setText] = useState("");
     const [link, setLink] = useState("");
@@ -36,6 +49,7 @@ export const RecentLecture = (props) => {
 
     useEffect(() => {
         if (cookies.noCookie !== undefined) {
+             // case 1. 쿠키 비동의
             setTitle("Cookies are disabled");
             setText("To enable cookies, please visit our privacy policy page.");
             setLink("/setting/");
@@ -44,28 +58,27 @@ export const RecentLecture = (props) => {
             if (cookies.videoEnd == 1) {
                 setSeverity("success")
                 if (cookies.isLastLecture == 1) {
-                    // 마지막 강의를 끝까지 다 들었을 때
+                    // case 2. 마지막 강의 시청 완료
                     setTitle("Congratulations");
                     setText("You finished a course!");
                     // 다른 코스 추천 안함
                 }
                 else {
-                    // 마지막 강의가 아닐 때
+                    // case 3. 마지막이 아닌 강의 시청 완료
                     setTitle("Recommend you to watch");
                     setLink("/course/" + cookies.courseId);
                 }
             }
             else {
+                // case 4. 시청 중
                 setTitle("You are watching");
                 setLink("/course/" + cookies.courseId);
                 setSeverity("info");
             }
         }
-
+        // case 5. 쿠키 값 없음
         if (cookies.lectureId == undefined) setContenttitle("Enjoy your learning!")
     }, []);
-    // cookie 값이 없으면 아예 나타내지 않음
-    // if 문을 사용하면 레이아웃이 깨지는 듯 함
     return (
         <div className={styles.content}>
             <span className={styles.contenttitle}>{contenttitle}</span>
