@@ -9,22 +9,8 @@ import { useCookies } from 'react-cookie'
 import React, {useState, useEffect} from 'react'
 import { MainCookieCard } from './MainCookieCard';
 
-
-// 해당 course에서 특정 lecture 찾기
-// const findLecture = (lectures) =>{
-//     console.log('findlecture', lectures);
-//     for(var lec in lectures){
-//         console.log('sadfasdf', lec);
-//         if(lec['lecture_num'] == cookies.lectureId+1){
-//             console.log('title: ', lec['title'])
-//             return lec['title'];
-//         }
-//     }
-//     return null;
-// }
-
 /**
- * VideoStateChecker 로직 수정
+ * MainCookieCard 컴포넌트 호출
  */
 export const RecentLecture = ( props ) => {
     const [title, setTitle] = useState("Select the course below.");

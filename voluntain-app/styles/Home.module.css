@@ -83,6 +83,11 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.coursecard a{
+  color: #000;
+  text-decoration: none;
+}
+
 .menu{
   display: flex;  
   align-items: center;

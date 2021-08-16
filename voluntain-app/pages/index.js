@@ -16,6 +16,7 @@ import { Footer } from '../components/Footer'
 
 import * as ga from '../lib/ga'
 
+
 export default function Home({ courses, titles, lectures }) {
   /**
    * Cookie examples
@@ -49,11 +50,11 @@ export default function Home({ courses, titles, lectures }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* 네비게이션바 props: title 데이터 */}
       <NavigationBar titles={titles} />
       <MainBanner />
 
       <div className={styles.main}>
-        {/* <VideoStateChecker /> */}
         <RecentLecture lectures={lectures.lectures}/>
         <MainCard courses={courses} />
       </div>

@@ -1,23 +1,21 @@
 import styles from '../styles/Home.module.css'
 import { Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Link from 'next/link'
+import Link from 'next/link' // 속도 저하? 대신 a 태그 사용
 
-{/* class=""으로 바로 css 적용 안됨 */}
 /**
  * 
  * @param {*} props 
  * @Properties
- * - title: 강좌 제목
- * - img: 강좌 아이콘 파일 경로
+ * - title: course 제목
+ * - img: course 아이콘 파일 경로
  * - content: 강좌 소개
  * - link: 강좌 페이지 링크 
- * - difficulty: 난이도 (1 ~ 5)
+ * - level: 난이도 (1 ~ 5)
  * 
  * @returns 
  */
 export const CourseCard = (props)=> {
-    // const stars= [ " ", "★", "★ ★", "★ ★ ★", "★ ★ ★ ★", "★ ★ ★ ★ ★"]
     let stars = new Map(
         [
             ["easy", "★"], ["normal", "★ ★"], ["hard", "★ ★ ★"]
@@ -25,8 +23,8 @@ export const CourseCard = (props)=> {
     );
 
     return(
-        <div>
-            <Link href={props.link}>
+        <div className={styles.coursecard}>
+            <a href={props.link}>
             <Card className={styles.maincard}>
                 <Card.Img variant="top" src={props.img} className={styles.cardimg}/>
                 <Card.Body>
@@ -39,7 +37,7 @@ export const CourseCard = (props)=> {
                 </Card.Footer>
                 </Card.Body>
             </Card>
-            </Link>
+            </a>
       </div>
     );
 };
