@@ -31,18 +31,6 @@
     "lecture_number": {
       "type": "integer"
     },
-    "handout": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
-    },
     "exercise_question": {
       "type": "richtext"
     },

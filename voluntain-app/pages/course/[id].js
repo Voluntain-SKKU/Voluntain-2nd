@@ -155,10 +155,10 @@ export default function LecturePage({ course, titles }) {
   }
 
   // disqus 설정
-  const disqusShortname = "voluntain-skku"
+  const disqusShortname = "skku-voluntain"
   const disqusConfig = {
-    url: "https://localhost:3000/course/"+course.id,
-    identifier: course.lectures[lectureId].id, // Single post id
+    url: "http://localhost:3000/course/"+course.id + '/' + course.lectures[lectureId].lecture_number,
+    identifier : course.id + '/' + course.lectures[lectureId].lecture_number,
     title: course.lectures[lectureId].title // Single post title
   }
 
