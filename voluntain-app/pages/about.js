@@ -28,19 +28,22 @@ export default function Page( { titles }) {
                 <Grid item xs container>
                   <Grid item xs>
                     <p className={styles.aboutfont2}>
-                      Voluntain introduces and teaches programming easily for children and students abroad.
+                    Voluntain will share the knowledge of programming.
                     </p>
                     <br></br>
                     <p className={styles.aboutfont}>
-                      We produce online lectures so that people can easily approach and understand programming. The lectures have topics such as Scratch and Python. We also provide practice questions to help students apply their understanding.
+                    You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
                     </p>
                     <br></br>
                     <p className={styles.aboutfont2}>
-                    Voluntain will make your learning easier by the website.
+                    Voluntain's website will give you a learning-friendly environment.
                     </p>
                     <br></br>
                     <p className={styles.aboutfont}>
-                    Voluntain website helps students, who listen to our lectures. Within our site, students can take lecture videos, and check practical questions and answers. Students can also send us various questions about what they don't know or are curious about.
+                    Our website supports the following component.<br></br>
+                    1. Various online lectures with detailed descriptions and exercise questions.<br></br>
+                    2. Q&A section to ask questions freely.<br></br>
+                    3. Function to check the lecture you watched recently.                    
                     </p>
                   </Grid>
                 </Grid>
@@ -59,28 +62,28 @@ export default function Page( { titles }) {
                   </p>
                   <br></br>
                   <p className={styles.aboutfont2}>
-                  Voluntain pursues the continuous learning of students.
+                  Voluntain pursues continuous learning.
                   </p>
                   <br></br>
                   <p className={styles.aboutfont}>
-                  The existing ‘World Friends ICT SW Volunteers’ has the disadvantage of being one-time. With one month of training, it was difficult for students to learn the software perfectly, and expect the continuity of learning. Also, offline dispatch has become even more impossible due to COVID-19. 
-                  In this situation, Voluntain will help students' continuous learning by providing easily accessible online lectures. We hope that students can access SW classes without time and space constraints and finally contribute to bridging the information gap between countries.
+                  The existing ‘World Friends ICT SW Volunteers’ provides one-time training. However, due to the time limit, it becomes difficult to teach programming skills perfectly. Moreover, COVID-19 has been preventing the team from providing continuous learning. <br></br>
+                  In this situation, our team realized the need for another way to provide continuous programming education and has come up with easily accessible online lectures. We hope that you can access SW classes without time and space constraints and achieve continuous learning.                  
                   </p>
                   <br></br>
                   <p className={styles.aboutfont2}>
-                  Voluntain pursues open communication with students abroad.
+                  Voluntain pursues open communication.
                   </p>
                   <br></br>
                   <p className={styles.aboutfont}>
-                  Communication is an important part of learning. Voluntain provides a website for students to communicate with volunteers and students can use our website to solve their questions freely. Open communication will reach students' better learning.
+                  Communication is a critical part of learning. You can use Q&A sections freely to communicate with volunteers and to solve questions. Open communication will reach your better studying and finally contribute to bridging the information gap between us.
                   </p>
                   <br></br>
                   <p className={styles.aboutfont2}>
-                  Voluntain pursues the promotion of Korean culture.
+                  Voluntain pursues cultural exchanges.
                   </p>
                   <br></br>
                   <p className={styles.aboutfont}>
-                  We not only hope students become familiar with Korea but also share culture with each other. Therefore, our ultimate vision is to become global people through cultural exchanges.
+                  Our team also hopes to share cultures by providing special culture clips. In this cultural exchange, you can become global people.
                   </p>
                 </Grid>
               </Grid>

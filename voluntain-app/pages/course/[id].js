@@ -30,8 +30,8 @@ export default function LecturePage({ course, titles }) {
    * @see https://www.npmjs.com/package/react-cookie
    */
   const [cookies, setCookie, removeCookie] = useCookies(['courseId', 'lectureId', 'videoEnd', 'noCookie']);
-
-  //for exercise link
+  
+  //exercise link button을 위한 state
   const [targetPlayer, setTargetPlayer] = useState({});
 
   /**
@@ -63,9 +63,21 @@ export default function LecturePage({ course, titles }) {
     height: size.height > 650 ? '600' : size.height - 50,
     width: size.width > 1050 ? '900' : size.width - 250,
     playerVars: {
+      // To check other variables, check:
+      // https://developers.google.com/youtube/player_parameters
       cc_load_policy: 1,
       modestbranding: 1,
     }
+  }
+
+  function renderRow(props) {
+    const { index, style } = props;
+
+    return (
+      <ListItem button style={style} key={index}>
+        <ListItemText primary={`Lecture ${index + 1}`} />
+      </ListItem>
+    );
   }
 
   /**
@@ -78,30 +90,36 @@ export default function LecturePage({ course, titles }) {
     setOpenSidebar(!openSidebar)
   };
 
-  //exercise 관련 함수
-  //현재 video 저장
+  
+
+  //exercise link button 관련 함수
+  ////현재 lecture의 video를 targetPlayer에 저장 (player 로드 완료시 실행됨)
   const onPlayerReady = (event) => {
     setTargetPlayer(targetPlayer => event.target);
   }
 
-  //exercise answer 시간으로 이동
-  const toExercise = (e) => {
-    e.preventDefault();
+  ////현재 lecture video에서 exercise answer가 재생되는 시간으로 이동 (button 클릭시 실행됨)
+  const toExercise = (event) => {
+
     targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, true);
+  
   }
 
+
+  //사이드 바 관련 함수 (특정 강의 클릭시 실행됨)
+  ////처음 강의, 마지막 강의 여부에 따라 prev, next button 활성화 여부 결정
   const handleClick = (lecture_number) => {
     setLectureId(lectureId => lecture_number);
-    if (lecture_number == course.lectures.length - 1) {
+    if (lecture_number == course.lectures.length - 1) { //마지막 강의
       setLastLecture(isLastLecture => 1);
       setFirstLecture(isFirstLecture => 0)
 
-    } else if (lecture_number == 0) {
+    } else if (lecture_number == 0) { //처음 강의
       setLastLecture(isLastLecture => 0);
       setFirstLecture(isFirstLecture => 1)
 
     } else {
-      setLastLecture(isLastLecture => 0);
+      setLastLecture(isLastLecture => 0); //중간 강의
       setFirstLecture(isFirstLecture => 0)
     }
   }
