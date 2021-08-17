@@ -127,8 +127,11 @@ export default function LecturePage({ course, titles }) {
   const nextLecture = () => {
     setLectureId(lectureId => lectureId + 1);
 
+    // setLectureId 반영이 늦게 되어서 다음과 같이 식 작성
     if (lectureId + 1 == course.lectures.length - 1) {
       setLastLecture(isLastLecture => 1);
+      setFirstLecture(isFirstLecture => 0);
+      
       //console.log('1');
     }
     else {
@@ -144,7 +147,7 @@ export default function LecturePage({ course, titles }) {
     setLectureId(lectureId => lectureId - 1);
     if (lectureId - 1 == 0) {
       setFirstLecture(isFirstLecture => 1);
-      //console.log('1');
+      setLastLecture(isLastLecture => 0);
     }
     else {
       setFirstLecture(isFirstLecture => 0);
