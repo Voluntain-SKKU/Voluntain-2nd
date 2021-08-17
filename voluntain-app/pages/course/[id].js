@@ -28,7 +28,7 @@ export default function LecturePage({ course, titles }) {
   //for exercise link
   const [targetPlayer, setTargetPlayer] = useState({});
   
-  // lectureId start from 0
+  // lectureId 0부터 시작
   const [lectureId, setLectureId] = useState(0);
   const [isFirstLecture, setFirstLecture] = useState(1);
   const [isLastLecture, setLastLecture] = useState(course.lectures.length == 1 ? 1 : 0);
@@ -67,14 +67,11 @@ export default function LecturePage({ course, titles }) {
     setOpen(!open)
   };
 
-  
 
   //exercise 관련 함수
   //현재 video 저장
-  const onPlayerReady = (event) => {
-    
+  const onPlayerReady = (event) => {    
     setTargetPlayer(targetPlayer => event.target);
-   
   }
 
   //exercise answer 시간으로 이동
@@ -83,8 +80,7 @@ export default function LecturePage({ course, titles }) {
     targetPlayer.seekTo(course.lectures[lectureId].exercise_answer, true);
   }
 
-
-
+  // sidebar에서 클릭 시 lecture 이동
   const handleClick = (lecture_number) => {
     setLectureId(lectureId => lecture_number);
     if (lecture_number == course.lectures.length - 1) {
@@ -101,6 +97,7 @@ export default function LecturePage({ course, titles }) {
     }
   }
 
+  // next 버튼 클릭 시 lecture 이동 & 버튼 활성화
   const nextLecture = () => {
     setLectureId(lectureId => lectureId + 1);
 
@@ -116,6 +113,7 @@ export default function LecturePage({ course, titles }) {
     console.log(lectureId);
   }
 
+  // prev 버튼 클릭 시 lecture 이동 & 버튼 활성화
   const prevLecture = () => {
     setLectureId(lectureId => lectureId - 1);
     if (lectureId - 1 == 0) {
@@ -130,9 +128,10 @@ export default function LecturePage({ course, titles }) {
     console.log(lectureId);
   }
 
+  // disqus 설정
   const disqusShortname = "voluntain-skku"
   const disqusConfig = {
-    url: "https://localhost:3000/course",
+    url: "https://localhost:3000/course/"+course.id,
     identifier: course.lectures[lectureId].id, // Single post id
     title: course.lectures[lectureId].title // Single post title
   }
@@ -251,9 +250,9 @@ export default function LecturePage({ course, titles }) {
               />
             </div>
             <Button variant="contained" color="primary" onClick= {toExercise}>Check Answer</Button>
-
           </div>
 
+          {/* disqus */}
           <div style={{ width: '100%' }}>
             <DiscussionEmbed
               shortname={disqusShortname}
@@ -277,7 +276,7 @@ export default function LecturePage({ course, titles }) {
 };
 
 
-// {url}/courses/id 에 GET Request 보내 courses 정보 받아오기
+// {url}/courses/id에 GET Request 보내 courses 정보 받아오기 & navigation용 title
 export const getStaticProps = async (context) => {
   const data = await fetch(`${url}/courses/${context.params.id}`);
   const course = await data.json();
@@ -291,6 +290,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
+// {url}/courses에 GET Request 보내 courses id 정보 받아오기
 export async function getStaticPaths() {
   const res = await fetch(`${url}/courses`);
   const courses = await res.json();
