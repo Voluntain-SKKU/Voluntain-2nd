@@ -1,9 +1,9 @@
 # voluntain-web
 
 ## 0. 사용 버전
-strapi 
-npm 
-node 
+strapi 3.6.6
+npm 6.14.12
+node v12.22.1
 
 ## 1. 실행 방법
 ```
@@ -15,7 +15,7 @@ $ npm run dev
 
 ## 2. 기술 스택
 Server-side
-- Strapi
+- 백엔드 프레임워크: Strapi
 
 Client-side
 - 뷰 레이어 : React, next.js
@@ -92,5 +92,9 @@ Client-side
 - Strapi
 - MySQL
  
-2) notion
-
+2) notion: https://www.notion.so/Voluntain-Web-ab060e44e6ec4b69b966f5e774a4a8f0
+- API
+- Strapi content type
+- 웹디자인 자료
+- 운영 매뉴얼
+- issue
