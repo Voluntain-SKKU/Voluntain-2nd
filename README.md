@@ -1,9 +1,9 @@
 # voluntain-web
 
 ## 0. 사용 버전
-strapi 3.6.6
-npm 6.14.12
-node v12.22.1
+- strapi 3.6.6
+- npm 6.14.12
+- node v12.22.1
 
 ## 1. 실행 방법
 ```
