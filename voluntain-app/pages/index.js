@@ -73,7 +73,7 @@ export default function Home({ courses, lectures }) {
     <div className={styles.container}>
       <Head>
         <title> Main - Voluntain </title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./favicon.ico" />
       </Head>
 
       <MainBanner />
@@ -91,7 +91,7 @@ export default function Home({ courses, lectures }) {
         <p>
           We use cookies in order to provide you better experiences.
           If you want more information, please visit our {' '}
-          <Alert.Link href="/setting">privacy policy page.</Alert.Link>
+          <Alert.Link href="./setting">privacy policy page.</Alert.Link>
         </p>
         <Button variant='secondary' onClick={handleCookieAlertOff}>ACCEPT</Button>
       </Alert>

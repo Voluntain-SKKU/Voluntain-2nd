@@ -227,7 +227,7 @@ export default function LecturePage({ course, titles }) {
         <div className={styles.lectureSidebarComponent}>
           {course.lectures.map((element, index) => {
             return (
-              <List disablePadding>
+              <List key={index} disablePadding>
                 <ListItem button classes={{ root: classes.default, selected: classes.selected }} selected={index == lectureId} onClick={() => { handleClick(element.lecture_number); console.log(`index: ${index}, lectureId: ${lectureId}, ${index == lectureId}`); }}>
                   <ListItemText primary={element.title} style={{ marginLeft: '20px' }} />
                 </ListItem>

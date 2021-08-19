@@ -19,7 +19,7 @@ export const MainCard = (props)=> {
         <CardGroup style={ {width: 'fit-content'} }>
             {/* courses 개수만큼 CourseCard 컴포넌트 생성 및 props 전달*/}
             {props.courses.map((course) => (
-                    <CourseCard 
+                    <CourseCard key={course.id}
                     title={course.title} 
                     img={`${url}`+course.logo_img.url}
                     content={course.about}
