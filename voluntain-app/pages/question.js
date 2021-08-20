@@ -9,7 +9,7 @@ import { MainBanner } from '../components/MainBanner'
 import { DiscussionEmbed } from "disqus-react"
 
 export default function Page({ titles }) {
-  const disqusShortname = "voluntain-skku"
+  const disqusShortname = "skku-voluntain"
   const disqusConfig = {
     url: "https://localhost:3000/question",
     //identifier: course.lectures[lectureId].id, // Single post id

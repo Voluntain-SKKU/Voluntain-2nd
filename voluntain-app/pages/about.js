@@ -83,7 +83,7 @@ export default function Page( { titles }) {
                   </p>
                   <br></br>
                   <p className={styles.aboutfont}>
-                  Our team also hopes to share cultures by providing special culture clips. In this cultural exchange, you can become global people.
+                  Our team also hopes to share cultures by providing special culture clips. In this cultural exchange, you can become global person.
                   </p>
                 </Grid>
               </Grid>
