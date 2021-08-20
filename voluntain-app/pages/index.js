@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { url } from '../config/next.config' //url 가져오기
+import { url, assetPrefix } from '../config/next.config' //url 가져오기
 
 import { MainBanner } from '../components/MainBanner'
 import { MainCard } from '../components/MainCard'
@@ -58,7 +58,7 @@ export default function Home({ courses, lectures }) {
   const [recentCourse, setRecentCourse] = React.useState(lectures.lectures);
   React.useEffect(() => {
     const fetchList = async () => {
-      console.log(`fetcing from: ${url}/courses/${recentCourseID}`)
+      // console.log(`fetcing from: ${url}/courses/${recentCourseID}`)
       await fetch(`${url}/courses/${recentCourseID}`)
       .then((response) => response.json())
       .then(res => {
@@ -67,13 +67,13 @@ export default function Home({ courses, lectures }) {
     }
     fetchList();
   }, [])
-  console.log(recentCourse);
+  // console.log(recentCourse);
 
   return (
     <div className={styles.container}>
       <Head>
         <title> Main - Voluntain </title>
-        <link rel="icon" href="./favicon.ico" />
+        <link rel="icon" href={assetPrefix +"/favicon.ico"} />
       </Head>
 
       <MainBanner />
