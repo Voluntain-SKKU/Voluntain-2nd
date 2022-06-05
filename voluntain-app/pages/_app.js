@@ -37,6 +37,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
         {/* Google Analytics Scripts */}
         {/* noAnalytics 쿠키가 true일 경우, 비활성화됩니다. */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />

@@ -379,3 +379,21 @@
     flex-direction: column;
   }
 }
+
+.courselist{
+  text-align: start;
+  padding:10px;
+  font-family: 'Noto Sans', sans-serif;
+  
+}
+
+.courselist h5{
+  margin:0;
+  font-size:25px;
+  font-weight: 700;
+}
+
+.courselist p{
+  margin:0;
+  font-family: 'Noto Sans', sans-serif;
+}

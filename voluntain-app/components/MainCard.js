@@ -23,7 +23,7 @@ export const MainCard = (props)=> {
                     title={course.title} 
                     img={`${url}`+course.logo_img.url}
                     content={course.about}
-                    link={"/course/" + course.id}
+                    link={"/newcourse/" + course.id}
                     level={course.level}
                     />  
             ))}
