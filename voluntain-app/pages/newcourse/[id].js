@@ -44,11 +44,11 @@ export default function Home({ course }) {
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">{course.about}</p>
             </div>
-            <div class="overflow-hidden">
+            {/*<div class="overflow-hidden">
                 <div class="container px-5">
                     <img src={`${url}`+course.logo_img.url} class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy"/>
                 </div>
-            </div>
+  </div>*/}
             <div class="card text-center">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">

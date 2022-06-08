@@ -21,7 +21,7 @@ export default function Home({ course }) {
   //move to the course page of the lecture
   const handleClick = (e) => {
     e.preventDefault()
-    var link="/newcourse/" + course.lecture_number;
+    var link="/newcourse/" + course.id;
     Router.push(link);
    };
 
@@ -40,7 +40,7 @@ export default function Home({ course }) {
         <h1 class="display-4 fw-bold">{course.title}</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">{course.about}</p>
-                <div>
+                <div className='videoresponsive'>
                   <Youtube videoId={course.video_link}/>
                 </div>
                 <br></br>
@@ -56,12 +56,12 @@ export default function Home({ course }) {
         </div>
 
         <div className={styles.lectureCardContainer}>
-            <div className={styles.lectureCardsRow}>
+            {/*<div className={styles.lectureCardsRow}>
               <LectureCards
                 title='Lecture Info'
                 content={course.about}
               />
-            </div>
+            </div>*/}
             <div className={styles.lectureCardsRow}>
               <LectureCards
                 title='Exercise'
