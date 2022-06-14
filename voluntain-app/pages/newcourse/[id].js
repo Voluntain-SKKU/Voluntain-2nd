@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { DiscussionEmbed } from "disqus-react"
 import { NavigationBar } from '../../components/NavigationBar';
 import { Footer } from '../../components/Footer';
+import { Sidebar } from '../../components/Sidebar';
 
 export default function Home({ course }) {
   //shows the list of lectures of the course
@@ -60,7 +61,12 @@ export default function Home({ course }) {
                 {list()}
             </div>
           </div>
-
+          <nav id="sidebar">
+          <div class="p-4 pt-5">
+            <h5>Lectures</h5>
+          </div>
+          {list()}
+        </nav>
     </div>
   )
 }
