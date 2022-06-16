@@ -404,3 +404,24 @@
   position: relative;
   height: 0;
 }
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+
+.sidebar {
+  min-width: 350px;
+  max-width: 350px;
+  margin: 0;
+  color: #fff;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.05); }

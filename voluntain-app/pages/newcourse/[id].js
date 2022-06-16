@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { DiscussionEmbed } from "disqus-react"
 import { NavigationBar } from '../../components/NavigationBar';
 import { Footer } from '../../components/Footer';
+import { Sidebar } from '../../components/Sidebar';
 
 export default function Home({ course }) {
   //shows the list of lectures of the course
@@ -39,6 +40,8 @@ export default function Home({ course }) {
       <Head>
         <title>{course.title}</title>
       </Head>
+      <div class="container d-md-flex align-items-stretch">
+
       <div className={styles.course} class="px-4 pt-5 my-5 text-center border-bottom">
         <h1 class="display-4 fw-bold">{course.title}</h1>
             <div class="col-lg-6 mx-auto">
@@ -60,7 +63,8 @@ export default function Home({ course }) {
                 {list()}
             </div>
           </div>
-
+          
+        </div>
     </div>
   )
 }
@@ -79,12 +83,12 @@ export const getStaticProps = async (context) => {
 
 // send GET Request to {url}/courses and get course list
 export async function getStaticPaths() {
-    const res = await fetch(`${url}/courses`);
-    const courses = await res.json();
-  
-    const paths = courses && courses.map((item) => ({
-      params: { id: item.id.toString() },
-    }));
-  
-    return { paths, fallback: false };
-  };
+  const res = await fetch(`${url}/courses`);
+  const courses = await res.json();
+
+  const paths = courses && courses.map((item) => ({
+    params: { id: item.id.toString() },
+  }));
+
+  return { paths, fallback: false };
+};

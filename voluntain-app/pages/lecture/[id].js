@@ -3,13 +3,16 @@ import styles from '../../styles/Home.module.css'
 import { url } from '../../config/next.config'
 import Youtube from 'react-youtube';
 import Router from 'next/router';
+import Link from "next/link";
 import React, { useState, useEffect } from 'react'
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
 import { LectureCards } from '../../components/LectureCards'
+import { Sidebar } from '../../components/Sidebar'
 
-export default function Home({ course }) {
+
+export default function Home({ course, course2 }) {
     /*const [lectureId, setLectureId] = useState(0);
     // disqus 설정
     const disqusShortname = "skku-voluntain"
@@ -30,17 +33,39 @@ export default function Home({ course }) {
     e.preventDefault()
     Router.push('/');
    }
+
+   const list2=() => (
+    <div>
+      {course2.lectures.map((element, index)=>{
+        return(
+          <li class="list-group-item">
+            <div className={styles.courselist}>
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">
+                    <Link href={"/lecture/" + (element.id==undefined?'landing':element.id)}>
+                      <h6>{element.title}</h6>
+                    </Link>
+                  </div>
+                </div>
+            </div>
+          </li>
+        )
+      })}
+    </div>
+   );
  
   return (
     <div>
       <Head>
         <title>{course.title}</title>
       </Head>
-      <div className={styles.course} class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold">{course.title}</h1>
-            <div class="col-lg-6 mx-auto">
+      <div class="container d-md-flex align-items-stretch">
+        <div>
+          <div className={styles.course} class="px-4 pt-5 my-2 text-center border-bottom">
+            <h1 class="display-4 fw-bold">{course.title}</h1>
+              <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">{course.about}</p>
-                <div className='videoresponsive'>
+                <div className={styles.videoresponsive}>
                   <Youtube videoId={course.video_link}/>
                 </div>
                 <br></br>
@@ -52,10 +77,9 @@ export default function Home({ course }) {
                       Go back to main
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <div className={styles.lectureCardContainer}>
+              </div>
+          </div>
+          <div className={styles.lectureCardContainer}>
             {/*<div className={styles.lectureCardsRow}>
               <LectureCards
                 title='Lecture Info'
@@ -68,8 +92,13 @@ export default function Home({ course }) {
                 content={course.exercise_question}
               />
             </div>
+          </div>
         </div>
-        
+        <nav className={styles.sidebar} class="text-center border-bottom">
+            <h4>Lectures</h4>
+          {list2()}
+        </nav>
+      </div>
     </div>
   )
 }
@@ -79,8 +108,11 @@ export const getStaticProps = async (context) => {
   const data = await fetch(`${url}/lectures/${context.params.id}`);
   const course = await data.json();
 
+  const data2 = await fetch(`${url}/courses/${course.course.id}`);
+  const course2 = await data2.json();
+
   return {
-    props: { course },
+    props: { course, course2 },
     revalidate: 1,
   };
 };
@@ -93,6 +125,6 @@ export async function getStaticPaths() {
     const paths = courses.map((item) => ({
       params: { id: item.id.toString() },
     }));
-  
+
     return { paths, fallback: false };
   };
