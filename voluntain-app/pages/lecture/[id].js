@@ -34,7 +34,7 @@ export default function Home({ course, course2 }) {
     Router.push('/');
    }
 
-   const list=() =>{
+   const list2=() => (
     <div>
       {course2.lectures.map((element, index)=>{
         return(
@@ -43,7 +43,7 @@ export default function Home({ course, course2 }) {
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">
                     <Link href={"/lecture/" + (element.id==undefined?'landing':element.id)}>
-                      <h5>{element.title}</h5>
+                      <h6>{element.title}</h6>
                     </Link>
                   </div>
                 </div>
@@ -52,7 +52,7 @@ export default function Home({ course, course2 }) {
         )
       })}
     </div>
-   }
+   );
  
   return (
     <div>
@@ -60,12 +60,12 @@ export default function Home({ course, course2 }) {
         <title>{course.title}</title>
       </Head>
       <div class="container d-md-flex align-items-stretch">
-      <div>
-      <div className={styles.course} class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold">{course.title}</h1>
-            <div class="col-lg-6 mx-auto">
+        <div>
+          <div className={styles.course} class="px-4 pt-5 my-2 text-center border-bottom">
+            <h1 class="display-4 fw-bold">{course.title}</h1>
+              <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">{course.about}</p>
-                <div className='videoresponsive'>
+                <div className={styles.videoresponsive}>
                   <Youtube videoId={course.video_link}/>
                 </div>
                 <br></br>
@@ -77,10 +77,9 @@ export default function Home({ course, course2 }) {
                       Go back to main
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <div className={styles.lectureCardContainer}>
+              </div>
+          </div>
+          <div className={styles.lectureCardContainer}>
             {/*<div className={styles.lectureCardsRow}>
               <LectureCards
                 title='Lecture Info'
@@ -93,10 +92,13 @@ export default function Home({ course, course2 }) {
                 content={course.exercise_question}
               />
             </div>
+          </div>
         </div>
-        </div>
-
-        </div>
+        <nav className={styles.sidebar} class="text-center border-bottom">
+            <h4>Lectures</h4>
+          {list2()}
+        </nav>
+      </div>
     </div>
   )
 }
@@ -106,7 +108,7 @@ export const getStaticProps = async (context) => {
   const data = await fetch(`${url}/lectures/${context.params.id}`);
   const course = await data.json();
 
-  const data2 = await fetch(`${url}/courses/${context.params.id}`);
+  const data2 = await fetch(`${url}/courses/${course.course.id}`);
   const course2 = await data2.json();
 
   return {
@@ -124,12 +126,5 @@ export async function getStaticPaths() {
       params: { id: item.id.toString() },
     }));
 
-    const res2 = await fetch(`${url}/courses`);
-    const courses2 = await res2.json();
-  
-    const paths2 = courses2 && courses2.map((item) => ({
-      params: { id: item.id.toString() },
-    }));
-
-    return { paths, paths2, fallback: false };
+    return { paths, fallback: false };
   };
