@@ -68,12 +68,13 @@ export default function Home({ course, course2 }) {
       <Head>
         <title>{course.title}</title>
       </Head>
-      <div class="container d-md-flex align-items-stretch">
-        <div>
-          <div className={styles.course} class="px-4 pt-5 my-2 text-center border-bottom">
+      <div class="d-md-flex align-items-stretch mx-5">
+        
+        <div class="px-2 pt-5 my-2 text-center border-bottom">
+          <div className={styles.course} >
             <h1 class="display-4 fw-bold">{course.title}</h1>
               <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">{course.about}</p>
+                <p class="lead mb-4 text-center">{course.about}</p>
                 <div className={styles.videoresponsive}>
                   <Youtube videoId={course.video_link}/>
                 </div>
@@ -110,9 +111,9 @@ export default function Home({ course, course2 }) {
           </div>
           </div>
         </div>
-        <nav className={styles.sidebar} class="text-center border-bottom">
-            <h4>Lectures</h4>
-          {list2()}
+        <nav className={styles.course} class="px-1 pt-5 my-1 py-1 text-center border-bottom">
+            <h1 class="display-4 fw-bold">&nbsp;Lectures&nbsp;</h1>
+            {list2()}
         </nav>
       </div>
     </div>

@@ -16,7 +16,8 @@ export default function Home({ course }) {
     <div>
       {course.lectures.map((element, index) => {
         return(
-          <li class="list-group-item">
+          <ul class="list-group">
+          <li class="list-group-item list-group-item-action">
             <div className={styles.courselist}>
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">
@@ -29,6 +30,7 @@ export default function Home({ course }) {
                 </div>
             </div>
           </li>
+          </ul>
         )
       })}                
                         
@@ -40,9 +42,9 @@ export default function Home({ course }) {
       <Head>
         <title>{course.title}</title>
       </Head>
-      <div class="container d-md-flex align-items-stretch">
+      <div class="mx-5 my-3 d-md-flex align-items-stretch">
 
-      <div className={styles.course} class="px-4 pt-5 my-5 text-center border-bottom">
+      <div className={styles.course} class="px-2 pt-5 text-center border-bottom">
         <h1 class="display-4 fw-bold">{course.title}</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">{course.about}</p>
