@@ -4,7 +4,9 @@ import { url } from '../../config/next.config'
 import Youtube from 'react-youtube';
 import Router from 'next/router';
 import Link from "next/link";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { DiscussionEmbed } from "disqus-react";
+
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
@@ -13,14 +15,14 @@ import { Sidebar } from '../../components/Sidebar'
 
 
 export default function Home({ course, course2 }) {
-    /*const [lectureId, setLectureId] = useState(0);
+    /*const [lectureId, setLectureId] = useState(0);*/
     // disqus 설정
     const disqusShortname = "skku-voluntain"
     const disqusConfig = {
-        url: "http://localhost:3000/newcourse/"+course.id + '/' + course.lectures[lectureId].lecture_number,
-        identifier : course.id + '/' + course.lectures[lectureId].lecture_number,
-        title: course.lectures[lectureId].title // Single post title
-    }*/
+        url: "http://localhost:3000/newcourse/"+course.id,
+        identifier : course.id+'',
+        title: course.title // Single post title
+    }
   //move to the course page of the lecture
   const handleClick = (e) => {
     e.preventDefault()
@@ -92,6 +94,13 @@ export default function Home({ course, course2 }) {
                 content={course.exercise_question}
               />
             </div>
+            {/* disqus */}
+          <div style={{ width: '100%' }}>
+            <DiscussionEmbed
+                shortname={disqusShortname}
+              config={disqusConfig}
+            />
+          </div>
           </div>
         </div>
         <nav className={styles.sidebar} class="text-center border-bottom">
