@@ -7,7 +7,6 @@ import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import { DiscussionEmbed } from "disqus-react";
 
-
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
 import { LectureCards } from '../../components/LectureCards'
@@ -39,8 +38,15 @@ export default function Home({ course, course2 }) {
    const list2=() => (
     <div>
       {course2.lectures.map((element, index)=>{
+        var active;
+        if(element.id==course.id){
+          active = "list-group-item list-group-item-action active"
+        }else{
+          active = "list-group-item list-group-item-action"
+        }
         return(
-          <li class="list-group-item">
+          <ul class="list-group">
+            <li class={active}>
             <div className={styles.courselist}>
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">
@@ -50,7 +56,8 @@ export default function Home({ course, course2 }) {
                   </div>
                 </div>
             </div>
-          </li>
+            </li>
+          </ul>
         )
       })}
     </div>
