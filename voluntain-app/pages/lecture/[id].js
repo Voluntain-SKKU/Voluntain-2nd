@@ -4,7 +4,8 @@ import { url } from '../../config/next.config'
 import Youtube from 'react-youtube';
 import Router from 'next/router';
 import Link from "next/link";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { DiscussionEmbed } from "disqus-react";
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
@@ -13,14 +14,14 @@ import { Sidebar } from '../../components/Sidebar'
 
 
 export default function Home({ course, course2 }) {
-    /*const [lectureId, setLectureId] = useState(0);
+    /*const [lectureId, setLectureId] = useState(0);*/
     // disqus 설정
     const disqusShortname = "skku-voluntain"
     const disqusConfig = {
-        url: "http://localhost:3000/newcourse/"+course.id + '/' + course.lectures[lectureId].lecture_number,
-        identifier : course.id + '/' + course.lectures[lectureId].lecture_number,
-        title: course.lectures[lectureId].title // Single post title
-    }*/
+        url: "http://localhost:3000/newcourse/"+course.id,
+        identifier : course.id+'',
+        title: course.title // Single post title
+    }
   //move to the course page of the lecture
   const handleClick = (e) => {
     e.preventDefault()
@@ -37,8 +38,15 @@ export default function Home({ course, course2 }) {
    const list2=() => (
     <div>
       {course2.lectures.map((element, index)=>{
+        var active;
+        if(element.id==course.id){
+          active = "list-group-item list-group-item-action active"
+        }else{
+          active = "list-group-item list-group-item-action"
+        }
         return(
-          <li class="list-group-item">
+          <ul class="list-group">
+            <li class={active}>
             <div className={styles.courselist}>
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">
@@ -48,7 +56,8 @@ export default function Home({ course, course2 }) {
                   </div>
                 </div>
             </div>
-          </li>
+            </li>
+          </ul>
         )
       })}
     </div>
@@ -59,12 +68,13 @@ export default function Home({ course, course2 }) {
       <Head>
         <title>{course.title}</title>
       </Head>
-      <div class="container d-md-flex align-items-stretch">
-        <div>
-          <div className={styles.course} class="px-4 pt-5 my-2 text-center border-bottom">
+      <div class="d-md-flex align-items-stretch mx-5">
+        
+        <div class="px-2 pt-5 my-2 text-center border-bottom">
+          <div className={styles.course} >
             <h1 class="display-4 fw-bold">{course.title}</h1>
               <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">{course.about}</p>
+                <p class="lead mb-4 text-center">{course.about}</p>
                 <div className={styles.videoresponsive}>
                   <Youtube videoId={course.video_link}/>
                 </div>
@@ -92,11 +102,18 @@ export default function Home({ course, course2 }) {
                 content={course.exercise_question}
               />
             </div>
+            {/* disqus */}
+          <div style={{ width: '100%' }}>
+            <DiscussionEmbed
+                shortname={disqusShortname}
+              config={disqusConfig}
+            />
+          </div>
           </div>
         </div>
-        <nav className={styles.sidebar} class="text-center border-bottom">
-            <h4>Lectures</h4>
-          {list2()}
+        <nav className={styles.course} class="px-1 pt-5 my-1 py-1 text-center border-bottom">
+            <h1 class="display-4 fw-bold">&nbsp;Lectures&nbsp;</h1>
+            {list2()}
         </nav>
       </div>
     </div>
