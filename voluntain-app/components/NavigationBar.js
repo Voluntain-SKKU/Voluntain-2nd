@@ -34,7 +34,7 @@ export const NavigationBar = (props) => {
               <Nav.Link href="/question">Q&A</Nav.Link>
               <NavDropdown title="COURSES" id="basic-nav-dropdown">
                 {props.titles.map((item) => (
-                  <NavDropdown.Item key={item.id} href={"/course/" + item.id}>{item.title}</NavDropdown.Item>
+                  <NavDropdown.Item key={item.id} href={"/newcourse/" + item.id}>{item.title}</NavDropdown.Item>
                 ))}
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Other</NavDropdown.Item>
