@@ -6,8 +6,8 @@ import Router from 'next/router';
 import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import { DiscussionEmbed } from "disqus-react";
-
 import { useCookies } from 'react-cookie'
+
 
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 import { useWindowSize } from '../../components/useWindowSize';
@@ -15,6 +15,7 @@ import { useWindowSize } from '../../components/useWindowSize';
 import { LectureCards } from '../../components/LectureCards'
 
 export default function Home({ course, course2 }) {
+
   const size = useWindowSize();
 
   /**
@@ -31,7 +32,7 @@ export default function Home({ course, course2 }) {
     identifier: course.id + '',
     title: course.title // Single post title
   }
-
+  
   //move to the course page of the lecture
   const handleClick = (e) => {
     e.preventDefault()
@@ -198,7 +199,6 @@ export default function Home({ course, course2 }) {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   )
