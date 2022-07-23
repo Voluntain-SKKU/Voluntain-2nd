@@ -43,7 +43,6 @@ export default function Home({ course }) {
         <title>{course.title}</title>
       </Head>
       <div class="mx-5 my-3 d-md-flex align-items-stretch">
-
         <div className={styles.course} class="px-2 pt-5 text-center border-bottom">
           <h1 class="display-4 fw-bold">{course.title}</h1>
           <div class="col-lg-6 mx-auto">
