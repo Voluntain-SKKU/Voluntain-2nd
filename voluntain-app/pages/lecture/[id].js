@@ -7,6 +7,8 @@ import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import { DiscussionEmbed } from "disqus-react";
 
+import { useCookies } from 'react-cookie'
+
 import { Button, Collapse, Drawer, Fab, List, ListItem, ListItemText, Hidden } from '@material-ui/core'
 
 import { LectureCards } from '../../components/LectureCards'
@@ -34,6 +36,47 @@ export default function Home({ course, course2 }) {
     e.preventDefault()
     Router.push('/');
    }
+  const handleVideoEnd = () => {
+    if (cookies.noCookie === undefined)
+      setCookie('videoEnd', 1, { path: '/', maxAge: 31536000 });
+  }
+  const [lectureId, setLectureId] = useState(0);
+  const [isFirstLecture, setFirstLecture] = useState(1);
+  const [isLastLecture, setLastLecture] = useState(course.length == 1 ? 1 : 0);
+
+  /**
+   * 유튜브 API에서 비디오 시작이 감지될 경우 시행되어 쿠키 값을 설정합니다.
+   * - cookies.courseId를 현재 코스 id로 설정
+   * - cookies.lectureId를 현재 강의 id로 설정
+   * - cookies.videoEnd를 0으로 설정
+   * - cookies.isLastLecture를 현재 상황에 맞게 설정
+   * 
+   * @require Youtube object의 onPlay prop으로서 주어져야 합니다.
+   */
+  const handleVideoStart = () => {
+    if (cookies.noCookie == undefined) {
+      setCookie('courseId', course2.id, { path: '/', maxAge: 31536000 });
+      setCookie('lectureId', course.id, { path: '/', maxAge: 31536000 });
+      setCookie('videoEnd', 0, { path: '/', maxAge: 31536000 });
+      setCookie('isLastLecture', isLastLecture, { path: '/', maxAge: 31536000 });
+    }
+  }
+
+  /**
+   * 첫 렌더링 이후에 한 번만, 브라우저에 저장된 cookies.lectureId 값에 접근하여
+   * 표시되는 강의를 바꿔줍니다.
+   * 그에 맞춰 이전 강의, 다음 강의 버튼 값도 바꿔줍니다.
+   * 
+   * 또한 사이드바의 세부 강의 목록을 열어줍니다.
+   */
+   React.useEffect(() => {
+    if (cookies.lectureId !== undefined && cookies.courseId == course.id) {
+      console.log(`Loading the recent history...`);
+      setLectureId(cookies.lectureId);
+      setFirstLecture(cookies.lectureId == 0 ? 1 : 0);
+      setLastLecture(cookies.lectureId == course.length - 1 ? 1 : 0);
+    }
+  }, []);
 
    const list2=() => (
     <div>

@@ -58,12 +58,12 @@ export default function Home({ courses, lectures }) {
   const [recentCourse, setRecentCourse] = React.useState(lectures.lectures);
   React.useEffect(() => {
     const fetchList = async () => {
-      // console.log(`fetcing from: ${url}/courses/${recentCourseID}`)
-      await fetch(`${url}/courses/${recentCourseID}`)
-      .then((response) => response.json())
-      .then(res => {
-        setRecentCourse(res.lectures);
-      })
+      // console.log(`fetcing from: ${url}/newcourse/${recentCourseID}`)
+      await fetch(`${url}/lecture/${recentCourseID}`)
+        .then((response) => response.json())
+        .then(res => {
+          setRecentCourse(res.lectures);
+        })
     }
     fetchList();
   }, [])
@@ -73,7 +73,7 @@ export default function Home({ courses, lectures }) {
     <div className={styles.container}>
       <Head>
         <title> Main - Voluntain </title>
-        <link rel="icon" href={assetPrefix +"/favicon.ico"} />
+        <link rel="icon" href={assetPrefix + "/favicon.ico"} />
       </Head>
 
       <MainBanner />
