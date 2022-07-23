@@ -1,5 +1,5 @@
 {
-  "name": "voluntain-web",
+  "name": "Voluntain-2nd",
   "version": "1.0.0",
   "description": "```\r $ cd web-dev/voluntain-web\r $ npm install \r $ npm run dev\r ```",
   "main": "index.js",
