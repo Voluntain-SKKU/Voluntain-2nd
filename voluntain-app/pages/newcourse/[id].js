@@ -11,29 +11,29 @@ import { Sidebar } from '../../components/Sidebar';
 
 export default function Home({ course }) {
   //shows the list of lectures of the course
-  const list =() =>(
+  const list = () => (
     //map each item of lecture list to the li
     <div>
       {course.lectures.map((element, index) => {
-        return(
+        return (
           <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            <div className={styles.courselist}>
+            <li class="list-group-item list-group-item-action">
+              <div className={styles.courselist}>
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">
-                    <Link href={"/lecture/" + (element.id==undefined?'landing':element.id)}>
+                    <Link href={"/lecture/" + (element.id == undefined ? 'landing' : element.id)}>
                       <h5>{element.title}</h5>
                     </Link>
                   </div>
                   <br></br>
                   <p>{element.about}</p>
                 </div>
-            </div>
-          </li>
+              </div>
+            </li>
           </ul>
         )
-      })}                
-                        
+      })}
+
     </div>
   );
 
@@ -44,29 +44,29 @@ export default function Home({ course }) {
       </Head>
       <div class="mx-5 my-3 d-md-flex align-items-stretch">
 
-      <div className={styles.course} class="px-2 pt-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold">{course.title}</h1>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">{course.about}</p>
-            </div>
-            {/*<div class="overflow-hidden">
+        <div className={styles.course} class="px-2 pt-5 text-center border-bottom">
+          <h1 class="display-4 fw-bold">{course.title}</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">{course.about}</p>
+          </div>
+          {/*<div class="overflow-hidden">
                 <div class="container px-5">
                     <img src={`${url}`+course.logo_img.url} class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy"/>
                 </div>
   </div>*/}
-            <div class="card text-center">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="true" href="#">Lectures</a>
-                      </li>
-                    </ul>
-                </div>
-                {list()}
+          <div class="card text-center">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="true" href="#">Lectures</a>
+                </li>
+              </ul>
             </div>
+            {list()}
           </div>
-          
         </div>
+
+      </div>
     </div>
   )
 }
