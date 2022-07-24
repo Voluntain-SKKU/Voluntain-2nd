@@ -130,11 +130,11 @@ export default function Home({ course, course2 }) {
           active = "list-group-item list-group-item-action"
         }
         return (
-          <ul class="list-group">
-            <li class={active}>
+          <ul className="list-group" key={index}>
+            <li className={active}>
               <div className={styles.courselist}>
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">
+                <div clasName="ms-2 me-auto">
+                  <div className="fw-bold">
                     <Link href={"/lecture/" + (element.id == undefined ? 'landing' : element.id)}>
                       <h6>{element.title}</h6>
                     </Link>
@@ -153,24 +153,24 @@ export default function Home({ course, course2 }) {
       <Head>
         <title>{course.title}</title>
       </Head>
-      <div class="d-md-flex align-items-stretch mx-5">
+      <div className="d-md-flex align-items-stretch mx-5">
         <Hidden smDown>
-          <nav className={styles.course} class="px-1 pt-5 my-1 py-1 text-center border-bottom">
-            <h1 class="display-4 fw-bold">&nbsp;Lectures&nbsp;</h1>
+          <nav className="px-1 pt-5 my-1 py-1 text-center border-bottom">
+            <h1 className="display-4 fw-bold">&nbsp;Lectures&nbsp;</h1>
             {list2()}
           </nav>
         </Hidden>
-        <div class="px-2 pt-5 my-2 text-center border-bottom">
+        <div className="px-2 pt-5 my-2 text-center border-bottom">
           <div className={styles.course} >
-            <h1 class="display-4 fw-bold">{course.title}</h1>
-            <div class="col-lg-6 mx-auto">
-              <p class="lead mb-4 text-center">{course.about}</p>
+            <h1 className="display-4 fw-bold">{course.title}</h1>
+            <div className="col-lg-6 mx-auto">
+              <p className="lead mb-4 text-center">{course.about}</p>
               <div className={styles.videoresponsive}>
                 <Youtube videoId={course.video_link} opts={opts} onReady={onPlayerReady} onPlay={handleVideoStart} onEnd={handleVideoEnd}  />
               </div>
               <br></br>
-              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4" onClick={(e) => handleClick(e)}>
+              <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <button type="button" className="btn btn-outline-secondary btn-lg px-4" onClick={(e) => handleClick(e)}>
                   Go back to course
                 </button>
                 <Button variant="contained" color="primary" onClick={toExercise}>Check Answer</Button>
