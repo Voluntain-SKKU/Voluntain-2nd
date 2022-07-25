@@ -68,13 +68,13 @@ export const RecentLecture = (props) => {
                 else {
                     // case 3. 마지막이 아닌 강의 시청 완료
                     setTitle("Recommend you to watch");
-                    setLink("/course/" + cookies.courseId);
+                    setLink("/lecture/" + cookies.courseId);
                 }
             }
             else {
                 // case 4. 시청 중
                 setTitle("You are watching");
-                setLink("/course/" + cookies.courseId);
+                setLink("/lecture/" + cookies.courseId);
                 setSeverity("info");
             }
         }

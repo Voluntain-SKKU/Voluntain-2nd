@@ -1,7 +1,7 @@
 {
-  "name": "voluntain-web",
+  "name": "Voluntain-2nd",
   "version": "1.0.0",
-  "description": "```\r $ cd web-dev/voluntain-web\r $ npm install \r $ npm run dev\r ```",
+  "description": "```\r $ cd Voluntain-2nd\r $ npm install \r $ npm run dev\r ```",
   "main": "index.js",
   "dependencies": {
     "concurrently": "^6.2.1"

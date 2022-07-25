@@ -307,9 +307,9 @@
   background: #ffffff;
   position: relative;
   flex: 1;
-  max-width: 60%;
+  max-width: 80%;
   height: max-content;
-  margin: 10px;
+  margin: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -321,8 +321,7 @@
 }
 
 .lectureCards h5 {
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   text-align: left;
 }
 
