@@ -1,4 +1,87 @@
-# voluntain-web
+# Voluntain-2nd
+
+<div align="center">
+<img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png">
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
+</div>
+
+# Voluntain Web Page v2.0
+> **성균관대학교 소프트웨어학과 온라인 해외봉사 단체** <br/> **개발기간: 2022.03 ~ 2022.10**
+
+## 배포 주소
+
+> **개발 버전** : [http://voluntain.cs.skku.edu/](http://voluntain.cs.skku.edu/) <br>
+> **프론트 서버** : [http://voluntain.cs.skku.edu:33307/](http://voluntain.cs.skku.edu:33307/)<br>
+> **백엔드 서버** : [http://voluntain.cs.skku.edu:2223/](http://voluntain.cs.skku.edu:2223/)<br>
+
+## 웹개발팀 소개
+
+|      박지예       |          서채연         |       이현정         |                                                                                                               
+| :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | 
+|   <img width="160px" src="https://user-images.githubusercontent.com/50205887/205326013-af001243-a77d-4601-8bfc-aa713931cf95.png" />    |                      <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    |                   <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570634-247c3715-a54e-4f63-8c08-9b266f8a35f7.png"/>   |
+|   [@parkjiye](https://github.com/parkjiye)   |    [@ChaeyeonSeo](https://github.com/ChaeyeonSeo)  | [@hyunjeong408](https://github.com/hyunjeong408)  |
+| 성균관대학교 소프트웨어학과 4학년 | 성균관대학교 소프트웨어학과 4학년 | 성균관대학교 소프트웨어학과 4학년 |
+
+## 프로젝트 소개
+
+#### Voluntain will share the knowledge of programming.
+You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
+
+
+
+#### Voluntain's website will give you a learning-friendly environment.
+
+Our website supports the following component.
+1. Various online lectures with detailed descriptions and exercise questions.
+2. Q&A section to ask questions freely.
+3. Function to check the lecture you watched recently.
+
+<!--
+---
+
+## 시작 가이드
+### Requirements
+For building and running the application you need:
+
+- [Java 11](https://www.oracle.com/kr/java/technologies/javase/jdk11-archive-downloads.html)
+- [Gradle 7.4.1](https://gradle.org/)
+
+### Installation
+```bash
+git clone https://github.com/thefarmersfront/kurly-account-management-backend.git
+cd kurly-account-management-backend
+```
+
+---
+
+## Stacks 🐈
+
+### Environment
+![IntelliJ](https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=IntelliJ%20IDEA&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)             
+
+### Config
+![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white)         
+
+### Development
+![Java](https://img.shields.io/badge/Java-ED7014?style=for-the-badge)
+![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white)
+![Keycloak](https://img.shields.io/badge/Keycloak-66D7EB?style=for-the-badge&logoColor=white)
+
+### Test
+
+![Jacoco](https://img.shields.io/badge/Jacoco-C21325?style=for-the-badge)
+
+### Communication
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=Trello&logoColor=white)
+![GoogleMeet](https://img.shields.io/badge/GoogleMeet-00897B?style=for-the-badge&logo=Google%20Meet&logoColor=white)
+
+---
+
 
 ## 0. 사용 버전
 - strapi 3.6.6
@@ -98,3 +181,4 @@ Client-side
 - 웹디자인 자료
 - 운영 매뉴얼
 - issue
+-->
