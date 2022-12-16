@@ -26,10 +26,10 @@
 
 ## 프로젝트 소개
 
+발룬테인은 온라인 코딩 교육 봉사를 하는 단체입니다. 기존에 소프트웨어학과에서 월드프렌즈 ICT 봉사단이라는 개발도상국에서 약 학 달 간 코딩 교육 봉사를 하는 활동이 있었는데, 봉사가 일회성으로 끝나는 점에 아쉬움을 느껴 지속적인 봉사를 하고자 만들어졌습니다. 발룬테인에서는 스크래치, 파이썬 등 프로그래밍 언어에 관한 강의를 제공하고, 질의응답과 라이브 세션을 통해 한국 학생과 외국 학생 간에 소통이 이루어집니다.
+
 #### Voluntain will share the knowledge of programming.
 You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
-
-
 
 #### Voluntain's website will give you a learning-friendly environment.
 
@@ -38,20 +38,33 @@ Our website supports the following component.
 2. Q&A section to ask questions freely.
 3. Function to check the lecture you watched recently.
 
-<!--
----
-
 ## 시작 가이드
 ### Requirements
 For building and running the application you need:
 
-- [Java 11](https://www.oracle.com/kr/java/technologies/javase/jdk11-archive-downloads.html)
-- [Gradle 7.4.1](https://gradle.org/)
+- [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
+- [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
+- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
 
 ### Installation
-```bash
-git clone https://github.com/thefarmersfront/kurly-account-management-backend.git
-cd kurly-account-management-backend
+``` bash
+$ git clone https://github.com/Voluntain-SKKU/Voluntain-2nd.git
+$ cd Voluntain-2nd
+```
+#### Backend
+```
+$ cd strapi-backend
+$ nvm use v.14.19.3
+$ npm install
+$ npm run develop
+```
+
+#### Frontend
+```
+$ cd voluntain-app
+$ nvm use v.14.19.3
+$ npm install 
+$ npm run dev
 ```
 
 ---
@@ -59,52 +72,113 @@ cd kurly-account-management-backend
 ## Stacks 🐈
 
 ### Environment
-![IntelliJ](https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=IntelliJ%20IDEA&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
 ![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)             
 
 ### Config
-![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white)         
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)        
 
 ### Development
-![Java](https://img.shields.io/badge/Java-ED7014?style=for-the-badge)
-![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white)
-![Keycloak](https://img.shields.io/badge/Keycloak-66D7EB?style=for-the-badge&logoColor=white)
-
-### Test
-
-![Jacoco](https://img.shields.io/badge/Jacoco-C21325?style=for-the-badge)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Strapi](https://img.shields.io/badge/Strapi-2F2E8B?style=for-the-badge&logo=Strapi&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
+![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
 
 ### Communication
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
-![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=Trello&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
 ![GoogleMeet](https://img.shields.io/badge/GoogleMeet-00897B?style=for-the-badge&logo=Google%20Meet&logoColor=white)
 
 ---
+## 화면 구성 📺
+| 메인 페이지  |  소개 페이지   |
+| :-------------------------------------------: | :------------: |
+|  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036155-a57900f7-c68a-470d-923c-ff3c296ea635.png"/> |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036645-a76cf400-85bc-4fa2-af72-86d2abf61366.png"/>|  
+| 강좌 소개 페이지   |  강의 영상 페이지   |  
+| <img width="329" src="https://user-images.githubusercontent.com/50205887/208038737-2b32b7d2-25f4-4949-baf5-83b5c02915a3.png"/>   |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208038965-43a6318a-7b05-44bb-97c8-b08b0495fba7.png"/>     |
 
+---
+## 주요 기능 📦
 
-## 0. 사용 버전
-- strapi 3.6.6
-- npm 6.14.12
-- node v12.22.1
+### ⭐️ 강좌 선택 및 강의 영상 시청 기능
+- Scratch, Python 2개 강좌 및 각 강좌마다 10개 가량의 강의 영상 제공
+- 추후 지속적으로 강좌 추가 및 업로드 예정
 
-## 1. 실행 방법
+### ⭐️ 강의 관련 및 단체에 대한 자유로운 댓글 작성 가능
+- Disqus를 이용하여 강의 관련 질문이나 단체에 대한 질문 작성 가능
+
+### ⭐️ 이어 학습하기 기능
+- Cookie 기능을 이용하여 이전에 학습했던 내용 이후부터 바로 학습 가능
+
+---
+## 아키텍쳐
+
+### 디렉토리 구조
+```bash
+├── README.md
+├── package-lock.json
+├── package.json
+├── strapi-backend : 
+│   ├── README.md
+│   ├── api : db model, api 관련 정보 폴더
+│   │   ├── about
+│   │   ├── course
+│   │   └── lecture
+│   ├── config : 서버, 데이터베이스 관련 정보 폴더
+│   │   ├── database.js
+│   │   ├── env : 배포 환경(NODE_ENV = production) 일 때 설정 정보 폴더
+│   │   ├── functions : 프로젝트에서 실행되는 함수 관련 정보 폴더
+│   │   └── server.js
+│   ├── extensions
+│   │   └── users-permissions : 권한 정보
+│   ├── favicon.ico
+│   ├── package-lock.json
+│   ├── package.json
+│   └── public
+│       ├── robots.txt
+│       └── uploads : 강의 별 사진
+└── voluntain-app : 프론트엔드
+    ├── README.md
+    ├── components
+    │   ├── CourseCard.js
+    │   ├── Footer.js
+    │   ├── LectureCards.js
+    │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
+    │   ├── MainCard.js
+    │   ├── MainCookieCard.js
+    │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
+    │   ├── RecentLecture.js
+    │   └── useWindowSize.js
+    ├── config
+    │   └── next.config.js
+    ├── lib
+    │   ├── context.js
+    │   └── ga
+    ├── next.config.js
+    ├── package-lock.json
+    ├── package.json
+    ├── pages
+    │   ├── _app.js
+    │   ├── _document.js
+    │   ├── about.js
+    │   ├── course
+    │   ├── index.js
+    │   ├── lecture
+    │   ├── newcourse
+    │   ├── question.js
+    │   └── setting.js
+    ├── public
+    │   ├── favicon.ico
+    │   └── logo_about.png
+    └── styles
+        └── Home.module.css
+
 ```
-$ cd voluntain-app
-$ npm install 
-$ cd ..
-$ npm run dev
-```
 
-## 2. 기술 스택
-Server-side
-- 백엔드 프레임워크: Strapi
-
-Client-side
-- 뷰 레이어 : React, next.js
-- CSS 라이브러리 : Bootstrap, Material UI
-
-## 3. 폴더 구조
+<!--
 ```bash
 ├── README.md : 리드미 파일
 │
@@ -169,16 +243,4 @@ Client-side
         └── Home.module.css
 
 ```
-
-## 기타
-1) 계정
-- Strapi
-- MySQL
- 
-2) notion: https://www.notion.so/Voluntain-Web-ab060e44e6ec4b69b966f5e774a4a8f0
-- API
-- Strapi content type
-- 웹디자인 자료
-- 운영 매뉴얼
-- issue
 -->
